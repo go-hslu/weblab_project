@@ -18,7 +18,7 @@ jobs:
         angular_project_dir: radar
         base_href: https://go-hslu.github.io/weblab_project/
         deploy_branch: gh-pages
-        angular_dist_build_folder: dist
+        angular_dist_build_folder: radar/dist
 
 permissions:
   contents: write
