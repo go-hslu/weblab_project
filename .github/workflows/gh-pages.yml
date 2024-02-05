@@ -1,24 +1,23 @@
-name: Build & Deploy
+name: GitHub Pages (Angular Build & Deploy)
 on:
   push:
     branches:
       - main
+
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v3
-    - name: Angular deployment
+    - name: Angular app deployment
       uses: AhsanAyaz/angular-deploy-gh-pages-actions@v1.4.0
       with:
         github_access_token: ${{ secrets.GITHUB_TOKEN }}
         build_configuration: production
-        angular_project_dir: radar
-        base_href: https://go-hslu.github.io/weblab_project/
+        base_href: /weblab_project/
         deploy_branch: gh-pages
-        angular_dist_build_folder: radar/dist
+        angular_dist_build_folder: radar/dist/radar
+        angular_project_dir: radar
 
 permissions:
   contents: write
