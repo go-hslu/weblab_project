@@ -1,183 +1,41 @@
 # WEBLAB Projekt
+## 1 Einführung und Ziele
 
-**Über arc42**
+Im Modul WEBLAB (Web Programming Lab) an der Hochschule soll ein Web-Projekt mit den behandelten Technologien erarbeitet werden.
 
-arc42, das Template zur Dokumentation von Software- und
-Systemarchitekturen.
+Es wird die vorgeschlagene Projektidee eines "Technologie-Radars" verfolgt. Dabei ist das Ziel, dass
+innerhalb eines Unternehmens eine Übersicht auf die in Projekten verwendeten Technologien & Tools verschafft wird. In einem einer Visualisierung ähnlich zu einem Radar werden Technologien & Tools als Punkte dargestellt. Über die Quadranten werden diese kategorisiert.
 
-Template Version 8.2 DE. (basiert auf AsciiDoc Version), Januar 2023
+### 1.1 Aufgabenstellung
 
-Created, maintained and © by Dr. Peter Hruschka, Dr. Gernot Starke and
-contributors. Siehe <https://arc42.org>.
+In Einzelarbeit soll mit einem totalen Aufwand von ca. 60 Stunden ein Web-Projekt realisiert werden. Die Artefakte aus
+dem Projekt zu 70% und Präsentation zu 30% ergeben die Modulnote. Gefordert werden folgende Inhalte:
 
-::: note
-Diese Version des Templates enthält Hilfen und Erläuterungen. Sie dient
-der Einarbeitung in arc42 sowie dem Verständnis der Konzepte. Für die
-Dokumentation eigener System verwenden Sie besser die *plain* Version.
-:::
+Projekt (70%)
+- Architekturdokumentation (35%)
+- Fazit & Reflexion (20%)
+- Arbeitsjournal (10%)
+- Softwareartefakte (35%)
 
-# Einführung und Ziele {#section-introduction-and-goals}
+Präsentation (30%)
+- Aufbau, Verständlichkeit (30%)
+- Präsentationsartefakte (30%, Abgabe nach der Präsentation, Inhalt für 5 Minuten)
+- Einhaltung der Timebox 5 Minuten (10%)
+- Beantwortung Fragen (30%)
 
-Beschreibt die wesentlichen Anforderungen und treibenden Kräfte, die bei
-der Umsetzung der Softwarearchitektur und Entwicklung des Systems
-berücksichtigt werden müssen.
+### 1.2 Qualitätsziele {#_qualit_tsziele}
 
-Dazu gehören:
+- **Security**: Der Radar ist intern für alle Mitarbeiter verfügbar. Inhalte können nur von spezifischen Rollen (CTO, Tech-Lead, Admin) nach Authentifizierung (E-Mail & Passwort) verändert werden. Sensible Daten wie das Passwort werden nur gehashed abgespeichert.
+- **Performance**: Die Inhalte werden unter Normalbedingungen (Kabelgebunden oder 5G) innert 1s geladen.
+- **Usability**: Das UI ist für die Geräte Mobile & Desktop optimiert, verwendet ein schlichtes & übersichtliches Design mit auf dem Gerät erwartbarem Verhalten (z.B Navigationsleiste hinter Hamburger-Icon auf Mobile)
+- **Traceability**: Anpassungen an den Technologien werden historisiert und Anmeldungen auf der Adminseite protokolliert.
 
--   zugrunde liegende Geschäftsziele,
+## 2 Kontextabgrenzung
 
--   wesentliche Aufgabenstellungen,
+https://github.com/web-programming-lab/web-programming-lab-projekt/blob/main/Technologie-Radar.md
 
--   wesentliche funktionale Anforderungen,
-
--   Qualitätsziele für die Architektur und
-
--   relevante Stakeholder und deren Erwartungshaltung.
-
-## Aufgabenstellung {#_aufgabenstellung}
-
-::: formalpara-title
-**Inhalt**
-:::
-
-Kurzbeschreibung der fachlichen Aufgabenstellung, treibenden Kräfte,
-Extrakt (oder Abstract) der Anforderungen. Verweis auf (hoffentlich
-vorliegende) Anforderungsdokumente (mit Versionsbezeichnungen und
-Ablageorten).
-
-::: formalpara-title
-**Motivation**
-:::
-
-Aus Sicht der späteren Nutzung ist die Unterstützung einer fachlichen
-Aufgabe oder Verbesserung der Qualität der eigentliche Beweggrund, ein
-neues System zu schaffen oder ein bestehendes zu modifizieren.
-
-::: formalpara-title
-**Form**
-:::
-
-Kurze textuelle Beschreibung, eventuell in tabellarischer Use-Case Form.
-Sofern vorhanden, sollte die Aufgabenstellung Verweise auf die
-entsprechenden Anforderungsdokumente enthalten.
-
-Halten Sie diese Auszüge so knapp wie möglich und wägen Sie Lesbarkeit
-und Redundanzfreiheit gegeneinander ab.
-
-Siehe [Anforderungen und Ziele](https://docs.arc42.org/section-1/) in
-der online-Dokumentation (auf Englisch!).
-
-## Qualitätsziele {#_qualit_tsziele}
-
-::: formalpara-title
-**Inhalt**
-:::
-
-Die Top-3 bis Top-5 der Qualitätsanforderungen für die Architektur,
-deren Erfüllung oder Einhaltung den maßgeblichen Stakeholdern besonders
-wichtig sind. Gemeint sind hier wirklich Qualitätsziele, die nicht
-unbedingt mit den Zielen des Projekts übereinstimmen. Beachten Sie den
-Unterschied.
-
-Hier ein Überblick möglicher Themen (basierend auf dem ISO 25010
-Standard):
-
-![Kategorien von
-Qualitätsanforderungen](images/01_2_iso-25010-topics-DE.drawio.png)
-
-::: formalpara-title
-**Motivation**
-:::
-
-Weil Qualitätsziele grundlegende Architekturentscheidungen oft
-maßgeblich beeinflussen, sollten Sie die für Ihre Stakeholder relevanten
-Qualitätsziele kennen, möglichst konkret und operationalisierbar.
-
-::: formalpara-title
-**Form**
-:::
-
-Tabellarische Darstellung der Qualitätsziele mit möglichst konkreten
-Szenarien, geordnet nach Prioritäten.
-
-## Stakeholder {#_stakeholder}
-
-::: formalpara-title
-**Inhalt**
-:::
-
-Expliziter Überblick über die Stakeholder des Systems -- über alle
-Personen, Rollen oder Organisationen --, die
-
--   die Architektur kennen sollten oder
-
--   von der Architektur überzeugt werden müssen,
-
--   mit der Architektur oder dem Code arbeiten (z.B. Schnittstellen
-    nutzen),
-
--   die Dokumentation der Architektur für ihre eigene Arbeit benötigen,
-
--   Entscheidungen über das System und dessen Entwicklung treffen.
-
-::: formalpara-title
-**Motivation**
-:::
-
-Sie sollten die Projektbeteiligten und -betroffenen kennen, sonst
-erleben Sie später im Entwicklungsprozess Überraschungen. Diese
-Stakeholder bestimmen unter anderem Umfang und Detaillierungsgrad der
-von Ihnen zu leistenden Arbeit und Ergebnisse.
-
-::: formalpara-title
-**Form**
-:::
-
-Tabelle mit Rollen- oder Personennamen, sowie deren Erwartungshaltung
-bezüglich der Architektur und deren Dokumentation.
-
-+-----------------+-----------------+-----------------------------------+
-| Rolle           | Kontakt         | Erwartungshaltung                 |
-+=================+=================+===================================+
-| *\<Rolle-1>*    | *\<Kontakt-1>*  | *\<Erwartung-1>*                  |
-+-----------------+-----------------+-----------------------------------+
-| *\<Rolle-2>*    | *\<Kontakt-2>*  | *\<Erwartung-2>*                  |
-+-----------------+-----------------+-----------------------------------+
-
-# Randbedingungen {#section-architecture-constraints}
-
-::: formalpara-title
-**Inhalt**
-:::
-
-Randbedingungen und Vorgaben, die ihre Freiheiten bezüglich Entwurf,
-Implementierung oder Ihres Entwicklungsprozesses einschränken. Diese
-Randbedingungen gelten manchmal organisations- oder firmenweit über die
-Grenzen einzelner Systeme hinweg.
-
-::: formalpara-title
-**Motivation**
-:::
-
-Für eine tragfähige Architektur sollten Sie genau wissen, wo Ihre
-Freiheitsgrade bezüglich der Entwurfsentscheidungen liegen und wo Sie
-Randbedingungen beachten müssen. Sie können Randbedingungen vielleicht
-noch verhandeln, zunächst sind sie aber da.
-
-::: formalpara-title
-**Form**
-:::
-
-Einfache Tabellen der Randbedingungen mit Erläuterungen. Bei Bedarf
-unterscheiden Sie technische, organisatorische und politische
-Randbedingungen oder übergreifende Konventionen (beispielsweise
-Programmier- oder Versionierungsrichtlinien, Dokumentations- oder
-Namenskonvention).
-
-Siehe [Randbedingungen](https://docs.arc42.org/section-2/) in der
-online-Dokumentation (auf Englisch!).
-
-# Kontextabgrenzung {#section-system-scope-and-context}
+### 2.1 Abgrenzungen / Änderungen
+- Projekte
 
 ::: formalpara-title
 **Inhalt**
@@ -213,40 +71,7 @@ Verschiedene Optionen:
 Siehe [Kontextabgrenzung](https://docs.arc42.org/section-3/) in der
 online-Dokumentation (auf Englisch!).
 
-## Fachlicher Kontext {#_fachlicher_kontext}
-
-::: formalpara-title
-**Inhalt**
-:::
-
-Festlegung **aller** Kommunikationsbeziehungen (Nutzer, IT-Systeme, ...)
-mit Erklärung der fachlichen Ein- und Ausgabedaten oder Schnittstellen.
-Zusätzlich (bei Bedarf) fachliche Datenformate oder Protokolle der
-Kommunikation mit den Nachbarsystemen.
-
-::: formalpara-title
-**Motivation**
-:::
-
-Alle Beteiligten müssen verstehen, welche fachlichen Informationen mit
-der Umwelt ausgetauscht werden.
-
-::: formalpara-title
-**Form**
-:::
-
-Alle Diagrammarten, die das System als Blackbox darstellen und die
-fachlichen Schnittstellen zu den Nachbarsystemen beschreiben.
-
-Alternativ oder ergänzend können Sie eine Tabelle verwenden. Der Titel
-gibt den Namen Ihres Systems wieder; die drei Spalten sind:
-Kommunikationsbeziehung, Eingabe, Ausgabe.
-
-**\<Diagramm und/oder Tabelle>**
-
-**\<optional: Erläuterung der externen fachlichen Schnittstellen>**
-
-## Technischer Kontext {#_technischer_kontext}
+### 2.1 Technischer Kontext {#_technischer_kontext}
 
 ::: formalpara-title
 **Inhalt**
@@ -280,7 +105,7 @@ Ein-/Ausgaben abbildet.
 
 **\<Mapping fachliche auf technische Schnittstellen>**
 
-# Lösungsstrategie {#section-solution-strategy}
+## 3 Lösungsstrategie
 
 ::: formalpara-title
 **Inhalt**
@@ -977,39 +802,22 @@ Siehe [Risiken und technische
 Schulden](https://docs.arc42.org/section-11/) in der
 online-Dokumentation (auf Englisch!).
 
-# Glossar {#section-glossary}
+## 4. Arbeitsjournal
 
-::: formalpara-title
-**Inhalt**
-:::
+| Datum              | Aufwand | Titel                                    | Beschreibung                                     |
+|--------------------|---------|------------------------------------------|--------------------------------------------------|
+| **Mo, 05.02.2024** | 2h      | Projektidee, Vorlage, GitHub Repo        |                                                  |
 
-Die wesentlichen fachlichen und technischen Begriffe, die Stakeholder im
-Zusammenhang mit dem System verwenden.
+## 5. Glossar
 
-Nutzen Sie das Glossar ebenfalls als Übersetzungsreferenz, falls Sie in
-mehrsprachigen Teams arbeiten.
+| Begriff [A-Z]         | Definition                                    |
+|-----------------------|-----------------------------------------------|
+| **Angular**           | Lorem ipsum                                   |
+| **B**                 | Lorem ipsum                                   |
 
-::: formalpara-title
-**Motivation**
-:::
+**Über arc42**
 
-Sie sollten relevante Begriffe klar definieren, so dass alle Beteiligten
+Template Version 8.2 DE. (basiert auf AsciiDoc Version), Januar 2023
 
--   diese Begriffe identisch verstehen, und
-
--   vermeiden, mehrere Begriffe für die gleiche Sache zu haben.
-
-Zweispaltige Tabelle mit \<Begriff> und \<Definition>.
-
-Eventuell weitere Spalten mit Übersetzungen, falls notwendig.
-
-Siehe [Glossar](https://docs.arc42.org/section-12/) in der
-online-Dokumentation (auf Englisch!).
-
-+-----------------------+-----------------------------------------------+
-| Begriff               | Definition                                    |
-+=======================+===============================================+
-| *\<Begriff-1>*        | *\<Definition-1>*                             |
-+-----------------------+-----------------------------------------------+
-| *\<Begriff-2*         | *\<Definition-2>*                             |
-+-----------------------+-----------------------------------------------+
+Created, maintained and © by Dr. Peter Hruschka, Dr. Gernot Starke and
+contributors. View <https://arc42.org>.
