@@ -23,7 +23,7 @@ Präsentation (30%)
 - Einhaltung der Timebox 5 Minuten (10%)
 - Beantwortung Fragen (30%)
 
-### 1.2 Qualitätsziele {#_qualit_tsziele}
+### 1.2 Qualitätsziele
 
 - **Security**: Der Radar ist intern für alle Mitarbeiter verfügbar. Inhalte können nur von spezifischen Rollen (CTO, Tech-Lead, Admin) nach Authentifizierung (E-Mail & Passwort) verändert werden. Sensible Daten wie das Passwort werden nur gehashed abgespeichert.
 - **Performance**: Die Inhalte werden unter Normalbedingungen (Kabelgebunden oder 5G) innert 1s geladen.
@@ -61,6 +61,8 @@ Beispielsweise UML Deployment-Diagramme mit den Kanälen zu
 Nachbarsystemen, begleitet von einer Tabelle, die Kanäle auf
 Ein-/Ausgaben abbildet.
 
+![Kontext Diagramm](res/Context-Diagram.png)
+
 
 ## 3 Lösungsstrategie
 
@@ -77,6 +79,8 @@ Hierzu gehören:
 -   relevante organisatorische Entscheidungen, beispielsweise für
     bestimmte Entwicklungsprozesse oder Delegation bestimmter Aufgaben
     an andere Stakeholder.
+
+![Klassen Diagramm](res/Class-Diagram.png)
 
 
 ## 4 Bausteinsicht
