@@ -16,7 +16,7 @@ jobs:
         build_configuration: production
         base_href: /weblab_project/
         deploy_branch: gh-pages
-        angular_dist_build_folder: radar/dist/radar
+        angular_dist_build_folder: radar/dist/radar/browser
         angular_project_dir: radar
 
 permissions:
