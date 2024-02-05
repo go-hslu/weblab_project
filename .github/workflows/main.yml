@@ -1,0 +1,24 @@
+name: Build and Deploy
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: All things angular
+      uses: AhsanAyaz/angular-deploy-gh-pages-actions@1.4.0
+      with:
+        github_access_token: ${{ secrets.GITHUB_TOKEN }}
+        build_configuration: staging
+        angular_project_dir: radar
+        base_href: https://go-hslu.github.io/weblab_project/
+        deploy_branch: main
+        angular_dist_build_folder: dist
+
+permissions:
+  contents: write
