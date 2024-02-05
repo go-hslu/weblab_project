@@ -1,8 +1,8 @@
-name: Build & Deploy Angular to GitHub Pages
+name: Build & Deploy
 on:
   push:
     branches:
-      - master
+      - main
 jobs:
   build:
 
@@ -10,7 +10,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: All things angular
+    - name: Angular deployment
       uses: AhsanAyaz/angular-deploy-gh-pages-actions@v1.4.0
       with:
         github_access_token: ${{ secrets.GITHUB_TOKEN }}
