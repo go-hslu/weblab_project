@@ -1,4 +1,4 @@
-name: Build and Deploy
+name: Build & Deploy Angular to GitHub Pages
 on:
   push:
     branches:
@@ -17,7 +17,7 @@ jobs:
         build_configuration: staging
         angular_project_dir: radar
         base_href: https://go-hslu.github.io/weblab_project/
-        deploy_branch: main
+        deploy_branch: gh-pages
         angular_dist_build_folder: dist
 
 permissions:
