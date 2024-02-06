@@ -8,11 +8,11 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  REPOSITORY: weblab_project #${{ github.repository }}
+  REPOSITORY: weblab_project
 
 jobs:
   build:
-    name: Build front- & backend
+    name: Build front- & backend and deploy Docker image to GitHub Container Registry
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -45,14 +45,6 @@ jobs:
     - name: (Backend) Build application
       run: npm run build
       working-directory: backend
-
-  deploy:
-    name: Build Docker image and deploy to GitHub Container Registry
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
 
     - name: Push to GitHub Container Registry
       uses: mr-smithers-excellent/docker-build-push@v6
