@@ -26,19 +26,19 @@ jobs:
 
     - name: (Angular) Install dependencies
       run: npm install
-      #working-directory: radar-app
+      working-directory: radar-app
 
     - name: (Angular) Build application
       run: npm run build
-      #working-directory: radar-app
+      working-directory: radar-app
 
     - name: (Backend) Install dependencies
       run: npm install
-      #working-directory: backend
+      working-directory: backend
 
     - name: (Backend) Build application
       run: npm run build
-      #working-directory: backend
+      working-directory: backend
 
   deploy:
     name: Create Docker image and push to GitHub Container Registry
