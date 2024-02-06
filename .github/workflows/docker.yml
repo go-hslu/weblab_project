@@ -33,19 +33,21 @@ jobs:
       run: npm run build
       working-directory: radar-app
 
-    - name: (Backend) Install dependencies
-      run: npm install
-      working-directory: backend
+    #- name: (Backend) Install dependencies
+    #  run: npm install
+    #  working-directory: backend
 
-    - name: (Backend) Build application
-      run: npm run build
-      working-directory: backend
+    #- name: (Backend) Build application
+    #  run: npm run build
+    #  working-directory: backend
 
   deploy:
     name: Create Docker image and push to GitHub Container Registry
     needs: build
     runs-on: ubuntu-latest
     steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
 
     - name: Push to GitHub Container Registry
       uses: mr-smithers-excellent/docker-build-push@v6
