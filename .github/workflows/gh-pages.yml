@@ -1,4 +1,4 @@
-name: build-and-deploy-angular
+name: build-angular-and-deploy-to-gh-pages
 on:
   push:
     branches:
@@ -8,8 +8,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - name: Angular app deployment
+    - name: Checkout
+      uses: actions/checkout@v3
+    
+    - name: Build Angular radar-app and deploy to gh-pages branch
       uses: AhsanAyaz/angular-deploy-gh-pages-actions@v1.4.0
       with:
         github_access_token: ${{ secrets.GITHUB_TOKEN }}
