@@ -64,7 +64,8 @@ jobs:
     - name: Push to GitHub Container Registry
       uses: mr-smithers-excellent/docker-build-push@v6
       with:
-        image: $${{ env.REGISTRY }}/${{ github.repository }}
-        registry: ghcr.io
+        image: ${{ github.repository }}
+        tags: latest
+        registry: ${{ env.REGISTRY }}
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
