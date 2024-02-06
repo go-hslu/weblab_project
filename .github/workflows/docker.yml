@@ -23,12 +23,12 @@ jobs:
         cache-dependency-path: 'radar-app/package-lock.json'
 
     - name: (Angular) Install dependencies
-      run: npm ci
-      working-directory: radar-app
+      run: npm install
+      #working-directory: radar-app
 
     - name: (Angular) Build application
       run: npm run build
-      working-directory: radar-app
+      #working-directory: radar-app
 
   build-backend:
     name: Build backend
@@ -46,12 +46,12 @@ jobs:
         cache-dependency-path: 'backend/package-lock.json'
         
     - name: (Backend) Install dependencies
-      run: npm ci
-      working-directory: backend
+      run: npm install
+      #working-directory: backend
 
     - name: (Backend) Build application
       run: npm run build
-      working-directory: backend
+      #working-directory: backend
 
   deploy:
     name: Create Docker image and push to GitHub Container Registry
@@ -67,5 +67,5 @@ jobs:
         image: ${{ github.repository }}
         tags: latest
         registry: ${{ env.REGISTRY }}
-        username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
+        #username: ${{ github.actor }}
+        #password: ${{ secrets.GITHUB_TOKEN }}
