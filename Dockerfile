@@ -9,11 +9,14 @@ WORKDIR /app
 
 COPY backend/package.json ./
 COPY backend/package-lock.json ./
-COPY radar-app/radar-app/dist/radar-app/browser /app/public
-COPY backend/backend/dist /app/backend
 
 RUN npm install
 
+COPY radar-app/dist/radar-app/browser /app/public
+COPY backend/dist /app/backend
+
 USER node
 EXPOSE $SERVER_PORT
+
 CMD ["node", "backend/app.js"]
+# CMD ["npm", "run", "start"]
