@@ -42,7 +42,7 @@ jobs:
 
   deploy:
     name: Create Docker image and push to GitHub Container Registry
-    needs: build-backend
+    needs: build
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repository
