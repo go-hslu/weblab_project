@@ -3,19 +3,19 @@
 
 Im Modul WEBLAB (Web Programming Lab) an der Hochschule soll ein Web-Projekt mit den behandelten Technologien erarbeitet werden.
 
-Es wird die vorgeschlagene Projektidee eines ["Technologie-Radars"](https://www.thoughtworks.com/radar) verfolgt. Dabei ist das Ziel, dass innerhalb eines Unternehmens eine Übersicht auf die in Projekten verwendeten Technologien & Tools verschafft wird. In einem einer Visualisierung ähnlich zu einem Radar werden Technologien & Tools als Punkte dargestellt. Über die Quadranten werden diese kategorisiert.
+Es wird die vorgeschlagene Projektidee eines [Technologie-Radars](https://www.thoughtworks.com/radar) verfolgt. Dabei ist das Ziel, dass innerhalb eines Unternehmens eine Übersicht auf die in Projekten verwendeten Technologien & Tools verschafft wird. In einem einer Visualisierung ähnlich zu einem Radar werden Technologien & Tools als Punkte dargestellt. Über die Quadranten werden diese kategorisiert.
 
 ### 1.1 Aufgabenstellung
 
 In Einzelarbeit soll mit einem totalen Aufwand von ca. 60 Stunden ein Web-Projekt realisiert werden. Die Artefakte aus dem Projekt zu 70% und Präsentation zu 30% ergeben die Modulnote. Gefordert werden folgende Inhalte:
 
-Projekt (70%)
+**Projekt (70%)**
 - Architekturdokumentation (35%)
 - Fazit & Reflexion (20%)
 - Arbeitsjournal (10%)
 - Softwareartefakte (35%)
 
-Präsentation (30%)
+**Präsentation (30%)**
 - Aufbau, Verständlichkeit (30%)
 - Präsentationsartefakte (30%, Abgabe nach der Präsentation, Inhalt für 5 Minuten)
 - Einhaltung der Timebox 5 Minuten (10%)
@@ -36,11 +36,11 @@ Die [Anforderungen](https://github.com/web-programming-lab/web-programming-lab-p
 ### 2.1 Abgrenzungen / Änderungen
 
 Prinzipiell wird von Grund auf eine eigene Lösung eines Technologie-Radars mit Hilfe von Web-Technologien erarbeitet. Dazu gehören das Fronted, Backend und die Persistierung. Kleinere Anpassungen, welche ich jedoch vornehmen möchte sind:
-- Projekte: Projekte erfassen, und diesen Technologien zuordnen. Auf einem Radar könnte man so häufig verwendete Technologien als grössere Punkte darstellen.
-- Kategorien: Die Kategorien, zu welchen Technologien zugeordnet werden, sollen die User selber festlegen können. Dies könnte bedeuten, dass im Radar mehr als 4 Quadranten angezeigt würden.
-- Radar Visualisierung: Den Radar werde ich aufgrund des grösseren Aufwands für eine Visualisierung nur als Tabelle darstellen.
+- **Projekte**: Projekte erfassen, und diesen Technologien zuordnen. Auf einem Radar könnte man so häufig verwendete Technologien als grössere Punkte darstellen.
+- **Kategorien**: Die Kategorien, zu welchen Technologien zugeordnet werden, sollen die User selber festlegen können. Dies könnte bedeuten, dass im Radar mehr als 4 Quadranten angezeigt würden.
+- **Radar Visualisierung**: Den Radar werde ich aufgrund des grösseren Aufwands für eine Visualisierung nur als Tabelle darstellen.
 
-### 2.1 Technischer Kontext
+### 2.2 Technischer Kontext
 
 In einem Frontend, dem Radar (Radar-App oder Radar Applikation), werden Technologie & Projekt Daten erfasst. Diese werden als JSON an eine REST API übermittelt und die entsprechende CRUD-Operation durchgeführt (Create/Erstellen, Read/Abfragen, Update/Modifizieren oder Delete/Löschen).
 
@@ -72,7 +72,7 @@ Wie ich genau die Authentifizierung umsetzte, weiss ich noch nicht. Wir werden g
 
 #### 3.1.6 GitHub Actions / Vercel (CI/CD)
 
-Änderungen (Commits) an der Angular Applikation sollen automatisch einen Build über GitHub Actions ausführen und auf die GitHub Pages deployt werden. Dies möchte ich als Übung für mich selbst umsetzten, da ich bis jetzt kaum Erfahrung mit GitHub Actions sammeln konnte und ich darin einen grossen Nutzen für meine eigenen Projekte sehe. Desweiteren würde ich auch gerne einen automatischen build eines Docker Containers mit Actions auslösen.
+Änderungen (Commits) an der Angular Applikation sollen automatisch einen Build über GitHub Actions ausführen und auf die GitHub Pages deployt werden. Dies möchte ich als Übung für mich selbst umsetzten, da ich bis jetzt kaum Erfahrung mit GitHub Actions sammeln konnte und ich darin einen grossen Nutzen für meine eigenen Projekte sehe. Desweiteren würde ich auch gerne einen automatischen Build eines Docker Containers mit Actions auslösen.
 
 Für die Projektabgabe versuche ich das Deployment mit dem Vorschlag Vercel umzusetzten.
 
@@ -238,26 +238,26 @@ Verschiedene Möglichkeiten:
 
 ## 8 Qualitätsanforderungen
 
+<!--
 Dieser Abschnitt enthält möglichst alle Qualitätsanforderungen als
 Qualitätsbaum mit Szenarien. Die wichtigsten davon haben Sie bereits in
 Abschnitt 1.2 (Qualitätsziele) hervorgehoben.
 
 Nehmen Sie hier auch Qualitätsanforderungen geringerer Priorität auf,
 deren Nichteinhaltung oder -erreichung geringe Risiken birgt.
+-->
 
 
 ## 9 Risiken und technische Schulden
 
+<!--
 Eine nach Prioritäten geordnete Liste der erkannten Architekturrisiken
 und/oder technischen Schulden.
+-->
 
 
-## 10 Arbeitsjournal
-
-| Datum              | Aufwand | Titel                                    | Beschreibung                                     |
-|--------------------|---------|------------------------------------------|--------------------------------------------------|
-| **Mo, 05.02.2024** | 2h      | Projektidee, Vorlage, GitHub Repository  | Ich werde den Projektvorschlag des TechRadars verfolgen. Ich erstellte mir zunächst ein GitHub Repository und legte eine grobe Ordnerstruktur fest. Dokumentieren werde ich nach arc42, wofür ich die Vorlage (DE, 8.2) im Markdown-Format verwende und das README.md File ersetzte. Ich probierte zudem GitHub Actions aus, um den Build einer Angular Applikation zu automatisieren und die Webseite zu GitHub Pages zu deployen. Das Kontext Diagramm soll grob das System aufzeigen und das ER-Diagramm zeigt grob die geplanten Entitäten auf. |
-| **Di, 06.02.2024** | 3h      | Node, Docker                             | Festgelegt habe ich für das Frontend mit Angular und im Backend mit Node, Express (Web Server), TypeORM (OR-Mapper) und MySQL zu arbeiten. Sowohl im Frontend, als auch im Backend verwende ich TypeScript. Ich erstellte ein Dockerfile, um die gesamte Applikation als Docker Container einfach deployen zu können. |
+## 10 Fazit & Reflexion
+<!-- TODO -->
 
 
 ## 11 Glossar
@@ -271,6 +271,15 @@ und/oder technischen Schulden.
 | **TypeORM**           | TypeORM ist ein OR-Mapper und wird als Bindeglied zwischen der Datenbank (Relational) und dem objekt-orientiertem Backend verwendet. |
 | **TypeScript**        | TypeScript fügt statische Typisierung und weitere Sprachkonstrukte zu JavaScript hinzu. TS wird immer zu JS transkompiliert. |
 | **Z**                 | Lorem ipsum                                                                                       |
+
+
+## 12 Arbeitsjournal
+
+| Datum              | Aufwand | Titel                                    | Beschreibung                                     |
+|--------------------|---------|------------------------------------------|--------------------------------------------------|
+| **Mo, 05.02.2024** | 2h      | Projektidee, Vorlage, GitHub Repository  | Ich werde den Projektvorschlag des TechRadars verfolgen. Ich erstellte mir zunächst ein GitHub Repository und legte eine grobe Ordnerstruktur fest. Dokumentieren werde ich nach arc42, wofür ich die Vorlage (DE, 8.2) im Markdown-Format verwende und das README.md File ersetzte. Ich probierte zudem GitHub Actions aus, um den Build einer Angular Applikation zu automatisieren und die Webseite zu GitHub Pages zu deployen. Das Kontext Diagramm soll grob das System aufzeigen und das ER-Diagramm zeigt grob die geplanten Entitäten auf. |
+| **Di, 06.02.2024** | 3h      | Node, Docker                             | Festgelegt habe ich für das Frontend mit Angular und im Backend mit Node, Express (Web Server), TypeORM (OR-Mapper) und MySQL zu arbeiten. Sowohl im Frontend, als auch im Backend verwende ich TypeScript. Ich erstellte ein Dockerfile, um die gesamte Applikation als Docker Container einfach deployen zu können. |
+
 
 **About arc42** Template Version 8.2, Januar 2023. 
 Created, maintained and © by Dr. Peter Hruschka, Dr. Gernot Starke and contributors. View <https://arc42.org>.
