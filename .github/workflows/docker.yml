@@ -9,7 +9,8 @@ env:
   IMAGE_NAME: ${{ github.repository }}
 
 jobs:
-  build:
+  build-frontend:
+    name: Build Angular frontend
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repository
@@ -20,6 +21,7 @@ jobs:
       with:
         node-version: '20'
         cache: 'npm'
+        cache-dependenccy-path: 'radar-app/package-lock.json'
 
     - name: (Angular) Install dependencies
       run: npm install
@@ -29,6 +31,21 @@ jobs:
       run: npm run build
       working-directory: radar-app
 
+  build-backend:
+    name: Build backend
+    needs: build-frontend
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Setup and use Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20'
+        cache: 'npm'
+        cache-dependenccy-path: 'backend/package-lock.json'
+        
     - name: (Backend) Install dependencies
       run: npm install
       working-directory: backend
@@ -39,7 +56,7 @@ jobs:
 
   deploy:
     name: Create Docker image and deploy to Docker Hub
-    needs: build
+    needs: build-backend
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -61,7 +78,7 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@f2a1d5e99d037542a71f64918e516c093c6f3fc4
         with:
-          context: backend
+          context: .
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
