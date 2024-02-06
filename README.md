@@ -3,13 +3,11 @@
 
 Im Modul WEBLAB (Web Programming Lab) an der Hochschule soll ein Web-Projekt mit den behandelten Technologien erarbeitet werden.
 
-Es wird die vorgeschlagene Projektidee eines "Technologie-Radars" verfolgt. Dabei ist das Ziel, dass
-innerhalb eines Unternehmens eine Übersicht auf die in Projekten verwendeten Technologien & Tools verschafft wird. In einem einer Visualisierung ähnlich zu einem Radar werden Technologien & Tools als Punkte dargestellt. Über die Quadranten werden diese kategorisiert.
+Es wird die vorgeschlagene Projektidee eines ["Technologie-Radars"](https://www.thoughtworks.com/radar) verfolgt. Dabei ist das Ziel, dass innerhalb eines Unternehmens eine Übersicht auf die in Projekten verwendeten Technologien & Tools verschafft wird. In einem einer Visualisierung ähnlich zu einem Radar werden Technologien & Tools als Punkte dargestellt. Über die Quadranten werden diese kategorisiert.
 
 ### 1.1 Aufgabenstellung
 
-In Einzelarbeit soll mit einem totalen Aufwand von ca. 60 Stunden ein Web-Projekt realisiert werden. Die Artefakte aus
-dem Projekt zu 70% und Präsentation zu 30% ergeben die Modulnote. Gefordert werden folgende Inhalte:
+In Einzelarbeit soll mit einem totalen Aufwand von ca. 60 Stunden ein Web-Projekt realisiert werden. Die Artefakte aus dem Projekt zu 70% und Präsentation zu 30% ergeben die Modulnote. Gefordert werden folgende Inhalte:
 
 Projekt (70%)
 - Architekturdokumentation (35%)
@@ -33,39 +31,52 @@ Präsentation (30%)
 
 ## 2 Kontextabgrenzung
 
-https://github.com/web-programming-lab/web-programming-lab-projekt/blob/main/Technologie-Radar.md
+Die [Anforderungen](https://github.com/web-programming-lab/web-programming-lab-projekt/blob/main/Technologie-Radar.md) sind für bei der vorgeschlagenden Projektidee gegeben. So sollen bestimmte Rollen (Tech-Lead, CTO & Admins) neue Technologien erfassen dürfen, und alle Mitarbeiter (User) die publizierten Technologien einsehen. 
 
 ### 2.1 Abgrenzungen / Änderungen
-- Projekte
 
-Die Kontextabgrenzung grenzt das System gegen alle Kommunikationspartner
-(Nachbarsysteme und Benutzerrollen) ab. Sie legt damit die externen
-Schnittstellen fest und zeigt damit auch die Verantwortlichkeit (scope)
-Ihres Systems: Welche Verantwortung trägt das System und welche
-Verantwortung übernehmen die Nachbarsysteme?
-
-Differenzieren Sie fachlichen (Ein- und Ausgaben) und technischen
-Kontext (Kanäle, Protokolle, Hardware), falls nötig.
-
-Verschiedene Optionen:
--   Diverse Kontextdiagramme
--   Listen von Kommunikationsbeziehungen mit deren Schnittstellen
+Prinzipiell wird von Grund auf eine eigene Lösung eines Technologie-Radars mit Hilfe von Web-Technologien erarbeitet. Dazu gehören das Fronted, Backend und die Persistierung. Kleinere Anpassungen, welche ich jedoch vornehmen möchte sind:
+- Projekte: Projekte erfassen, und diesen Technologien zuordnen. Auf einem Radar könnte man so häufig verwendete Technologien als grössere Punkte darstellen.
+- Kategorien: Die Kategorien, zu welchen Technologien zugeordnet werden, sollen die User selber festlegen können. Dies könnte bedeuten, dass im Radar mehr als 4 Quadranten angezeigt würden.
+- Radar Visualisierung: Den Radar werde ich aufgrund des grösseren Aufwands für eine Visualisierung nur als Tabelle darstellen.
 
 ### 2.1 Technischer Kontext
 
-Technische Schnittstellen (Kanäle, Übertragungsmedien) zwischen dem
-System und seiner Umwelt. Zusätzlich eine Erklärung (*mapping*), welche
-fachlichen Ein- und Ausgaben über welche technischen Kanäle fließen.
-
-Beispielsweise UML Deployment-Diagramme mit den Kanälen zu
-Nachbarsystemen, begleitet von einer Tabelle, die Kanäle auf
-Ein-/Ausgaben abbildet.
+In einem Frontend, dem Radar (Radar-App oder Radar Applikation), werden Technologie & Projekt Daten erfasst. Diese werden als JSON an eine REST API übermittelt und die entsprechende CRUD-Operation durchgeführt (Create/Erstellen, Read/Abfragen, Update/Modifizieren oder Delete/Löschen).
 
 ![Kontext Diagramm](res/Context-Diagram.png)
 
 
 ## 3 Lösungsstrategie
 
+### 3.1 Technologieentscheidungen
+#### 3.1.1 TypeScript
+
+Sowohl im Frontend als auch Backend werde ich TypeScript verwenden. Die explizite Typisierung sehe ich als grossen Vorteil gegenüber Vanilla JavaScript für einen leichter lesbareren Code.
+
+#### 3.1.2 Angular (Frontend)
+
+Angular ermöglicht das Erstellen von Single Page Applications. Es ist ein etabliertes und in der Schweiz sehr häufig verwendetes Framework. Ich habe persönlich Angular 2 bzw Angular 4 gelernt, also kenne Angular eigentlich schon. Da ich aber künftig bei der Arbeit auch Angular einsetzten werde, möchte ich es besser kennenlernen.
+
+#### 3.1.3 Node / Express (Backend)
+
+Im Backend werde ich Express verwenden, um einfach APIs definieren zu können. 
+
+#### 3.1.4 TypeORM / MySQL (ORM & Database)
+
+TypeORM nimmt mir einen grossteil der Arbeit für die Persistierung ab. 
+
+#### 3.1.5 ? (Authentication)
+
+Wie ich genau die Authentifizierung umsetzte, weiss ich noch nicht. Wir werden gegen Ende der Blockwoche ein paar Möglichkeiten anschauen, dann werde ich mich entscheiden. 
+
+#### 3.1.6 GitHub Actions / Vercel (CI/CD)
+
+Änderungen (Commits) an der Angular Applikation sollen automatisch einen Build über GitHub Actions ausführen und auf die GitHub Pages deployt werden. Dies möchte ich als Übung für mich selbst umsetzten, da ich bis jetzt kaum Erfahrung mit GitHub Actions sammeln konnte und ich darin einen grossen Nutzen für meine eigenen Projekte sehe. Desweiteren würde ich auch gerne einen automatischen build eines Docker Containers mit Actions auslösen.
+
+Für die Projektabgabe versuche ich das Deployment mit dem Vorschlag Vercel umzusetzten.
+
+<!--
 Kurzer Überblick über die grundlegenden Entscheidungen und
 Lösungsansätze, die Entwurf und Implementierung des Systems prägen.
 Hierzu gehören:
@@ -79,12 +90,12 @@ Hierzu gehören:
 -   relevante organisatorische Entscheidungen, beispielsweise für
     bestimmte Entwicklungsprozesse oder Delegation bestimmter Aufgaben
     an andere Stakeholder.
-
-![Klassen Diagramm](res/Class-Diagram.png)
+-->
 
 
 ## 4 Bausteinsicht
 
+<!--
 Die Bausteinsicht zeigt die statische Zerlegung des Systems in Bausteine
 (Module, Komponenten, Subsysteme, Klassen, Schnittstellen, Pakete,
 Bibliotheken, Frameworks, Schichten, Partitionen, Tiers, Funktionen,
@@ -93,9 +104,11 @@ Makros, Operationen, Datenstrukturen, ...) sowie deren Abhängigkeiten
 
 Diese Sicht sollte in jeder Architekturdokumentation vorhanden sein. In
 der Analogie zum Hausbau bildet die Bausteinsicht den *Grundrissplan*.
+-->
 
 ### 4.1 Whitebox Gesamtsystem
 
+<!--
 An dieser Stelle beschreiben Sie die Zerlegung des Gesamtsystems anhand
 des nachfolgenden Whitebox-Templates. Dieses enthält:
 
@@ -111,10 +124,18 @@ des nachfolgenden Whitebox-Templates. Dieses enthält:
         Werkzeug, etwa in Form von Unterkapiteln (Text), Unter-Seiten
         (Wiki) oder geschachtelten Elementen (Modellierungswerkzeug)
         darstellen.
+-->
+
+### 4.2 ER-Diagramm
+
+Die Entitäten für Technologien, Projekte und User sind wie folgt geplant:
+
+![ER-Diagramm](res/ER-Diagram.png)
 
 
 ## 5 Verteilungssicht 
 
+<!--
 Die Verteilungssicht beschreibt:
 1.  die technische Infrastruktur, auf der Ihr System ausgeführt wird,
     mit Infrastrukturelementen wie Standorten, Umgebungen, Rechnern,
@@ -134,9 +155,11 @@ Aus Softwaresicht genügt es, auf die Aspekte zu achten, die für die
 Softwareverteilung relevant sind. Insbesondere bei der
 Hardwareentwicklung kann es notwendig sein, die Infrastruktur mit
 beliebigen Details zu beschreiben.
+-->
 
 ### 5.1 Infrastruktur Ebene 1
 
+<!--
 An dieser Stelle beschreiben Sie (als Kombination von Diagrammen mit
 Tabellen oder Texten):
 -   die Verteilung des Gesamtsystems auf mehrere Standorte, Umgebungen,
@@ -145,10 +168,12 @@ Tabellen oder Texten):
 -   wichtige Begründungen für diese Verteilungsstruktur,
 -   Qualitäts- und/oder Leistungsmerkmale dieser Infrastruktur,
 -   Zuordnung von Softwareartefakten zu Bestandteilen der Infrastruktur
+-->
 
 
 ## 6 Querschnittliche Konzepte
 
+<!--
 Dieser Abschnitt beschreibt übergreifende, prinzipielle Regelungen und
 Lösungsansätze, die an mehreren Stellen (=*querschnittlich*) relevant
 sind.
@@ -184,10 +209,12 @@ den Gruppen nicht immer eindeutig ist):
 -   Unter-der-Haube
 -   Entwicklungskonzepte
 -   Betriebskonzepte
+-->
 
 
 ## 7 Architekturentscheidungen
 
+<!--
 Wichtige, teure, große oder riskante Architektur- oder
 Entwurfsentscheidungen inklusive der jeweiligen Begründungen. Mit
 \"Entscheidungen\" meinen wir hier die Auswahl einer von mehreren
@@ -206,6 +233,7 @@ Verschiedene Möglichkeiten:
 -   Liste oder Tabelle, nach Wichtigkeit und Tragweite der
     Entscheidungen geordnet
 -   ausführlicher in Form einzelner Unterkapitel je Entscheidung
+-->
 
 
 ## 8 Qualitätsanforderungen
@@ -228,16 +256,21 @@ und/oder technischen Schulden.
 
 | Datum              | Aufwand | Titel                                    | Beschreibung                                     |
 |--------------------|---------|------------------------------------------|--------------------------------------------------|
-| **Mo, 05.02.2024** | 2h      | Projektidee, Vorlage, GitHub Repo        |                                                  |
+| **Mo, 05.02.2024** | 2h      | Projektidee, Vorlage, GitHub Repository  | Ich werde den Projektvorschlag des TechRadars verfolgen. Ich erstellte mir zunächst ein GitHub Repository und legte eine grobe Ordnerstruktur fest. Dokumentieren werde ich nach arc42, wofür ich die Vorlage (DE, 8.2) im Markdown-Format verwende und das README.md File ersetzte. Ich probierte zudem GitHub Actions aus, um den Build einer Angular Applikation zu automatisieren und die Webseite zu GitHub Pages zu deployen. Das Kontext Diagramm soll grob das System aufzeigen und das ER-Diagramm zeigt grob die geplanten Entitäten auf. |
+| **Di, 06.02.2024** | 3h      | Node, Docker                             | Festgelegt habe ich für das Frontend mit Angular und im Backend mit Node, Express (Web Server), TypeORM (OR-Mapper) und MySQL zu arbeiten. Sowohl im Frontend, als auch im Backend verwende ich TypeScript. Ich erstellte ein Dockerfile, um die gesamte Applikation als Docker Container einfach deployen zu können. |
 
 
 ## 11 Glossar
 
-| Begriff [A-Z]         | Definition                                    |
-|-----------------------|-----------------------------------------------|
-| **Angular**           | Lorem ipsum                                   |
-| **B**                 | Lorem ipsum                                   |
+| Begriff [A-Z]         | Definition                                                                                        |
+|-----------------------|---------------------------------------------------------------------------------------------------|
+| **Angular**           | Angular ist ein auf JavaScript basierendes Frontend-Web-Framework. Es wurde von Google entwickelt und ist aktuell in der Version 17. Es verfolgt den "Single Page Application"-Ansatz, wobei zuerst ein Grundgerüst der Webseite geladen wird und später nur noch Daten nachgeladen werden sollen. |
+| **Express**           | Express.js ist ein JavaScript Backend-Framework für Node.js. Es erleichtert das Erstellen von (RESTful) APIs und WebServern. |
+| **MySQL**             | Lorem ipsum                                                                                       |
+| **Node**              | Node.js ist eine plattformunabhängige JavaScript Laufzeitsumgebung (runtime environment). Über die V8 JavaScript engine kann somit JavaScript Code ausserhalb eines Browsers eingesetzt werden. |
+| **TypeORM**           | TypeORM ist ein OR-Mapper und wird als Bindeglied zwischen der Datenbank (Relational) und dem objekt-orientiertem Backend verwendet. |
+| **TypeScript**        | TypeScript fügt statische Typisierung und weitere Sprachkonstrukte zu JavaScript hinzu. TS wird immer zu JS transkompiliert. |
+| **Z**                 | Lorem ipsum                                                                                       |
 
-**Über arc42**
-Template Version 8.2, Januar 2023.
+**About arc42** Template Version 8.2, Januar 2023. 
 Created, maintained and © by Dr. Peter Hruschka, Dr. Gernot Starke and contributors. View <https://arc42.org>.
