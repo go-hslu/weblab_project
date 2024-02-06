@@ -1,9 +1,13 @@
 name: CI/CD (GitHub Pages)
+
 on:
   push:
     branches:
       - main
   workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   build:
@@ -22,6 +26,3 @@ jobs:
         deploy_branch: gh-pages
         angular_dist_build_folder: radar-app/dist/radar-app/browser
         angular_project_dir: radar-app
-
-permissions:
-  contents: write

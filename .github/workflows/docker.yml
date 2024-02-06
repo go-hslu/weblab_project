@@ -10,6 +10,10 @@ env:
   REGISTRY: ghcr.io
   REPOSITORY: weblab_project
 
+permissions:
+  contents: read
+  packages: write
+
 jobs:
   build:
     name: Build front- & backend and deploy Docker image to GitHub Container Registry
