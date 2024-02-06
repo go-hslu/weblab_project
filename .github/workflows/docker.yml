@@ -1,4 +1,4 @@
-name: Deploy to GitHub Container Registry
+name: CI/CD (GitHub Container Registry)
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main
 env:
   REGISTRY: ghcr.io
-  REPOSITORY: weblab_project # ${{ github.repository }}
+  REPOSITORY: weblab_project #${{ github.repository }}
 
 jobs:
   build:
@@ -33,13 +33,13 @@ jobs:
       run: npm run build
       working-directory: radar-app
 
-    #- name: (Backend) Install dependencies
-    #  run: npm install
-    #  working-directory: backend
+    - name: (Backend) Install dependencies
+      run: npm install
+      working-directory: backend
 
-    #- name: (Backend) Build application
-    #  run: npm run build
-    #  working-directory: backend
+    - name: (Backend) Build application
+      run: npm run build
+      working-directory: backend
 
   deploy:
     name: Create Docker image and push to GitHub Container Registry
