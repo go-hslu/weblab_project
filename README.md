@@ -52,7 +52,6 @@ In einem Frontend, dem Radar (Radar-App oder Radar Applikation), werden Technolo
 
 
 ## 3 Lösungsstrategie
-
 ### 3.1 Technologieentscheidungen
 #### 3.1.1 TypeScript
 
@@ -138,6 +137,9 @@ Die Entitäten für Technologien, Projekte und User sind wie folgt geplant:
 
 
 ## 5 Verteilungssicht 
+
+Das aktuellste Docker image kann über `docker pull ghcr.io/go-hslu/weblab_project:latest` bezogen werden. Mit `docker run -p 80:8080 -e SERVER_PORT=8080 ghcr.io/go-hslu/weblab_project:latest` wird der Radar ausgeführt und über den Port 80 zugänglich gemacht, wobei der Port 8080 intern verwendet wird.
+
 
 <!--
 Die Verteilungssicht beschreibt:
@@ -265,6 +267,13 @@ und/oder technischen Schulden.
 
 
 ## 11 Glossar
+## 11.1 Abkürzungsverzeichnis
+
+| Abkürzung [A-Z]       | Begriff                                                                                           |
+|-----------------------|---------------------------------------------------------------------------------------------------|
+| **Z**                 | Lorem ipsum                                                                                       |
+
+## 11.2 Technische- und Projektspezifische Begriffe
 
 | Begriff [A-Z]         | Definition                                                                                        |
 |-----------------------|---------------------------------------------------------------------------------------------------|
@@ -282,7 +291,7 @@ und/oder technischen Schulden.
 | Datum              | Aufwand | Titel                                    | Beschreibung                                     |
 |--------------------|---------|------------------------------------------|--------------------------------------------------|
 | **Mo, 05.02.2024** | 2h      | Projektidee, Vorlage, GitHub Repository  | Ich werde den Projektvorschlag des TechRadars verfolgen. Ich erstellte mir zunächst ein GitHub Repository und legte eine grobe Ordnerstruktur fest. Dokumentieren werde ich nach arc42, wofür ich die Vorlage (DE, 8.2) im Markdown-Format verwende und das README.md File ersetzte. Ich probierte zudem GitHub Actions aus, um den Build einer Angular Applikation zu automatisieren und die Webseite zu GitHub Pages zu deployen. Das Kontext Diagramm soll grob das System aufzeigen und das ER-Diagramm zeigt grob die geplanten Entitäten auf. |
-| **Di, 06.02.2024** | 3h      | Node, Docker                             | Festgelegt habe ich für das Frontend mit Angular und im Backend mit Node, Express (Web Server), TypeORM (OR-Mapper) und MySQL zu arbeiten. Sowohl im Frontend, als auch im Backend verwende ich TypeScript. Ich erstellte ein Dockerfile, um die gesamte Applikation als Docker Container einfach deployen zu können. |
+| **Di, 06.02.2024** | 4h      | Node, Docker, GitHub Actions             | Festgelegt habe ich für das Frontend mit Angular und im Backend mit Node, Express (Web Server), TypeORM (OR-Mapper) und MySQL zu arbeiten. Sowohl im Frontend, als auch im Backend verwende ich TypeScript. Ich erstellte ein Dockerfile, um die gesamte Applikation als Docker Container einfach deployen zu können. Mit GitHub Actions werden sowohl die Angular Applikation gebuildet und in die GitHub Pages deployt als auch ein Docker image mit Front- und Backend erstellt und in die der GitHub Container registry als Package verteilt. |
 
 
 **About arc42** Template Version 8.2, Januar 2023. 
