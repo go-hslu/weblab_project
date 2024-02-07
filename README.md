@@ -6,9 +6,9 @@
 
 ## 1 Einführung und Ziele
 
-Im Modul WEBLAB (Web Programming Lab) an der Hochschule soll ein Web-Projekt mit den behandelten Technologien erarbeitet werden.
+Im Modul WEBLAB (Web Programming Lab) an der Hochschule soll ein Web-Projekt mit den behandelten Technologien erarbeitet werden. Die Projektartefakte sind auf dem [GitHub Repository](https://github.com/go-hslu/weblab_project) einsehbar.
 
-Es wird die vorgeschlagene Projektidee eines [Technologie-Radars](https://www.thoughtworks.com/radar) verfolgt. Dabei ist das Ziel, dass innerhalb eines Unternehmens eine Übersicht auf die in Projekten verwendeten Technologien & Tools verschafft wird. In einem einer Visualisierung ähnlich zu einem Radar werden Technologien & Tools als Punkte dargestellt. Über die Quadranten werden diese kategorisiert.
+Es wird die vorgeschlagene Projektidee eines [Technologie-Radars](https://www.thoughtworks.com/radar) verfolgt. Dabei ist das Ziel, dass innerhalb eines Unternehmens eine Übersicht auf die in Projekten verwendeten Technologien & Tools verschafft wird. In einem einer Visualisierung ähnlich zu einem Radar werden Technologien & Tools als Punkte dargestellt. Über die Quadranten/Sektoren werden diese kategorisiert (Frameworks, Tools, Languages, Platforms, Techniques..) und über die nähe zur Mitte der Einsatz-Status (Hold, Assess, Trial, Adopt) angezeigt.
 
 ### 1.1 Aufgabenstellung
 
@@ -28,7 +28,7 @@ In Einzelarbeit soll mit einem totalen Aufwand von ca. 60 Stunden ein Web-Projek
 
 ### 1.2 Qualitätsziele
 
-- **Security**: Der Radar ist intern für alle Mitarbeiter verfügbar. Inhalte können nur von spezifischen Rollen (CTO, Tech-Lead, Admin) nach Authentifizierung (E-Mail & Passwort) verändert werden. Sensible Daten wie das Passwort werden nur gehashed abgespeichert.
+- **Security**: Der Radar ist intern für alle Mitarbeiter (User) verfügbar. Inhalte können nur von spezifischen Rollen (CTO, Tech-Lead, Admin) nach Authentifizierung (E-Mail & Passwort) verändert werden. Sensible Daten wie das Passwort werden nur gehashed abgespeichert.
 - **Performance**: Die Inhalte werden unter Normalbedingungen (Kabelgebunden oder 5G) innert 1s geladen.
 - **Usability**: Das UI ist für die Geräte Mobile & Desktop optimiert, verwendet ein schlichtes & übersichtliches Design mit auf dem Gerät erwartbarem Verhalten (z.B Navigationsleiste hinter Hamburger-Icon auf Mobile)
 - **Traceability**: Anpassungen an den Technologien werden historisiert und Anmeldungen auf der Adminseite protokolliert.
@@ -36,7 +36,7 @@ In Einzelarbeit soll mit einem totalen Aufwand von ca. 60 Stunden ein Web-Projek
 
 ## 2 Kontextabgrenzung
 
-Die [Anforderungen](https://github.com/web-programming-lab/web-programming-lab-projekt/blob/main/Technologie-Radar.md) sind für bei der vorgeschlagenden Projektidee gegeben. So sollen bestimmte Rollen (Tech-Lead, CTO & Admins) neue Technologien erfassen dürfen, und alle Mitarbeiter (User) die publizierten Technologien einsehen. 
+Die [Anforderungen](https://github.com/web-programming-lab/web-programming-lab-projekt/blob/main/Technologie-Radar.md) der vorgeschlagenden Projektidee werden mehrheitlich übernommen. So sollen bestimmte Rollen (Tech-Lead, CTO & Admins) neue Technologien erfassen dürfen, und alle Mitarbeiter (User) die publizierten Technologien einsehen. 
 
 ### 2.1 Abgrenzungen / Änderungen
 
@@ -44,6 +44,32 @@ Prinzipiell wird von Grund auf eine eigene Lösung eines Technologie-Radars mit 
 - **Projekte**: Projekte erfassen, und diesen Technologien zuordnen. Auf einem Radar könnte man so häufig verwendete Technologien als grössere Punkte darstellen.
 - **Kategorien**: Die Kategorien, zu welchen Technologien zugeordnet werden, sollen die User selber festlegen können. Dies könnte bedeuten, dass im Radar mehr als 4 Quadranten angezeigt würden.
 - **Radar Visualisierung**: Den Radar werde ich aufgrund des grösseren Aufwands für eine Visualisierung nur als Tabelle darstellen.
+
+### 2.2 Anforderungen (User Stories)
+
+Folglich wurden User Stories übernommen, abgeleitet oder neue definiert. Diese sind auf GitHub als [Issues](https://github.com/go-hslu/weblab_project/issues) hinterlegt. Hier eine Übersicht der User Stories samt priorisierung nach MoSCoW:
+
+
+| Id | User Story                                            | Priorität     | Status       |
+|----|-------------------------------------------------------|---------------|--------------|
+| 01 | Anmelden Technologie-Radar-Administration             | 🟡 3. Could  | 🎯 Todo      |
+| 02 | Technologie erfassen                                  | 🔴 1. Must   | 🎯 Todo      |
+| 03 | Technologie publizieren                               | 🟠 2. Should | 🎯 Todo      |
+| 04 | Technologie ändern                                    | 🟠 2. Should | 🎯 Todo      |
+| 05 | Technologie-Einordnung ändern                         | 🟠 2. Should | 🎯 Todo      |
+| 06 | Anmelden am Technologie-Radar-Viewer                  | 🟡 3. Could  | 🎯 Todo      |
+| 07 | Technologien anzeigen                                 | 🔴 1. Must   | 🎯 Todo      |
+
+Legende 1: MoSCoW-Priorisierung
+- 🔴 1. Must
+- 🟠 2. Should
+- 🟡 3. Could
+- 🟢 4. Won't
+
+Legende 2: Umsetzungsstatus
+- 🎯 Todo
+- 🛠️ In progress
+- ✅ Done
 
 ### 2.2 Technischer Kontext
 
@@ -60,7 +86,7 @@ Sowohl im Frontend als auch Backend werde ich [TypeScript](https://www.typescrip
 
 #### 3.1.2 Angular (Frontend)
 
-[Angular](https://angular.io/) ermöglicht das Erstellen von Single Page Applications. Es ist ein etabliertes und in der Schweiz sehr häufig verwendetes Framework. Ich habe persönlich Angular 2 bzw Angular 4 gelernt, also kenne Angular eigentlich schon. Da ich aber künftig bei der Arbeit auch Angular einsetzten werde, möchte ich es besser kennenlernen.
+[Angular](https://angular.io/) ermöglicht das Erstellen von Single Page Applications. Es ist ein etabliertes und in der Schweiz sehr häufig verwendetes Framework. Ich persönlich hatte ursprünglich Angular 2 / Angular 4 um ca. 2017 in einem Tutorial/Video-Kurs kennengelernt. Neuere Features wie Signals etc. kenne ich jedoch nicht. Da ich aber künftig bei der Arbeit auch Angular einsetzten werde, möchte ich in diesem Arbeit mein Wissen über Angular auffrischen und vertiefen. 
 
 Besonderen Vorteil sehe ich bei der Modularisierung, dem Routing/Router und dem Binding (2-way), was heute Standart in praktisch allen SPA-Frameworks (Vue.js, Svelte etc.) ist.
 
@@ -74,17 +100,19 @@ Im [Node](https://nodejs.org/en) Backend werde ich [Express](https://expressjs.c
 
 #### 3.1.5 TypeORM / MySQL (ORM & Database)
 
-[TypeORM](https://typeorm.io/) nimmt mir einen grossteil der Arbeit für die Persistierung ab. 
+[TypeORM](https://typeorm.io/) nimmt mir einen Grossteil der Arbeit für die Persistierung ab. Zudem können mit TypeORM (bzw generell mit OR-Mappern) Migrationen bei verändertem (DB-)Schema durchgeführt werden. Dies ist in der professionellen Entwicklung eine enorme Abhilfe.
 
 #### 3.1.6 ? (Authentication)
 
-Wie ich genau die Authentifizierung umsetzte, weiss ich noch nicht. Wir werden gegen Ende der Blockwoche ein paar Möglichkeiten anschauen, dann werde ich mich entscheiden. 
+Wie ich genau die Authentifizierung umsetzte, weiss ich noch nicht. Es ist ein Gebiet wo ich wenig Erfahrung habe. Wir werden gegen Ende der Blockwoche ein paar Möglichkeiten anschauen, dann werde ich mich entscheiden. 
+
+Sollte ich selbst Passwörter auf der DB speichern müssen, werde ich diese salten & hashen.
 
 #### 3.1.7 GitHub Actions / Vercel (CI/CD)
 
-Änderungen (Commits) an der Applikation sollen automatisch einen Build im [GitHub Repository](https://github.com/go-hslu/weblab_project) über GitHub Actions ausführen und auf die [GitHub Pages](https://go-hslu.github.io/weblab_project/) deployt werden. Dies möchte ich als Übung für mich selbst umsetzten, da ich bis jetzt kaum Erfahrung mit GitHub Actions sammeln konnte und ich darin einen grossen Nutzen für meine eigenen Projekte sehe. Desweiteren würde ich auch gerne einen automatischen Build eines Docker Containers mit Actions auslösen und diesen in die [GitHub Container Registry](https://github.com/orgs/go-hslu/packages) als Package deployen.
+Änderungen (Commits) an der Applikation sollen automatisch einen Build im [GitHub Repository](https://github.com/go-hslu/weblab_project) über GitHub Actions ausführen und auf die [GitHub Pages](https://go-hslu.github.io/weblab_project/) deployt werden. Dies möchte ich als Übung für mich selbst umsetzten, da ich bis jetzt keine Erfahrung mit GitHub Actions habe und ich darin einen grossen Nutzen für meine eigenen Projekte sehe. Desweiteren würde ich auch gerne einen automatischen Build eines Docker Containers mit Actions auslösen und diesen in die [GitHub Container Registry](https://github.com/orgs/go-hslu/packages) als Package deployen.
 
-Für die Projektabgabe versuche ich das Deployment mit dem Vorschlag [Vercel](https://vercel.com/) umzusetzten.
+Für die Projektabgabe versuche ich das Deployment mit dem Vorschlag [Vercel](https://vercel.com/) umzusetzten oder das Docker image zur Verfügung zu stellen.
 
 <!--
 Kurzer Überblick über die grundlegenden Entscheidungen und
@@ -282,7 +310,7 @@ und/oder technischen Schulden.
 
 ## 11.2 Technische- und Projektspezifische Begriffe
 
-| Begriff [A-Z]         | Definition                                                                                        |
+| Begriff [A-Z]         | Definition und Beschreibung                                                                       |
 |-----------------------|---------------------------------------------------------------------------------------------------|
 | **Angular**           | Angular ist ein auf JavaScript basierendes Frontend-Web-Framework. Es wurde von Google entwickelt und ist aktuell in der Version 17. Es verfolgt den "Single Page Application"-Ansatz, wobei zuerst ein Grundgerüst der Webseite geladen wird und später nur noch Daten nachgeladen werden sollen. |
 | **Express**           | Express.js ist ein JavaScript Backend-Framework für Node.js. Es erleichtert das Erstellen von (RESTful) APIs und WebServern. |
@@ -301,6 +329,7 @@ und/oder technischen Schulden.
 |--------------------|---------|------------------------------------------|--------------------------------------------------|
 | **Mo, 05.02.2024** | 2h      | Projektidee, Vorlage, GitHub Repository  | Ich werde den Projektvorschlag des TechRadars verfolgen. Ich erstellte mir zunächst ein GitHub Repository und legte eine grobe Ordnerstruktur fest. Dokumentieren werde ich nach arc42, wofür ich die Vorlage (DE, 8.2) im Markdown-Format verwende und das README.md File ersetzte. Ich probierte zudem GitHub Actions aus, um den Build einer Angular Applikation zu automatisieren und die Webseite zu GitHub Pages zu deployen. Das Kontext Diagramm soll grob das System aufzeigen und das ER-Diagramm zeigt grob die geplanten Entitäten auf. |
 | **Di, 06.02.2024** | 4h      | Node, Docker, GitHub Actions             | Festgelegt habe ich für das Frontend mit Angular und im Backend mit Node, Express (Web Server), TypeORM (OR-Mapper) und MySQL zu arbeiten. Sowohl im Frontend, als auch im Backend verwende ich TypeScript. Ich erstellte ein Dockerfile, um die gesamte Applikation als Docker Container einfach deployen zu können. Mit GitHub Actions werden sowohl die Angular Applikation gebuildet und in die GitHub Pages deployt als auch ein Docker image mit Front- und Backend erstellt und in die der GitHub Container registry als Package verteilt. |
+| **Mi, 07.02.2024** | 3h      | Node, Docker, GitHub Actions             |  |
 
 
 **About arc42** Template Version 8.2, Januar 2023. 
