@@ -19,4 +19,3 @@ USER node
 EXPOSE $SERVER_PORT
 
 CMD ["node", "backend/app.js"]
-# CMD ["npm", "run", "start"]
