@@ -278,7 +278,7 @@ und/oder technischen Schulden.
 
 | Abkürzung [A-Z]       | Begriff                                                                                           |
 |-----------------------|---------------------------------------------------------------------------------------------------|
-| **Z**                 | Lorem ipsum                                                                                       |
+| **SPA**               | Single Page Application                                                                           |
 
 ## 11.2 Technische- und Projektspezifische Begriffe
 

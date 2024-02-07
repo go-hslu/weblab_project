@@ -21,13 +21,14 @@ jobs:
       uses: baileyjm02/markdown-to-pdf@v1
       with:
         input_path: README.md
-        output_dir: pdfs
+        output_dir: output
+        image_import: res
         build_html: false
-        table_of_contents: true
+        table_of_contents: false
     
     - name: Deploy PDF
       uses: actions/upload-artifact@v4
       with:
         name: documentation
-        path: pdfs
+        path: output
         overwrite: true
