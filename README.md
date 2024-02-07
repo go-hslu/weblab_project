@@ -29,7 +29,7 @@ Im Modul WEBLAB (Web Programming Lab) an der Hochschule soll ein Web-Projekt mit
 
 Es wird die vorgeschlagene Projektidee eines [Technologie-Radars](https://www.thoughtworks.com/radar) verfolgt. Dabei ist das Ziel, dass innerhalb eines Unternehmens eine Übersicht auf die in Projekten verwendeten Technologien & Tools verschafft wird. In einer Visualisierung ähnlich zu einem Radar werden Technologien & Tools als Punkte dargestellt. Über die Quadranten/Sektoren werden diese kategorisiert (Frameworks, Tools, Languages, Platforms, Techniques..) und über die nähe zur Mitte der Einsatz-Status (Hold, Assess, Trial, Adopt) angezeigt.
 
-| [![nichtgian](https://avatars.githubusercontent.com/nichtgian?s=100)<br/><sub>GianOtt</sub>](https://www.linkedin.com/in/nichtgian/)<br/>Author & Developer |
+| [![nichtgian](https://avatars.githubusercontent.com/nichtgian?s=100)<br/><sub>Gian Ott</sub>](https://www.linkedin.com/in/nichtgian/)<br/>Entwickler & Autor |
 |---|
 
 ### 1.1 Aufgabenstellung
@@ -204,9 +204,21 @@ Die Entitäten für Technologien, Projekte und User sind wie folgt geplant:
 
 
 ## 5 Verteilungssicht 
+### 5.1 Docker
 
-Das aktuellste Docker image kann über `docker pull ghcr.io/go-hslu/weblab_project:latest` bezogen werden. Mit `docker run -p 80:8080 -e SERVER_PORT=8080 ghcr.io/go-hslu/weblab_project:latest` wird der Radar ausgeführt und über den Port 80 zugänglich gemacht, wobei der Port 8080 intern verwendet wird.
-
+1. Installiere und starte [Docker](https://www.docker.com/get-started/).
+2. Beziehe das Docker image von der GitHub Container registry. 
+   ```sh
+   docker pull ghcr.io/go-hslu/weblab_project:latest
+   ```
+3. Erstelle und führe einen neuen Docker Container aus dem Image.
+   ```sh
+   docker run -p 80:8080 -e SERVER_PORT=8080 ghcr.io/go-hslu/weblab_project:latest
+   ```
+4. Öffne den Browser mit folgender URL
+   ```sh
+   http://localhost:80
+   ```
 
 <!--
 Die Verteilungssicht beschreibt:
