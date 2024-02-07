@@ -29,6 +29,9 @@ Im Modul WEBLAB (Web Programming Lab) an der Hochschule soll ein Web-Projekt mit
 
 Es wird die vorgeschlagene Projektidee eines [Technologie-Radars](https://www.thoughtworks.com/radar) verfolgt. Dabei ist das Ziel, dass innerhalb eines Unternehmens eine Übersicht auf die in Projekten verwendeten Technologien & Tools verschafft wird. In einer Visualisierung ähnlich zu einem Radar werden Technologien & Tools als Punkte dargestellt. Über die Quadranten/Sektoren werden diese kategorisiert (Frameworks, Tools, Languages, Platforms, Techniques..) und über die nähe zur Mitte der Einsatz-Status (Hold, Assess, Trial, Adopt) angezeigt.
 
+| [![nichtgian](https://avatars.githubusercontent.com/nichtgian?s=100)<br/><sub>GianOtt</sub>](https://www.linkedin.com/in/nichtgian/)<br/>Author & Developer |
+|---|
+
 ### 1.1 Aufgabenstellung
 
 In Einzelarbeit soll mit einem totalen Aufwand von ca. 60 Stunden ein Web-Projekt realisiert werden. Die Artefakte aus dem Projekt zu 70% und Präsentation zu 30% ergeben die Modulnote. Gefordert werden folgende Inhalte:
@@ -99,6 +102,16 @@ In einem Frontend, dem Radar (Radar-App oder Radar Applikation), werden Technolo
 
 ## 3 Lösungsstrategie
 ### 3.1 Technologieentscheidungen
+
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+![Angular](https://img.shields.io/badge/angular-%23DD0031.svg?style=for-the-badge&logo=angular&logoColor=white)
+![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
+![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
+![MySQL](https://img.shields.io/badge/mysql-%2300f.svg?style=for-the-badge&logo=mysql&logoColor=white)
+![Github Pages](https://img.shields.io/badge/github%20pages-121013?style=for-the-badge&logo=github&logoColor=white)
+![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
+![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)
+
 #### 3.1.1 TypeScript
 
 Sowohl im Frontend als auch Backend werde ich [TypeScript](https://www.typescriptlang.org/) verwenden. Die explizite Typisierung sehe ich als grossen Vorteil gegenüber Vanilla JavaScript für einen leichter lesbareren Code.
@@ -109,8 +122,6 @@ Sowohl im Frontend als auch Backend werde ich [TypeScript](https://www.typescrip
 
 Besonderen Vorteil sehe ich bei der Modularisierung, dem Routing/Router und dem Binding (2-way), was heute Standart in praktisch allen SPA-Frameworks (Vue.js, Svelte etc.) ist.
 
-![Angular](https://img.shields.io/badge/angular-%23DD0031.svg?style=for-the-badge&logo=angular&logoColor=white)
-
 #### 3.1.3 Angular Material (CSS)
 
 [Angular Material](https://material.angular.io/) liefert forgefertigte UI Komponenten nach Material Design Optik. Die Integration mit Angular ist sehr einfach.
@@ -119,14 +130,9 @@ Besonderen Vorteil sehe ich bei der Modularisierung, dem Routing/Router und dem 
 
 Im [Node](https://nodejs.org/en) Backend werde ich [Express](https://expressjs.com/) verwenden, um einfach APIs definieren zu können. 
 
-![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
-![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
-
 #### 3.1.5 TypeORM / MySQL (ORM & Database)
 
 [TypeORM](https://typeorm.io/) nimmt mir einen Grossteil der Arbeit für die Persistierung ab. Zudem können mit TypeORM (bzw generell mit OR-Mappern) Migrationen bei verändertem (DB-)Schema durchgeführt werden. Dies ist in der professionellen Entwicklung eine enorme Abhilfe.
-
-![MySQL](https://img.shields.io/badge/mysql-%2300f.svg?style=for-the-badge&logo=mysql&logoColor=white)
 
 #### 3.1.6 ? (Authentication)
 
@@ -139,10 +145,6 @@ Sollte ich selbst Passwörter auf der DB speichern müssen, werde ich diese salt
 Änderungen (Commits) an der Applikation sollen automatisch einen Build im [GitHub Repository](https://github.com/go-hslu/weblab_project) über GitHub Actions ausführen und auf die [GitHub Pages](https://go-hslu.github.io/weblab_project/) deployt werden. Dies möchte ich als Übung für mich selbst umsetzten, da ich bis jetzt keine Erfahrung mit GitHub Actions habe und ich darin einen grossen Nutzen für meine eigenen Projekte sehe. Desweiteren würde ich auch gerne einen automatischen Build eines Docker Containers mit Actions auslösen und diesen in die [GitHub Container Registry](https://github.com/orgs/go-hslu/packages) als Package deployen.
 
 Für die Projektabgabe versuche ich das Deployment mit dem Vorschlag [Vercel](https://vercel.com/) umzusetzten oder das Docker image zur Verfügung zu stellen.
-
-![Github Pages](https://img.shields.io/badge/github%20pages-121013?style=for-the-badge&logo=github&logoColor=white)
-![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
-![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)
 
 <!--
 Kurzer Überblick über die grundlegenden Entscheidungen und
