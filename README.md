@@ -1,3 +1,8 @@
+---
+title: WEBLAB Radar documentation
+author: Gian Ott
+---
+
 # WEBLAB Projekt
 
 [![CI/CD (GitHub Container Registry)](https://github.com/go-hslu/weblab_project/actions/workflows/docker.yml/badge.svg)](https://github.com/go-hslu/weblab_project/actions/workflows/docker.yml)
