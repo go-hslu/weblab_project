@@ -1,7 +1,8 @@
 # WEBLAB Projekt
 
-[![docker-image](https://github.com/go-hslu/weblab_project/actions/workflows/docker.yml/badge.svg)](https://github.com/go-hslu/weblab_project/actions/workflows/docker.yml)
-[![gh-pages](https://github.com/go-hslu/weblab_project/actions/workflows/gh-pages.yml/badge.svg)](https://github.com/go-hslu/weblab_project/actions/workflows/gh-pages.yml)
+[![CI/CD (GitHub Container Registry)](https://github.com/go-hslu/weblab_project/actions/workflows/docker.yml/badge.svg)](https://github.com/go-hslu/weblab_project/actions/workflows/docker.yml)
+[![CI/CD (GitHub Pages)](https://github.com/go-hslu/weblab_project/actions/workflows/gh-pages.yml/badge.svg)](https://github.com/go-hslu/weblab_project/actions/workflows/gh-pages.yml)
+[![Documentation (PDF)](https://github.com/go-hslu/weblab_project/actions/workflows/markdown.yml/badge.svg)](https://github.com/go-hslu/weblab_project/actions/workflows/markdown.yml)
 
 ## 1 Einführung und Ziele
 
@@ -55,29 +56,35 @@ In einem Frontend, dem Radar (Radar-App oder Radar Applikation), werden Technolo
 ### 3.1 Technologieentscheidungen
 #### 3.1.1 TypeScript
 
-Sowohl im Frontend als auch Backend werde ich TypeScript verwenden. Die explizite Typisierung sehe ich als grossen Vorteil gegenüber Vanilla JavaScript für einen leichter lesbareren Code.
+Sowohl im Frontend als auch Backend werde ich [TypeScript](https://www.typescriptlang.org/) verwenden. Die explizite Typisierung sehe ich als grossen Vorteil gegenüber Vanilla JavaScript für einen leichter lesbareren Code.
 
 #### 3.1.2 Angular (Frontend)
 
-Angular ermöglicht das Erstellen von Single Page Applications. Es ist ein etabliertes und in der Schweiz sehr häufig verwendetes Framework. Ich habe persönlich Angular 2 bzw Angular 4 gelernt, also kenne Angular eigentlich schon. Da ich aber künftig bei der Arbeit auch Angular einsetzten werde, möchte ich es besser kennenlernen.
+[Angular](https://angular.io/) ermöglicht das Erstellen von Single Page Applications. Es ist ein etabliertes und in der Schweiz sehr häufig verwendetes Framework. Ich habe persönlich Angular 2 bzw Angular 4 gelernt, also kenne Angular eigentlich schon. Da ich aber künftig bei der Arbeit auch Angular einsetzten werde, möchte ich es besser kennenlernen.
 
-#### 3.1.3 Node / Express (Backend)
+Besonderen Vorteil sehe ich bei der Modularisierung, dem Routing/Router und dem Binding (2-way), was heute Standart in praktisch allen SPA-Frameworks (Vue.js, Svelte etc.) ist.
 
-Im Backend werde ich Express verwenden, um einfach APIs definieren zu können. 
+#### 3.1.3 Angular Material (CSS)
 
-#### 3.1.4 TypeORM / MySQL (ORM & Database)
+[Angular Material](https://material.angular.io/) liefert forgefertigte UI Komponenten nach Material Design Optik. Die Integration mit Angular ist sehr einfach.
 
-TypeORM nimmt mir einen grossteil der Arbeit für die Persistierung ab. 
+#### 3.1.4 Node / Express (Backend)
 
-#### 3.1.5 ? (Authentication)
+Im [Node](https://nodejs.org/en) Backend werde ich [Express](https://expressjs.com/) verwenden, um einfach APIs definieren zu können. 
+
+#### 3.1.5 TypeORM / MySQL (ORM & Database)
+
+[TypeORM](https://typeorm.io/) nimmt mir einen grossteil der Arbeit für die Persistierung ab. 
+
+#### 3.1.6 ? (Authentication)
 
 Wie ich genau die Authentifizierung umsetzte, weiss ich noch nicht. Wir werden gegen Ende der Blockwoche ein paar Möglichkeiten anschauen, dann werde ich mich entscheiden. 
 
-#### 3.1.6 GitHub Actions / Vercel (CI/CD)
+#### 3.1.7 GitHub Actions / Vercel (CI/CD)
 
-Änderungen (Commits) an der Angular Applikation sollen automatisch einen Build über GitHub Actions ausführen und auf die GitHub Pages deployt werden. Dies möchte ich als Übung für mich selbst umsetzten, da ich bis jetzt kaum Erfahrung mit GitHub Actions sammeln konnte und ich darin einen grossen Nutzen für meine eigenen Projekte sehe. Desweiteren würde ich auch gerne einen automatischen Build eines Docker Containers mit Actions auslösen.
+Änderungen (Commits) an der Applikation sollen automatisch einen Build im [GitHub Repository](https://github.com/go-hslu/weblab_project) über GitHub Actions ausführen und auf die [GitHub Pages](https://go-hslu.github.io/weblab_project/) deployt werden. Dies möchte ich als Übung für mich selbst umsetzten, da ich bis jetzt kaum Erfahrung mit GitHub Actions sammeln konnte und ich darin einen grossen Nutzen für meine eigenen Projekte sehe. Desweiteren würde ich auch gerne einen automatischen Build eines Docker Containers mit Actions auslösen und diesen in die [GitHub Container Registry](https://github.com/orgs/go-hslu/packages) als Package deployen.
 
-Für die Projektabgabe versuche ich das Deployment mit dem Vorschlag Vercel umzusetzten.
+Für die Projektabgabe versuche ich das Deployment mit dem Vorschlag [Vercel](https://vercel.com/) umzusetzten.
 
 <!--
 Kurzer Überblick über die grundlegenden Entscheidungen und
@@ -279,6 +286,8 @@ und/oder technischen Schulden.
 |-----------------------|---------------------------------------------------------------------------------------------------|
 | **Angular**           | Angular ist ein auf JavaScript basierendes Frontend-Web-Framework. Es wurde von Google entwickelt und ist aktuell in der Version 17. Es verfolgt den "Single Page Application"-Ansatz, wobei zuerst ein Grundgerüst der Webseite geladen wird und später nur noch Daten nachgeladen werden sollen. |
 | **Express**           | Express.js ist ein JavaScript Backend-Framework für Node.js. Es erleichtert das Erstellen von (RESTful) APIs und WebServern. |
+| **GitHub Pages**      | Lorem ipsum                                                                                       |
+| **GitHub Container Registry** | https://ghcr.io                                                                           |
 | **MySQL**             | Lorem ipsum                                                                                       |
 | **Node**              | Node.js ist eine plattformunabhängige JavaScript Laufzeitsumgebung (runtime environment). Über die V8 JavaScript engine kann somit JavaScript Code ausserhalb eines Browsers eingesetzt werden. |
 | **TypeORM**           | TypeORM ist ein OR-Mapper und wird als Bindeglied zwischen der Datenbank (Relational) und dem objekt-orientiertem Backend verwendet. |
