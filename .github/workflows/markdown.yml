@@ -1,0 +1,34 @@
+name: Documentation (PDF)
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'README.md'
+      - 'res/**'
+  workflow_dispatch:
+
+jobs:
+  md-to-pdf:
+    name: Deploy documentation as PDF
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Build PDF
+      uses: baileyjm02/markdown-to-pdf@v1
+      with:
+        input_dir: docs
+        output_dir: pdfs
+        images_dir: res
+        build_html: false
+        table_of_contents: true
+    
+    - name: Deploy PDF
+      uses: actions/upload-artifact@v4
+      with:
+        name: docs
+        path: pdfs
+        overwrite: true
