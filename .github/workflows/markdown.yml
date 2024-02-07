@@ -20,7 +20,7 @@ jobs:
     - name: Build PDF
       uses: baileyjm02/markdown-to-pdf@v1
       with:
-        input_dir: docs
+        input_path: README.md
         output_dir: pdfs
         images_dir: res
         build_html: false
