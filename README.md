@@ -211,13 +211,13 @@ Die Entitäten für Technologien, Projekte und User sind wie folgt geplant:
    ```sh
    docker pull ghcr.io/go-hslu/weblab_project:latest
    ```
-3. Erstelle und führe einen neuen Docker Container aus dem Image.
+3. Erstelle einen Docker Container aus dem Image und führe diesen aus.
    ```sh
-   docker run -p 80:8080 -e SERVER_PORT=8080 ghcr.io/go-hslu/weblab_project:latest
+   docker run -p 8080:8080 -e SERVER_PORT=8080 ghcr.io/go-hslu/weblab_project:latest
    ```
 4. Öffne den Browser mit folgender URL
    ```sh
-   http://localhost:80
+   http://localhost:8080
    ```
 
 <!--

@@ -15,4 +15,4 @@ Run `npm run build` to build the project. The build artifacts will be stored in 
 ## Docker
 Build image: `docker build -t weblab/server:latest .`
 
-Build image: `docker run -p 80:8080 -e SERVER_PORT=8080 weblab/server:latest`
+Build image: `docker run -p 8080:8080 -e SERVER_PORT=8080 weblab/server:latest`
