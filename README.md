@@ -1,13 +1,27 @@
----
-title: WEBLAB Radar documentation
-author: Gian Ott
----
-
-# WEBLAB Projekt
+<a name="readme-top"></a>
 
 [![CI/CD (GitHub Container Registry)](https://github.com/go-hslu/weblab_project/actions/workflows/docker.yml/badge.svg)](https://github.com/go-hslu/weblab_project/actions/workflows/docker.yml)
 [![CI/CD (GitHub Pages)](https://github.com/go-hslu/weblab_project/actions/workflows/gh-pages.yml/badge.svg)](https://github.com/go-hslu/weblab_project/actions/workflows/gh-pages.yml)
 [![Documentation (PDF)](https://github.com/go-hslu/weblab_project/actions/workflows/markdown.yml/badge.svg)](https://github.com/go-hslu/weblab_project/actions/workflows/markdown.yml)
+
+<br/>
+<div align="center">
+  <a href="https://github.com/go-hslu/weblab_project">
+    <img src="res/logo.png" alt="Logo" width="80" height="80">
+  </a>
+
+  <h3 align="center">WEBLAB Radar</h3>
+
+  <p align="center">
+    Hochschule Luzern, Modul WEBLAB (Web Programming Lab), Projektdokumentation
+    <br/>
+    <a href="https://github.com/go-hslu/weblab_project/issues">User Stories (Issues)</a>
+    ·
+    <a href="https://go-hslu.github.io/weblab_project/">GitHub Pages</a>
+    ·
+    <a href="https://github.com/orgs/go-hslu/packages">Docker image</a>
+  </p>
+</div>
 
 ## 1 Einführung und Ziele
 
@@ -95,6 +109,8 @@ Sowohl im Frontend als auch Backend werde ich [TypeScript](https://www.typescrip
 
 Besonderen Vorteil sehe ich bei der Modularisierung, dem Routing/Router und dem Binding (2-way), was heute Standart in praktisch allen SPA-Frameworks (Vue.js, Svelte etc.) ist.
 
+![Angular](https://img.shields.io/badge/angular-%23DD0031.svg?style=for-the-badge&logo=angular&logoColor=white)
+
 #### 3.1.3 Angular Material (CSS)
 
 [Angular Material](https://material.angular.io/) liefert forgefertigte UI Komponenten nach Material Design Optik. Die Integration mit Angular ist sehr einfach.
@@ -103,9 +119,14 @@ Besonderen Vorteil sehe ich bei der Modularisierung, dem Routing/Router und dem 
 
 Im [Node](https://nodejs.org/en) Backend werde ich [Express](https://expressjs.com/) verwenden, um einfach APIs definieren zu können. 
 
+![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
+![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
+
 #### 3.1.5 TypeORM / MySQL (ORM & Database)
 
 [TypeORM](https://typeorm.io/) nimmt mir einen Grossteil der Arbeit für die Persistierung ab. Zudem können mit TypeORM (bzw generell mit OR-Mappern) Migrationen bei verändertem (DB-)Schema durchgeführt werden. Dies ist in der professionellen Entwicklung eine enorme Abhilfe.
+
+![MySQL](https://img.shields.io/badge/mysql-%2300f.svg?style=for-the-badge&logo=mysql&logoColor=white)
 
 #### 3.1.6 ? (Authentication)
 
@@ -118,6 +139,10 @@ Sollte ich selbst Passwörter auf der DB speichern müssen, werde ich diese salt
 Änderungen (Commits) an der Applikation sollen automatisch einen Build im [GitHub Repository](https://github.com/go-hslu/weblab_project) über GitHub Actions ausführen und auf die [GitHub Pages](https://go-hslu.github.io/weblab_project/) deployt werden. Dies möchte ich als Übung für mich selbst umsetzten, da ich bis jetzt keine Erfahrung mit GitHub Actions habe und ich darin einen grossen Nutzen für meine eigenen Projekte sehe. Desweiteren würde ich auch gerne einen automatischen Build eines Docker Containers mit Actions auslösen und diesen in die [GitHub Container Registry](https://github.com/orgs/go-hslu/packages) als Package deployen.
 
 Für die Projektabgabe versuche ich das Deployment mit dem Vorschlag [Vercel](https://vercel.com/) umzusetzten oder das Docker image zur Verfügung zu stellen.
+
+![Github Pages](https://img.shields.io/badge/github%20pages-121013?style=for-the-badge&logo=github&logoColor=white)
+![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
+![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)
 
 <!--
 Kurzer Überblick über die grundlegenden Entscheidungen und
@@ -340,3 +365,5 @@ und/oder technischen Schulden.
 
 **About arc42** Template Version 8.2, Januar 2023. 
 Created, maintained and © by Dr. Peter Hruschka, Dr. Gernot Starke and contributors. View <https://arc42.org>.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
