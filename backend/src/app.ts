@@ -1,6 +1,7 @@
 import express, { Express, Request, Response } from "express";
 import cors from "cors";
 
+import { Repository } from "typeorm";
 import { AppDataSource } from "./db/data-source";
 import { Tech } from "./db/entities/Tech.entity";
 import { seed } from "./db/seed";
@@ -18,14 +19,22 @@ AppDataSource
 
         await seed(AppDataSource);
 
+        const techRepository: Repository<Tech> = AppDataSource.getRepository(Tech);
         const app: Express = express();
 
         app.use(express.static("public"), cors(corsOptions));
 
         app.get("/api/techs", cors(corsOptions), async (req: Request, res: Response) => {
-            const techs = await AppDataSource.getRepository(Tech).find();
+            const techs = await techRepository.find();
             res.json(techs);
         });
+
+        app.get("/api/techs/:id", async function (req: Request, res: Response) {
+            const tech = await techRepository.findOneBy({
+                name: req.params.id,
+            });
+            return res.json(tech);
+        })
 
         app.listen(port, () => {
             console.log(`Server running on http://${host}:${port}`);
