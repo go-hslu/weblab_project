@@ -17,7 +17,7 @@ Backend for WEBLAB Radar app using Express and TypeORM written with TypeScript.
         type: "mysql",
         host: "localhost",
         port: 3306,
-        username: "radar_test",
+        username: "radar_admin",
         password: "pw1234",
         database: "radar"
     });
