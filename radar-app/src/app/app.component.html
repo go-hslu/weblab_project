@@ -1,12 +1,56 @@
-<mat-toolbar color="primary">
-    <span>Radar App</span>
-    <span class="spacer"></span>
-    <mat-icon>menu</mat-icon>
-</mat-toolbar>
+<header>
+    <mat-toolbar color="primary">
+        <button (click)="sidenav.toggle()" mat-icon-button>
+            <mat-icon>menu</mat-icon>
+        </button>
+        <span routerLink="">Radar App</span>
+    </mat-toolbar>
+</header>
 
-<mat-nav-list>
-    <a mat-list-item routerLink="/tech" routerLinkActive="active">techs</a>
-    <a mat-list-item routerLink="/404" routerLinkActive="active">404</a>
-</mat-nav-list>
+<mat-sidenav-container>
+    <mat-sidenav #sidenav opened mode="side" position="start">
+        <mat-nav-list>
 
-<router-outlet/>
+            <mat-list-item>
+                <button mat-button routerLink="" color="primary">
+                    Home
+                    <mat-icon>home</mat-icon>
+                </button>
+            </mat-list-item>
+
+            <mat-divider></mat-divider>
+
+            <mat-list-item>
+                <button mat-button [matMenuTriggerFor]="dashboardMenu" color="primary">
+                    Dashboard
+                    <mat-icon>dashboard</mat-icon>
+                </button>
+                <mat-menu #dashboardMenu="matMenu">
+                    <button mat-menu-item routerLink="tech">Technologien</button>
+                    <button mat-menu-item routerLink="project">Projekte</button>
+                </mat-menu>
+            </mat-list-item>
+        </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <router-outlet/>
+    </mat-sidenav-content>
+</mat-sidenav-container>
+
+<footer>
+    <mat-card>
+        <mat-card-actions>
+            <button mat-mini-fab color="accent" aria-label="View code on GitHub">
+                <mat-icon>code</mat-icon>
+            </button>
+            <button mat-mini-fab color="accent" aria-label="Pull Docker image via GitHub Container registry">
+                <mat-icon>cloud_download</mat-icon>
+            </button>
+        </mat-card-actions>
+
+        <mat-card-content>
+            <p>Copyright © 2024 WEBLAB Radar, Gian Ott</p>
+        </mat-card-content>
+    </mat-card>
+</footer>

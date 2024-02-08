@@ -1,3 +1,26 @@
+@media screen and (max-width: 600px) {
+    mat-sidenav-container {
+        min-height: calc(100vh - 148px);
+    }
+}
+
+@media screen and (min-width: 601px) {
+    mat-sidenav-container {
+        min-height: calc(100vh - 156px);
+    }
+}
+
 .spacer {
-    flex: 1 1 auto;
+     flex: 1 1 auto;
+}
+
+mat-sidenav {
+    background-color: #F9F7FC;
+}
+
+footer mat-card {
+    background-color: #292929;
+    color: white;
+    align-items: center;
+    border-radius: 0;
 }

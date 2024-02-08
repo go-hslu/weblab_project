@@ -1,10 +1,46 @@
-<div *ngIf="tech">
-    <h2>{{ tech.name }} Details</h2>
-    <ul>
-        <li>{{ tech.id }}</li>
-        <li>{{ tech.state }}</li>
-        <li>{{ tech.category }}</li>
-    </ul>
-</div>
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>
+            <h2>Technologie Detailansicht</h2>
+        </mat-card-title>
+        <mat-card-subtitle>
+            {{ tech.name }}
+        </mat-card-subtitle>
+    </mat-card-header>
 
-<button type="button" (click)="returnToOverview()">Return to Overview</button>
+    <mat-card-content *ngIf="tech">
+        <ul>
+            <li>{{ tech.id }}</li>
+            <li>{{ tech.state }}</li>
+            <li>{{ tech.category }}</li>
+        </ul>
+
+        <mat-form-field>
+            <mat-label>Technologie</mat-label>
+            <input matInput [(ngModel)]="tech.name">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Kategorie</mat-label>
+            <mat-select [(ngModel)]="tech.category">
+                <mat-option *ngFor="let category of techCategories" [value]="category">{{category | titlecase}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Status</mat-label>
+            <mat-select [(ngModel)]="tech.state">
+                <mat-option *ngFor="let state of techStates" [value]="state">{{state | titlecase}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Textarea</mat-label>
+            <textarea matInput></textarea>
+        </mat-form-field>
+    </mat-card-content>
+
+    <mat-card-actions>
+        <button mat-button color="primary" (click)="returnToOverview()">Zurück zur Übersicht</button>
+    </mat-card-actions>
+</mat-card>
