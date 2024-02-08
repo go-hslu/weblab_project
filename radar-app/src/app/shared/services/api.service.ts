@@ -8,9 +8,6 @@ import { Observable } from "rxjs";
 export class ApiService<T> {
 
     private _apiURL: string = "http://localhost:8080/api";
-    private _httpOptions = {
-        headers: new HttpHeaders({ "Content-Type": "application/json" })
-    }
 
     constructor(
         private http: HttpClient

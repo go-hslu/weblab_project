@@ -1,4 +1,6 @@
 export interface Tech {
-    id: string
-    name: string
+    id: string;
+    name: string;
+    category: string;
+    state: string;
 }

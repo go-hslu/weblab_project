@@ -1,0 +1,7 @@
+<p>techs-overview-page works!</p>
+
+<div>
+    <a *ngFor="let tech of techs" routerLink="/tech/{{ tech.name }}">
+        {{ tech.name }}
+    </a>
+</div>

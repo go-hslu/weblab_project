@@ -1,0 +1,10 @@
+<div *ngIf="tech">
+    <h2>{{ tech.name }} Details</h2>
+    <ul>
+        <li>{{ tech.id }}</li>
+        <li>{{ tech.state }}</li>
+        <li>{{ tech.category }}</li>
+    </ul>
+</div>
+
+<button type="button" (click)="returnToOverview()">Return to Overview</button>
