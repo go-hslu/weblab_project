@@ -5,6 +5,10 @@ import { Tech } from "@shared/models/tech.model";
 import { TechService } from "@shared/services/tech.service";
 import { TechCategory } from "@shared/enums/TechCategory.enum";
 import { TechState } from "@shared/enums/TechState.enum";
+import { catchError, throwError } from "rxjs";
+import { showApiFailureSnackBar, showApiSuccessSnackBar } from "@shared/utils/snackbar.util";
+
+import { MatSnackBar } from "@angular/material/snack-bar";
 
 @Component({
   selector: "app-tech-details-page",
@@ -16,27 +20,37 @@ export class TechDetailsPageComponent implements OnInit {
     @Input({ required: true })
     public tech!: Tech
 
-    public techCategories = Object.values(TechCategory);
-    public techStates = Object.values(TechState);
+    public readonly techCategories = Object.values(TechCategory);
+    public readonly techStates = Object.values(TechState);
 
     constructor(
-        private route: ActivatedRoute,
-        private techService: TechService,
-        private location: Location
+        private _route: ActivatedRoute,
+        private _techService: TechService,
+        private _location: Location,
+        private _snackBar: MatSnackBar
     ) {}
 
-    ngOnInit(): void {
-        const id: string | null = this.route.snapshot.paramMap.get("id");
+    public ngOnInit(): void {
+        const id: string | null = this._route.snapshot.paramMap.get("id");
         if (id != null) {
-            this.techService
+            this._techService
                 .getTechById(id)
+                .pipe(
+                    catchError(err => {
+                        console.error("Error on API request occurred!", err);
+                        this.tech = { id: "1", name: "Fake", category: "framework", state: "hold" };
+                        showApiFailureSnackBar(this._snackBar, "API not accessible! Loading fake static data.");
+                        return throwError(err);
+                    })
+                )
                 .subscribe((tech: Tech) => {
                     this.tech = tech;
+                    showApiSuccessSnackBar(this._snackBar, `Data loaded successfully! (${tech.name})`);
                 });
         }
     }
 
-    returnToOverview(): void {
-        this.location.back();
+    public returnToOverview(): void {
+        this._location.back();
     }
 }

@@ -10,6 +10,7 @@ import { MatSelectModule } from "@angular/material/select";
 import { MatInputModule } from "@angular/material/input";
 import { MatCardModule } from "@angular/material/card";
 import { MatButtonModule } from "@angular/material/button";
+import { MatDividerModule } from "@angular/material/divider";
 
 import { routes } from "./tech.routes";
 
@@ -23,6 +24,7 @@ import { TechDetailsPageComponent } from "./pages/tech-details-page/tech-details
     ],
     imports: [
         CommonModule,
+        FormsModule,
         MatTableModule,
         MatSortModule,
         MatFormFieldModule,
@@ -30,7 +32,7 @@ import { TechDetailsPageComponent } from "./pages/tech-details-page/tech-details
         MatSelectModule,
         MatCardModule,
         MatButtonModule,
-        FormsModule,
+        MatDividerModule,
         RouterModule.forChild(routes)
     ]
 })

@@ -3,36 +3,32 @@
         <mat-card-title>
             <h2>Technologie Detailansicht</h2>
         </mat-card-title>
-        <mat-card-subtitle>
-            {{ tech.name }}
+        <mat-card-subtitle *ngIf="tech">
+            {{ tech.name }} ({{ tech.id }})
         </mat-card-subtitle>
     </mat-card-header>
 
     <mat-card-content *ngIf="tech">
-        <ul>
-            <li>{{ tech.id }}</li>
-            <li>{{ tech.state }}</li>
-            <li>{{ tech.category }}</li>
-        </ul>
-
         <mat-form-field>
             <mat-label>Technologie</mat-label>
-            <input matInput [(ngModel)]="tech.name">
+            <input matInput [(ngModel)]="tech.name" required>
         </mat-form-field>
 
         <mat-form-field>
             <mat-label>Kategorie</mat-label>
-            <mat-select [(ngModel)]="tech.category">
-                <mat-option *ngFor="let category of techCategories" [value]="category">{{category | titlecase}}</mat-option>
+            <mat-select [(ngModel)]="tech.category" required>
+                <mat-option *ngFor="let category of techCategories" [value]="category">{{ category | titlecase }}</mat-option>
             </mat-select>
         </mat-form-field>
 
         <mat-form-field>
             <mat-label>Status</mat-label>
-            <mat-select [(ngModel)]="tech.state">
-                <mat-option *ngFor="let state of techStates" [value]="state">{{state | titlecase}}</mat-option>
+            <mat-select [(ngModel)]="tech.state" required>
+                <mat-option *ngFor="let state of techStates" [value]="state">{{ state | titlecase }}</mat-option>
             </mat-select>
         </mat-form-field>
+
+        <mat-divider></mat-divider>
 
         <mat-form-field>
             <mat-label>Textarea</mat-label>

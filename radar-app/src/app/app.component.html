@@ -3,7 +3,21 @@
         <button (click)="sidenav.toggle()" mat-icon-button>
             <mat-icon>menu</mat-icon>
         </button>
-        <span routerLink="">Radar App</span>
+        <h1>Radar App</h1>
+
+        <div class="spacer"></div>
+
+        <button mat-button routerLink="/login" *ngIf="!isUserAuthenticated">
+            Login
+            <mat-icon>login</mat-icon>
+        </button>
+        <div *ngIf="isUserAuthenticated">
+            <span class="header-text">{{ authenticatedUserEmail }}</span>
+            <button mat-button (click)="logout()">
+                Logout
+                <mat-icon>logout</mat-icon>
+            </button>
+        </div>
     </mat-toolbar>
 </header>
 

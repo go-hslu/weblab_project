@@ -24,3 +24,7 @@ footer mat-card {
     align-items: center;
     border-radius: 0;
 }
+
+.header-text {
+    font-size: small;
+}
