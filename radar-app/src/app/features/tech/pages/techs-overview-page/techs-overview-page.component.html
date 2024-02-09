@@ -4,29 +4,74 @@
     </mat-card-header>
 
     <mat-card-content>
-        <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+        <mat-form-field>
+            <mat-label>Suche...</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Angular" [(ngModel)]="searchTerm">
+            @if (searchTerm) {
+                <button matSuffix mat-icon-button (click)="clearSearchTerm()">
+                    <mat-icon>close</mat-icon>
+                </button>
+            } @else {
+                <button matSuffix mat-icon-button>
+                    <mat-icon>search</mat-icon>
+                </button>
+            }
+        </mat-form-field>
+
+        <table mat-table [dataSource]="dataSource" matSort multiTemplateDataRows class="mat-elevation-z8">
 
             <ng-container matColumnDef="name">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
-                <td mat-cell *matCellDef="let tech">
-                    <a routerLink="/tech/{{ tech.name }}">
-                        {{ tech.name }}
-                    </a>
-                </td>
+                <td mat-cell *matCellDef="let tech" (click)="selectedTech = selectedTech === tech ? null : tech">{{ tech.name }}</td>
             </ng-container>
 
             <ng-container matColumnDef="category">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Kategorie</th>
-                <td mat-cell *matCellDef="let tech">{{ tech.category | titlecase }}</td>
+                <td mat-cell *matCellDef="let tech" (click)="selectedTech = selectedTech === tech ? null : tech">{{ tech.category | titlecase }}</td>
             </ng-container>
 
             <ng-container matColumnDef="state">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
-                <td mat-cell *matCellDef="let tech"> {{ tech.state | titlecase }} </td>
+                <td mat-cell *matCellDef="let tech" (click)="selectedTech = selectedTech === tech ? null : tech"> {{ tech.state | titlecase }} </td>
             </ng-container>
 
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let tech">
+                    <button mat-icon-button (click)="(selectedTech = selectedTech === tech ? null : tech); $event.stopPropagation()">
+                        @if (selectedTech === tech) {
+                            <mat-icon>keyboard_arrow_up</mat-icon>
+                        } @else {
+                            <mat-icon>keyboard_arrow_down</mat-icon>
+                        }
+                    </button>
+                    @if (hasTechRole) {
+                        <button mat-icon-button routerLink="/tech/{{ tech.name }}">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                        <button mat-icon-button color="warn">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    }
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="details">
+                <td mat-cell *matCellDef="let tech" [attr.colspan]="displayedColumnsWithActions.length">
+                    <div class="details" [@showDetails]="tech == selectedTech ? 'expanded' : 'collapsed'">
+                        <span>
+                            Beschreibung: {{ tech.name }}
+                        </span>
+                    </div>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumnsWithActions"></tr>
+            <tr mat-row *matRowDef="let tech; columns: displayedColumnsWithActions;"
+                class="tech-row"
+                [class.selected-row]="selectedTech === tech"></tr>
+            <tr mat-row *matRowDef="let row; columns: ['details']" class="details-row"></tr>
         </table>
     </mat-card-content>
 </mat-card>

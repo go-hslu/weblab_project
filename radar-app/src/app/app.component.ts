@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { AuthService } from "@shared/services/auth.service";
 import { User } from "@shared/models/user.model";
+import { BreakpointObserver } from "@angular/cdk/layout";
 
 @Component({
     selector: "app-root",
@@ -11,9 +12,11 @@ export class AppComponent implements OnInit {
 
     public isUserAuthenticated: boolean = false;
     public authenticatedUserEmail: string = "";
+    public useMobileLayout: boolean = true;
 
     constructor(
-        private _authService: AuthService
+        private _authService: AuthService,
+        private _breakpointObserver: BreakpointObserver
     ) { }
 
     public logout(): void {
@@ -29,5 +32,11 @@ export class AppComponent implements OnInit {
                     this.authenticatedUserEmail = authUser.email;
                 }
             });
+
+        this._breakpointObserver
+            .observe(["(max-width: 600px)"])
+            .subscribe((screenSize) => {
+                this.useMobileLayout = screenSize.matches;
+        });
     }
 }

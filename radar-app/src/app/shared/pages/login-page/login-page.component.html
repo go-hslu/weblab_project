@@ -15,7 +15,10 @@
 
             <mat-form-field>
                 <mat-label>Passwort</mat-label>
-                <input matInput type="password" placeholder="Passwort" [(ngModel)]="password" name="password" required>
+                <input matInput [type]="obscurePassword ? 'password' : 'text'" placeholder="Passwort" [(ngModel)]="password" name="password" required>
+                <button mat-icon-button matSuffix (click)="obscurePassword = !obscurePassword">
+                    <mat-icon>{{obscurePassword ? "visibility_off" : "visibility"}}</mat-icon>
+                </button>
             </mat-form-field>
         </form>
     </mat-card-content>

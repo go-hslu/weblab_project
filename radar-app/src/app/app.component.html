@@ -1,28 +1,33 @@
 <header>
     <mat-toolbar color="primary">
-        <button (click)="sidenav.toggle()" mat-icon-button>
-            <mat-icon>menu</mat-icon>
-        </button>
-        <h1>Radar App</h1>
+        <img src="assets/logo.png" alt="Radar logo" class="logo">
 
+        <h1>Radar App</h1>
         <div class="spacer"></div>
 
-        <button mat-button routerLink="/login" *ngIf="!isUserAuthenticated">
-            Login
-            <mat-icon>login</mat-icon>
-        </button>
-        <div *ngIf="isUserAuthenticated">
-            <span class="header-text">{{ authenticatedUserEmail }}</span>
-            <button mat-button (click)="logout()">
-                Logout
-                <mat-icon>logout</mat-icon>
+        @if (isUserAuthenticated) {
+            <div *ngIf="isUserAuthenticated">
+                <span class="header-text" *ngIf="!useMobileLayout">{{ authenticatedUserEmail }}</span>
+                <button mat-button (click)="logout()">
+                    Logout
+                    <mat-icon>logout</mat-icon>
+                </button>
+            </div>
+        } @else {
+            <button mat-button routerLink="/login">
+                Login
+                <mat-icon>login</mat-icon>
             </button>
-        </div>
+        }
+
+        <button (click)="sidenav.toggle()" mat-icon-button *ngIf="useMobileLayout">
+            <mat-icon>menu</mat-icon>
+        </button>
     </mat-toolbar>
 </header>
 
 <mat-sidenav-container>
-    <mat-sidenav #sidenav opened mode="side" position="start">
+    <mat-sidenav #sidenav [opened]="useMobileLayout ? 'false' : 'true'" [mode]="useMobileLayout ? 'over' : 'side'">
         <mat-nav-list>
 
             <mat-list-item>
@@ -31,8 +36,6 @@
                     <mat-icon>home</mat-icon>
                 </button>
             </mat-list-item>
-
-            <mat-divider></mat-divider>
 
             <mat-list-item>
                 <button mat-button [matMenuTriggerFor]="dashboardMenu" color="primary">
@@ -44,6 +47,16 @@
                     <button mat-menu-item routerLink="project">Projekte</button>
                 </mat-menu>
             </mat-list-item>
+
+            <mat-divider></mat-divider>
+
+            <mat-list-item *ngIf="isUserAuthenticated && useMobileLayout">
+                <button mat-button color="primary">
+                    {{ authenticatedUserEmail }}
+                    <mat-icon>account_circle</mat-icon>
+                </button>
+            </mat-list-item>
+
         </mat-nav-list>
     </mat-sidenav>
 

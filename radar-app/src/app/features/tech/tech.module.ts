@@ -11,6 +11,7 @@ import { MatInputModule } from "@angular/material/input";
 import { MatCardModule } from "@angular/material/card";
 import { MatButtonModule } from "@angular/material/button";
 import { MatDividerModule } from "@angular/material/divider";
+import { MatIcon } from "@angular/material/icon";
 
 import { routes } from "./tech.routes";
 
@@ -33,6 +34,7 @@ import { TechDetailsPageComponent } from "./pages/tech-details-page/tech-details
         MatCardModule,
         MatButtonModule,
         MatDividerModule,
+        MatIcon,
         RouterModule.forChild(routes)
     ]
 })

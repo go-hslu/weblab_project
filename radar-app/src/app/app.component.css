@@ -28,3 +28,7 @@ footer mat-card {
 .header-text {
     font-size: small;
 }
+
+.logo {
+    height: 60%;
+}

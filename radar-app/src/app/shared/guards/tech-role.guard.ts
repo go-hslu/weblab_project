@@ -9,18 +9,25 @@ import { UserRole } from "@shared/enums/UserRole.enum";
 })
 class AuthorizationService {
     hasTechRole(): boolean {
-        const authService = inject(AuthService);
-
-        const authenticatedUser: User|null = authService.authenticatedUser.getValue();
-        const isUserAuthenticated: boolean = authenticatedUser != null;
-
-        return isUserAuthenticated && (
-            authenticatedUser?.role == UserRole.TECH_LEAD ||
-            authenticatedUser?.role == UserRole.CTO ||
-            authenticatedUser?.role == UserRole.ADMIN);
+        const authService: AuthService = inject(AuthService);
+        return authUserHasTechRole(authService);
     }
 }
 
 export const techRoleGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
     return inject(AuthorizationService).hasTechRole();
-};
+}
+
+export function hasTechRole(role: UserRole): boolean {
+    return (role == UserRole.TECH_LEAD ||
+        role == UserRole.CTO ||
+        role == UserRole.ADMIN);
+}
+
+export function authUserHasTechRole(authService: AuthService): boolean {
+    const authenticatedUser: User|null = authService.authenticatedUser.getValue();
+    if (!authenticatedUser)
+        return false;
+
+    return hasTechRole(authenticatedUser.role);
+}
