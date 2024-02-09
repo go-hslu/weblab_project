@@ -108,6 +108,7 @@ In einem Frontend, dem Radar (Radar-App oder Radar Applikation), werden Technolo
 ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
 ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
 ![MySQL](https://img.shields.io/badge/mysql-%2300f.svg?style=for-the-badge&logo=mysql&logoColor=white)
+![JWT](https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=JSON%20web%20tokens)
 ![Github Pages](https://img.shields.io/badge/github%20pages-121013?style=for-the-badge&logo=github&logoColor=white)
 ![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
 ![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)
@@ -134,9 +135,9 @@ Im [Node](https://nodejs.org/en) Backend werde ich [Express](https://expressjs.c
 
 [TypeORM](https://typeorm.io/) nimmt mir einen Grossteil der Arbeit für die Persistierung ab. Zudem können mit TypeORM (bzw generell mit OR-Mappern) Migrationen bei verändertem (DB-)Schema durchgeführt werden. Dies ist in der professionellen Entwicklung eine enorme Abhilfe.
 
-#### 3.1.6 ? (Authentication)
+#### 3.1.6 JWT (Authentication)
 
-Wie ich genau die Authentifizierung umsetzte, weiss ich noch nicht. Es ist ein Gebiet wo ich wenig Erfahrung habe. Wir werden gegen Ende der Blockwoche ein paar Möglichkeiten anschauen, dann werde ich mich entscheiden. 
+Für die Authentifizierung bzw die Autorisierung (Zugriffssteuerung auf Ressourcen) werde ich [JSON Web Tokens](https://jwt.io/) einsetzten. Dabei handelt es sich um eine "Token-based authentication", wofür keine Session eröffnet wird. Ein weiterer Vorteil ist, dass z.B. bei Social Media Plattformen registrierte authentifiziert werden können, so müssen nicht die klassichen Anmeldedaten Username/Passwort abgespeichert werden. Für die Implementierung werde ich als Library [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken) einsetzten.
 
 Sollte ich selbst Passwörter auf der DB speichern müssen, werde ich diese salten & hashen.
 
@@ -351,6 +352,8 @@ und/oder technischen Schulden.
 | Abkürzung [A-Z]       | Begriff                                                                                           |
 |-----------------------|---------------------------------------------------------------------------------------------------|
 | **CRUD**              | Create Read Update Delete                                                                         |
+| **JWT**               | JSON Web Token                                                                                    |
+| **REST**              | Representational State Transfer                                                                   |
 | **SPA**               | Single Page Application                                                                           |
 
 ## 11.2 Technische- und Projektspezifische Begriffe
@@ -359,13 +362,13 @@ und/oder technischen Schulden.
 |-----------------------|---------------------------------------------------------------------------------------------------|
 | **Angular**           | Angular ist ein auf JavaScript basierendes Frontend-Web-Framework. Es wurde von Google entwickelt und ist aktuell in der Version 17. Es verfolgt den "Single Page Application"-Ansatz, wobei zuerst ein Grundgerüst der Webseite geladen wird und später nur noch Daten nachgeladen werden sollen. |
 | **Express**           | Express.js ist ein JavaScript Backend-Framework für Node.js. Es erleichtert das Erstellen von (RESTful) APIs und WebServern. |
-| **GitHub Pages**      | Lorem ipsum                                                                                       |
-| **GitHub Container Registry** | https://ghcr.io                                                                           |
-| **MySQL**             | Lorem ipsum                                                                                       |
+| **GitHub Container Registry** | Über die GitHub Container Registry können (Docker) Container als Package verteilt werden. Diese sind über die URL `https://ghcr` erreichbar. |
+| **GitHub Pages**      | GitHub Pages ermöglicht das Hosten von statischen Resourcen (HTML, CSS & JavaScript) direkt auf dem Repository. |
+| **JSON Web Token**    | Bei JWTs handelt es sich um Zugriff(Access)-Tokens. Über diese Credentials wird der Zugriff auf Resourcen gewährt (Authorization). Eine Besonderheit ist, dass keine Session auf dem Server eröffnet werden muss und stattdessen das übermittelte Token validiert wird.          |
+| **MySQL**             | MySQL ist ein relationales DBMS (Database Management System).                                     |
 | **Node**              | Node.js ist eine plattformunabhängige JavaScript Laufzeitsumgebung (runtime environment). Über die V8 JavaScript engine kann somit JavaScript Code ausserhalb eines Browsers eingesetzt werden. |
 | **TypeORM**           | TypeORM ist ein OR-Mapper und wird als Bindeglied zwischen der Datenbank (Relational) und dem objekt-orientiertem Backend verwendet. |
 | **TypeScript**        | TypeScript fügt statische Typisierung und weitere Sprachkonstrukte zu JavaScript hinzu. TS wird immer zu JS transkompiliert. |
-| **Z**                 | Lorem ipsum                                                                                       |
 
 
 ## 12 Arbeitsjournal
