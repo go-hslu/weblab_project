@@ -11,14 +11,14 @@ export class TechService {
     private _apiPath: string = "techs";
 
     constructor(
-        private api: ApiService<Tech>
+        private _api: ApiService<Tech>
     ) { }
 
-    getTechs(): Observable<Tech[]> {
-        return this.api.getEntities(this._apiPath);
+    public getTechs(): Observable<Tech[]> {
+        return this._api.getEntities(this._apiPath);
     }
 
-    getTechById(id: string): Observable<Tech> {
-        return this.api.getEntityById(this._apiPath, id);
+    public getTechById(id: string): Observable<Tech> {
+        return this._api.getEntityById(this._apiPath, id);
     }
 }

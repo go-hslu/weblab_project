@@ -4,7 +4,9 @@ import { AuthService } from "@shared/services/auth.service";
 import { User } from "@shared/models/user.model";
 import { UserRole } from "@shared/enums/UserRole.enum";
 
-@Injectable()
+@Injectable({
+    providedIn: "root"
+})
 class AuthorizationService {
     hasTechRole(): boolean {
         const authService = inject(AuthService);
@@ -19,6 +21,6 @@ class AuthorizationService {
     }
 }
 
-export const techGuard: CanActivateFn =  (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
+export const techRoleGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
     return inject(AuthorizationService).hasTechRole();
 };

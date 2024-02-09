@@ -33,8 +33,6 @@ export class LoginPageComponent {
     ) {}
 
     public login(): void {
-        if (this._authService.login(this.email, this.password)) {
-            this._location.back();
-        }
+        this._authService.login({ email: this.email, password: this.password});
     }
 }

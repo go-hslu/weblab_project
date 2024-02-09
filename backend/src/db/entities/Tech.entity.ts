@@ -1,11 +1,10 @@
-import { Entity, Column, ManyToMany } from "typeorm"
-import { BaseEntity } from "./BaseEntity.entity";
+import { Entity, Column } from "typeorm"
+import { BaseEntity } from "./Base.entity";
 import { TechState } from "../../enums/TechState.enum";
 import { TechCategory } from "../../enums/TechCategory.enum";
-import { Project } from "./Project.entity";
 
-@Entity()
-export class Tech extends BaseEntity {
+@Entity("tech")
+export class TechEntity extends BaseEntity {
 
     @Column({
         type: "varchar",
@@ -27,7 +26,4 @@ export class Tech extends BaseEntity {
         default: TechCategory.FRAMEWORK,
     })
     category: TechCategory;
-
-    @ManyToMany(() => Project, (project: Project) => project.techs)
-    projects: Project[]
 }

@@ -37,9 +37,8 @@ export class TechDetailsPageComponent implements OnInit {
                 .getTechById(id)
                 .pipe(
                     catchError(err => {
-                        console.error("Error on API request occurred!", err);
-                        this.tech = { id: "1", name: "Fake", category: "framework", state: "hold" };
-                        showApiFailureSnackBar(this._snackBar, "API not accessible! Loading fake static data.");
+                        showApiFailureSnackBar(this._snackBar, "API not accessible!");
+                        this._location.back();
                         return throwError(err);
                     })
                 )

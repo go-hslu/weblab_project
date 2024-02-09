@@ -1,10 +1,10 @@
 import { Column, Entity } from "typeorm";
-import { BaseEntity } from "./BaseEntity.entity";
+import { BaseEntity } from "./Base.entity";
 import { UserRole } from "../../enums/UserRole.enum";
 import { IsEmail } from "class-validator";
 
-@Entity()
-export class User extends BaseEntity {
+@Entity("user")
+export class UserEntity extends BaseEntity {
 
     @Column({
         type: "varchar",
@@ -13,6 +13,12 @@ export class User extends BaseEntity {
     })
     @IsEmail()
     email: string;
+
+    @Column({
+        type: "varchar",
+        length: 256
+    })
+    password: string;
 
     @Column({
         type: "enum",

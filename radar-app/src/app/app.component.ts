@@ -24,7 +24,7 @@ export class AppComponent implements OnInit {
         this._authService
             .authenticatedUser
             .subscribe((authUser: User|null) => {
-                this.isUserAuthenticated = !!authUser;
+                this.isUserAuthenticated = this._authService.isAuthenticated();
                 if (this.isUserAuthenticated && authUser) {
                     this.authenticatedUserEmail = authUser.email;
                 }

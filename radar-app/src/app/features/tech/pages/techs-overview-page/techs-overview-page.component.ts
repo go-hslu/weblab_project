@@ -31,7 +31,6 @@ export class TechsOverviewPageComponent implements OnInit {
             .getTechs()
             .pipe(
                 catchError(err => {
-                    console.error("Error on API request occurred!", err);
                     const fakeTechs: Tech[] = [
                         { id: "1", name: "Fake", category: "framework", state: "hold" }
                     ];

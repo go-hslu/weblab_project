@@ -1,10 +1,10 @@
 import { Column, Entity, JoinTable, ManyToMany } from "typeorm";
-import { BaseEntity } from "./BaseEntity.entity";
+import { BaseEntity } from "./Base.entity";
 import { ProjectState } from "../../enums/ProjectState.enum";
-import { Tech } from "./Tech.entity";
+import { TechEntity } from "./Tech.entity";
 
-@Entity()
-export class Project extends BaseEntity {
+@Entity("project")
+export class ProjectEntity extends BaseEntity {
 
     @Column({
         type: "varchar",
@@ -20,7 +20,7 @@ export class Project extends BaseEntity {
     })
     state: ProjectState;
 
-    @ManyToMany(() => Tech, (tech: Tech) => tech.projects)
+    @ManyToMany(() => TechEntity)
     @JoinTable()
-    techs: Tech[]
+    techs: TechEntity[];
 }

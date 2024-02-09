@@ -1,11 +1,10 @@
-import { Column, Entity, JoinColumn, OneToOne } from "typeorm";
-import { BaseEntity } from "./BaseEntity.entity";
-import { User } from "./User.entity";
+import { Column, CreateDateColumn, Entity, ManyToOne } from "typeorm";
+import { BaseEntity } from "./Base.entity";
+import { UserEntity } from "./User.entity";
 import { LogTriggerAction } from "../../enums/LogTriggerAction.enum";
-import { IsDate } from "class-validator";
 
-@Entity()
-export class Log extends BaseEntity {
+@Entity("log")
+export class LogEntity extends BaseEntity {
 
     @Column({
         type: "varchar",
@@ -19,11 +18,9 @@ export class Log extends BaseEntity {
     })
     triggerAction: LogTriggerAction;
 
-    @OneToOne(() => User)
-    @JoinColumn()
-    triggeredBy: User
+    @ManyToOne(() => UserEntity)
+    triggeredBy: UserEntity;
 
-    @Column()
-    @IsDate()
-    triggeredOn: Date
+    @CreateDateColumn()
+    triggeredOn: Date;
 }
