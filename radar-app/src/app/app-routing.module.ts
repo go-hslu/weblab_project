@@ -1,5 +1,5 @@
 import { NgModule } from "@angular/core"
-import { NoPreloading, RouterModule, Routes } from "@angular/router"
+import { NoPreloading, RouterModule } from "@angular/router"
 
 import { routes } from "./app.routes";
 

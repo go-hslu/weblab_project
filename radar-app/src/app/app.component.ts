@@ -1,7 +1,8 @@
 import { Component, OnInit } from "@angular/core";
-import { AuthService } from "@shared/services/auth.service";
-import { User } from "@shared/models/user.model";
 import { BreakpointObserver } from "@angular/cdk/layout";
+
+import { AuthService } from "@core/services/auth.service";
+import { User } from "@shared/types/user/User.model";
 
 @Component({
     selector: "app-root",

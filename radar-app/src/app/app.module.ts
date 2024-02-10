@@ -15,7 +15,7 @@ import { MatCardModule } from "@angular/material/card";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-import { AuthInterceptor } from "@shared/interceptors/auth.interceptor";
+import { AuthInterceptor } from "@core/interceptors/auth.interceptor";
 
 @NgModule({
     declarations: [AppComponent],

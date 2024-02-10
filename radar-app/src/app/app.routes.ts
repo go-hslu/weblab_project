@@ -1,16 +1,16 @@
 import { Routes } from "@angular/router";
-import { HomePageComponent } from "@shared/pages/home-page/home-page.component";
-import { NotFoundPageComponent } from "@shared/pages/not-found-page/not-found-page.component";
-import { LoginPageComponent } from "@shared/pages/login-page/login-page.component";
+import { HomeComponent } from "@core/components/home/home.component";
+import { NotFoundComponent } from "@core/components/not-found/not-found.component";
+import { LoginComponent } from "@core/components/login/login.component";
 
 export const routes: Routes = [
     {
         path: "tech", title: "Radar App | Tech",
         loadChildren: () =>
-            import("./features/tech/tech.module").then((module) => module.TechModule)
+            import("@features/dashboard/dashboard.module").then((module) => module.DashboardModule)
     },
-    { path: "login", title: "Radar App | Login", component: LoginPageComponent },
-    { path: "", title: "Radar App", component: HomePageComponent },
+    { path: "login", title: "Radar App | Login", component: LoginComponent },
+    { path: "", title: "Radar App", component: HomeComponent },
     { path: "home", redirectTo: "" },
-    { path: "**", title: "Radar App | 404 Not found", component: NotFoundPageComponent }
+    { path: "**", title: "Radar App | 404 Not found", component: NotFoundComponent }
 ];
