@@ -1,18 +1,17 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { TechDetailsComponent } from "./tech-details.component";
 
-import { TechsOverviewPageComponent } from "./techs-overview-page.component";
-
-describe("TechsOverviewPageComponent", () => {
-    let component: TechsOverviewPageComponent;
-    let fixture: ComponentFixture<TechsOverviewPageComponent>;
+describe("TechDetailsComponent", () => {
+    let component: TechDetailsComponent;
+    let fixture: ComponentFixture<TechDetailsComponent>;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [TechsOverviewPageComponent]
+            imports: [TechDetailsComponent]
         })
         .compileComponents();
 
-        fixture = TestBed.createComponent(TechsOverviewPageComponent);
+        fixture = TestBed.createComponent(TechDetailsComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });

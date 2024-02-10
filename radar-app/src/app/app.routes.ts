@@ -4,13 +4,13 @@ import { NotFoundComponent } from "@core/components/not-found/not-found.componen
 import { LoginComponent } from "@core/components/login/login.component";
 
 export const routes: Routes = [
+    { path: "", title: "Radar App", component: HomeComponent },
+    { path: "home", redirectTo: "" },
     {
-        path: "tech", title: "Radar App | Tech",
+        path: "dashboard", title: "Radar App | Dashboard",
         loadChildren: () =>
             import("@features/dashboard/dashboard.module").then((module) => module.DashboardModule)
     },
     { path: "login", title: "Radar App | Login", component: LoginComponent },
-    { path: "", title: "Radar App", component: HomeComponent },
-    { path: "home", redirectTo: "" },
     { path: "**", title: "Radar App | 404 Not found", component: NotFoundComponent }
 ];

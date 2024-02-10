@@ -9,9 +9,9 @@ import { MatIcon } from "@angular/material/icon";
 import { MatToolbar } from "@angular/material/toolbar";
 import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatButtonModule } from "@angular/material/button";
-import { MatMenuModule } from "@angular/material/menu";
 import { MatDividerModule } from "@angular/material/divider";
 import { MatCardModule } from "@angular/material/card";
+import { MatTooltipModule } from "@angular/material/tooltip";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -31,9 +31,9 @@ import { AuthInterceptor } from "@core/interceptors/auth.interceptor";
         MatListItem,
         MatSidenavModule,
         MatButtonModule,
-        MatMenuModule,
         MatDividerModule,
-        MatCardModule
+        MatCardModule,
+        MatTooltipModule
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }

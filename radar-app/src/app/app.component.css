@@ -10,10 +10,6 @@
     }
 }
 
-.spacer {
-     flex: 1 1 auto;
-}
-
 mat-sidenav {
     background-color: #F9F7FC;
 }

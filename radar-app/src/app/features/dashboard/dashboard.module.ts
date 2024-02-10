@@ -11,17 +11,23 @@ import { MatInputModule } from "@angular/material/input";
 import { MatCardModule } from "@angular/material/card";
 import { MatButtonModule } from "@angular/material/button";
 import { MatDividerModule } from "@angular/material/divider";
+import { MatTabsModule } from "@angular/material/tabs";
+import { MatMenuModule } from "@angular/material/menu";
 import { MatIcon } from "@angular/material/icon";
+import { MatTooltipModule } from "@angular/material/tooltip";
 
 import { routes } from "./dashboard.routes";
 
-import { TechsOverviewPageComponent } from "./pages/techs-overview-page/techs-overview-page.component";
-import { TechDetailsPageComponent } from "./pages/tech-details-page/tech-details-page.component";
+import { DashboardComponent } from "./dashboard.component";
+
+import { TechOverviewComponent } from "./components/tech-overview/tech-overview.component";
+import { TechDetailsComponent } from "./components/tech-details/tech-details.component";
 
 @NgModule({
     declarations: [
-        TechsOverviewPageComponent,
-        TechDetailsPageComponent
+        DashboardComponent,
+        TechOverviewComponent,
+        TechDetailsComponent
     ],
     imports: [
         CommonModule,
@@ -32,8 +38,11 @@ import { TechDetailsPageComponent } from "./pages/tech-details-page/tech-details
         MatInputModule,
         MatSelectModule,
         MatCardModule,
+        MatMenuModule,
         MatButtonModule,
         MatDividerModule,
+        MatTabsModule,
+        MatTooltipModule,
         MatIcon,
         RouterModule.forChild(routes)
     ]

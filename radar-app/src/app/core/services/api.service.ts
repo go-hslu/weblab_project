@@ -22,4 +22,14 @@ export class ApiService<T> {
         const url: string = `${this._apiURL}/${path}/${id}`;
         return this._http.get<T>(url);
     }
+
+    public upsertEntity(path: string, entity: T): Observable<T> {
+        const url: string = `${this._apiURL}/${path}`;
+        return this._http.post<T>(url, entity);
+    }
+
+    public deleteEntityById(path: string, id: string): Observable<T> {
+        const url: string = `${this._apiURL}/${path}/${id}`;
+        return this._http.delete<T>(url);
+    }
 }

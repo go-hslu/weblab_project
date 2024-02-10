@@ -15,11 +15,19 @@ export class TechService {
         private _api: ApiService<Tech>
     ) { }
 
-    public getTechs(): Observable<Tech[]> {
+    public getAll(): Observable<Tech[]> {
         return this._api.getEntities(this._apiPath);
     }
 
-    public getTechById(id: string): Observable<Tech> {
+    public getById(id: string): Observable<Tech> {
         return this._api.getEntityById(this._apiPath, id);
+    }
+
+    public upsert(tech: Tech): Observable<Tech> {
+        return this._api.upsertEntity(this._apiPath, tech);
+    }
+
+    public delete(id: string): Observable<Tech> {
+        return this._api.deleteEntityById(this._apiPath, id);
     }
 }

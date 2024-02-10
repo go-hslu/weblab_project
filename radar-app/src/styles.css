@@ -20,3 +20,7 @@ body {
     --mat-mdc-snack-bar-button-color: white !important;
     white-space: pre-wrap
 }
+
+.spacer {
+    flex: 1 1 auto;
+}

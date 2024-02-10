@@ -12,11 +12,11 @@ import { TechState } from "@shared/types/tech/TechState.enum";
 import { TechService } from "@shared/apis/tech.service";
 
 @Component({
-  selector: "app-tech-details-page",
-  templateUrl: "./tech-details-page.component.html",
-  styleUrl: "./tech-details-page.component.css"
+    selector: "app-tech-details",
+    templateUrl: "./tech-details.component.html",
+    styleUrl: "./tech-details.component.css"
 })
-export class TechDetailsPageComponent implements OnInit {
+export class TechDetailsComponent implements OnInit {
 
     @Input({ required: true })
     public tech!: Tech;
@@ -32,10 +32,10 @@ export class TechDetailsPageComponent implements OnInit {
     ) {}
 
     public ngOnInit(): void {
-        const id: string | null = this._route.snapshot.paramMap.get("id");
+        const id: string|null = this._route.snapshot.paramMap.get("id");
         if (id != null) {
             this._techService
-                .getTechById(id)
+                .getById(id)
                 .pipe(
                     catchError(err => {
                         showApiFailureSnackBar(this._snackBar, "API not accessible!");

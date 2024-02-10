@@ -5,9 +5,20 @@
 
     <mat-card-content>
 
-        <mat-form-field>
+        <button mat-icon-button (click)="addTech()"
+                matTooltip="Neue Technologie erfassen">
+            <mat-icon>add</mat-icon>
+        </button>
+
+        <button mat-icon-button (click)="loadTechs()"
+                matTooltip="Aktualisiere Daten">
+            <mat-icon>refresh</mat-icon>
+        </button>
+
+        <mat-form-field class="search">
             <mat-label>Suche...</mat-label>
-            <input matInput (keyup)="applyFilter($event)" placeholder="Angular" [(ngModel)]="searchTerm">
+            <input matInput (keyup)="applyFilter($event)" placeholder="Angular" [(ngModel)]="searchTerm"
+                   matTooltip="Suche Technologien">
             @if (searchTerm) {
                 <button matSuffix mat-icon-button (click)="clearSearchTerm()">
                     <mat-icon>close</mat-icon>
@@ -39,7 +50,8 @@
             <ng-container matColumnDef="actions">
                 <th mat-header-cell *matHeaderCellDef></th>
                 <td mat-cell *matCellDef="let tech">
-                    <button mat-icon-button (click)="(selectedTech = selectedTech === tech ? null : tech); $event.stopPropagation()">
+                    <button mat-icon-button (click)="(selectedTech = selectedTech === tech ? null : tech); $event.stopPropagation()"
+                            matTooltip="Anzeige erweitern">
                         @if (selectedTech === tech) {
                             <mat-icon>keyboard_arrow_up</mat-icon>
                         } @else {
@@ -47,12 +59,22 @@
                         }
                     </button>
                     @if (hasTechRole) {
-                        <button mat-icon-button routerLink="/tech/{{ tech.name }}">
-                            <mat-icon>edit</mat-icon>
+                        <button mat-icon-button [matMenuTriggerFor]="actionsMenu" color="primary"
+                            matTooltip="Weitere Funktionen anzeigen">
+                            <mat-icon>more_vert</mat-icon>
                         </button>
-                        <button mat-icon-button color="warn">
-                            <mat-icon>delete</mat-icon>
-                        </button>
+                        <mat-menu #actionsMenu="matMenu">
+                            <button mat-menu-item routerLink="{{ tech.name }}"
+                                matTooltip="Technologie editieren">
+                                <mat-icon>edit</mat-icon>
+                                <span>Editieren</span>
+                            </button>
+                            <button mat-menu-item (click)="deleteTech(tech)"
+                                matTooltip="Technologie entfernen">
+                                <mat-icon color="warn">delete</mat-icon>
+                                <span>Löschen</span>
+                            </button>
+                        </mat-menu>
                     }
                 </td>
             </ng-container>

@@ -1,10 +1,22 @@
 import { Routes } from "@angular/router";
-import { TechsOverviewPageComponent } from "./pages/techs-overview-page/techs-overview-page.component";
-import { TechDetailsPageComponent } from "./pages/tech-details-page/tech-details-page.component";
 
 import { techRoleGuard } from "@core/guards/tech-role.guard";
 
+import { DashboardComponent } from "./dashboard.component";
+import { TechOverviewComponent } from "./components/tech-overview/tech-overview.component";
+import { TechDetailsComponent } from "./components/tech-details/tech-details.component";
+import { ProjectOverviewComponent } from "./components/project-overview/project-overview.component";
+
 export const routes: Routes = [
-    { path: "", component: TechsOverviewPageComponent },
-    { path: ":id", component: TechDetailsPageComponent, canActivate: [techRoleGuard] }
+    {
+        path: "", redirectTo: "tech", pathMatch: "full"
+    },
+    {
+        path: "", component: DashboardComponent,
+        children: [
+            { path: "tech", component: TechOverviewComponent },
+            { path: "tech/:id", component: TechDetailsComponent, canActivate: [techRoleGuard] },
+            { path: "project", component: ProjectOverviewComponent },
+        ]
+    }
 ]

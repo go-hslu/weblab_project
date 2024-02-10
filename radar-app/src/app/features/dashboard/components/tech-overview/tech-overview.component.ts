@@ -14,9 +14,9 @@ import { Tech } from "@shared/types/tech/Tech.model";
 import { TechService } from "@shared/apis/tech.service";
 
 @Component({
-    selector: "app-techs-overview-page",
-    templateUrl: "./techs-overview-page.component.html",
-    styleUrl: "./techs-overview-page.component.css",
+    selector: "app-tech-overview",
+    templateUrl: "./tech-overview.component.html",
+    styleUrl: "./tech-overview.component.css",
     animations: [
         trigger("showDetails", [
             state("collapsed,void", style({ height: "0px", minHeight: "0" })),
@@ -25,7 +25,7 @@ import { TechService } from "@shared/apis/tech.service";
         ]),
     ],
 })
-export class TechsOverviewPageComponent implements OnInit {
+export class TechOverviewComponent implements OnInit {
 
     // TODO: Can be removed?
     private _techs: Tech[] = [];
@@ -56,12 +56,19 @@ export class TechsOverviewPageComponent implements OnInit {
     }
 
     public ngOnInit(): void {
+        this.loadTechs();
+        this.hasTechRole = authUserHasTechRole(this._authService);
+    }
+
+    public loadTechs(): void {
         this._techService
-            .getTechs()
+            .getAll()
             .pipe(
                 catchError(err => {
                     const fakeTechs: Tech[] = [
-                        { id: "1", name: "Fake", category: "framework", state: "hold" }
+                        { id: "24109fad-ce53-4029-88f7-e92460639e42", name: "Fake", category: "framework", state: "hold" },
+                        { id: "e02e841b-4d0d-4392-ab95-2d66dbeeb9c4", name: "Technologies", category: "language", state: "trial" },
+                        { id: "e02e841b-4d0d-4392-ab95-2d66dbeeb9c4", name: "Loaded", category: "platform", state: "adopt" }
                     ];
                     this._techs = fakeTechs;
                     this.dataSource = new MatTableDataSource<Tech>(fakeTechs);
@@ -76,7 +83,25 @@ export class TechsOverviewPageComponent implements OnInit {
                 this.dataSource.sort = this.sort;
                 showApiSuccessSnackBar(this._snackBar, `Data loaded successfully! (${techs.length})`);
             });
+    }
 
-        this.hasTechRole = authUserHasTechRole(this._authService);
+    public addTech(): void {
+        console.log("add");
+    }
+
+    public deleteTech(tech: Tech): void {
+        this._techService
+            .delete(tech.id)
+            .pipe(
+                catchError(err => {
+                    showApiFailureSnackBar(this._snackBar, `API not accessible! Couldn't delete Tech (${tech.name})`);
+                    return throwError(err);
+                })
+            )
+            .subscribe((tech: Tech) => {
+                this._techs = this._techs.filter((techElement: Tech) => { return techElement != tech; });
+                this.dataSource.data = this._techs;
+                showApiSuccessSnackBar(this._snackBar, `Tech deleted successfully! (${tech.name})`);
+            });
     }
 }

@@ -8,13 +8,13 @@
         @if (isUserAuthenticated) {
             <div *ngIf="isUserAuthenticated">
                 <span class="header-text" *ngIf="!useMobileLayout">{{ authenticatedUserEmail }}</span>
-                <button mat-button (click)="logout()">
+                <button mat-button (click)="logout()" matTooltip="Abmelden">
                     Logout
                     <mat-icon>logout</mat-icon>
                 </button>
             </div>
         } @else {
-            <button mat-button routerLink="/login">
+            <button mat-button routerLink="/login" matTooltip="Login für Mitarbeiter">
                 Login
                 <mat-icon>login</mat-icon>
             </button>
@@ -31,21 +31,24 @@
         <mat-nav-list>
 
             <mat-list-item>
-                <button mat-button routerLink="" color="primary">
+                <button mat-button routerLink="" color="primary" matTooltip="Startseite">
                     Home
                     <mat-icon>home</mat-icon>
                 </button>
             </mat-list-item>
 
             <mat-list-item>
-                <button mat-button [matMenuTriggerFor]="dashboardMenu" color="primary">
+                <button mat-button routerLink="dashboard" color="primary" matTooltip="Technologie Übersicht">
                     Dashboard
                     <mat-icon>dashboard</mat-icon>
                 </button>
-                <mat-menu #dashboardMenu="matMenu">
-                    <button mat-menu-item routerLink="tech">Technologien</button>
-                    <button mat-menu-item routerLink="project">Projekte</button>
-                </mat-menu>
+            </mat-list-item>
+
+            <mat-list-item>
+                <button mat-button routerLink="radar" color="primary" matTooltip="Radar Ansicht">
+                    Radar
+                    <mat-icon>radar</mat-icon>
+                </button>
             </mat-list-item>
 
             <mat-divider></mat-divider>
