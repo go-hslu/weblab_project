@@ -18,8 +18,9 @@ import { MatTooltipModule } from "@angular/material/tooltip";
 
 import { routes } from "./dashboard.routes";
 
-import { DashboardComponent } from "./dashboard.component";
+import { TrainCasePipe } from "@shared/pipes/train-case.pipe";
 
+import { DashboardComponent } from "./dashboard.component";
 import { TechOverviewComponent } from "./components/tech-overview/tech-overview.component";
 import { TechDetailsComponent } from "./components/tech-details/tech-details.component";
 
@@ -44,6 +45,7 @@ import { TechDetailsComponent } from "./components/tech-details/tech-details.com
         MatTabsModule,
         MatTooltipModule,
         MatIcon,
+        TrainCasePipe,
         RouterModule.forChild(routes)
     ]
 })

@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 
 import { ApiService } from "@core/services/api.service";
@@ -12,7 +13,8 @@ export class TechService {
     private _apiPath: string = "techs";
 
     constructor(
-        private _api: ApiService<Tech>
+        private _api: ApiService<Tech>,
+        private _http: HttpClient
     ) { }
 
     public getAll(): Observable<Tech[]> {
@@ -25,6 +27,11 @@ export class TechService {
 
     public upsert(tech: Tech): Observable<Tech> {
         return this._api.upsertEntity(this._apiPath, tech);
+    }
+
+    public publish(id: string): Observable<Tech> {
+        const url: string = `${this._api.url}/${this._apiPath}/${id}/publish`;
+        return this._http.post<Tech>(url, {});
     }
 
     public delete(id: string): Observable<Tech> {

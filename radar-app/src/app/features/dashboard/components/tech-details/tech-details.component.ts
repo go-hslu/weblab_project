@@ -24,6 +24,8 @@ export class TechDetailsComponent implements OnInit {
     public readonly techCategories = Object.values(TechCategory);
     public readonly techStates = Object.values(TechState);
 
+    public edited: boolean = false;
+
     constructor(
         private _route: ActivatedRoute,
         private _techService: TechService,
@@ -50,7 +52,59 @@ export class TechDetailsComponent implements OnInit {
         }
     }
 
+    public onChange(): void {
+        this.edited = true;
+    }
+
     public returnToOverview(): void {
         this._location.back();
+    }
+
+    public saveTech(tech: Tech): void {
+        this.edited = false;
+
+        this._techService
+            .upsert(tech)
+            .pipe(
+                catchError(err => {
+                    showApiFailureSnackBar(this._snackBar, `Error occurred! Couldn't save Tech (${tech.name})`);
+                    return throwError(err);
+                })
+            )
+            .subscribe((tech: Tech) => {
+                this.tech = tech;
+                this._location.replaceState(`/dashboard/tech/${tech.nameIdentifier}`);
+                showApiSuccessSnackBar(this._snackBar, `Tech saved successfully! (${tech.name})`);
+            });
+    }
+
+    public publishTech(tech: Tech): void {
+        this._techService
+            .publish(tech.nameIdentifier)
+            .pipe(
+                catchError(err => {
+                    showApiFailureSnackBar(this._snackBar, `Error occurred! Couldn't publish Tech (${tech.name})`);
+                    return throwError(err);
+                })
+            )
+            .subscribe((tech: Tech) => {
+                showApiSuccessSnackBar(this._snackBar, `Tech published successfully! (${tech.name})`);
+                this.tech.publication = new Date();
+            });
+    }
+
+    public deleteTech(tech: Tech): void {
+        this._techService
+            .delete(tech.nameIdentifier)
+            .pipe(
+                catchError(err => {
+                    showApiFailureSnackBar(this._snackBar, `Error occurred! Couldn't delete Tech (${tech.name})`);
+                    return throwError(err);
+                })
+            )
+            .subscribe((res: any) => {
+                this._location.back();
+                showApiSuccessSnackBar(this._snackBar, `Tech deleted successfully! (${tech.name})`);
+            });
     }
 }

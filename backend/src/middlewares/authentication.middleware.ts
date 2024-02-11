@@ -5,7 +5,7 @@ import { env_secret } from "../config/env.constant";
 type VerifyError = JsonWebTokenError | NotBeforeError | TokenExpiredError | null;
 type JwtDecodedPayload = JwtPayload | string | undefined;
 
-export async function authenticate(req: Request, res: Response, next: NextFunction) {
+export async function authenticate(req: Request, res: Response, next: NextFunction): Promise<any> {
 
     const authHeader = req.header("Authorization");
 
@@ -34,7 +34,7 @@ export async function authenticate(req: Request, res: Response, next: NextFuncti
     });
 }
 
-export async function optionalAuthenticate(req: Request, res: Response, next: NextFunction) {
+export async function optionalAuthenticate(req: Request, res: Response, next: NextFunction): Promise<any> {
 
     const authHeader = req.header("Authorization");
 

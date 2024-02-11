@@ -67,14 +67,14 @@
                             <mat-icon>more_vert</mat-icon>
                         </button>
                         <mat-menu #actionsMenu="matMenu">
-                            <button mat-menu-item routerLink="{{ tech.name }}"
+                            <button mat-menu-item routerLink="{{ tech.nameIdentifier }}"
                                 matTooltip="Technologie editieren">
                                 <mat-icon>edit</mat-icon>
                                 <span>Editieren</span>
                             </button>
                             <button mat-menu-item (click)="publishTech(tech)" [disabled]="!(tech.publication == null)"
                                 matTooltip="Technologie publizieren">
-                                <mat-icon>publish</mat-icon>
+                                <mat-icon color="accent">publish</mat-icon>
                                 <span>Publizieren</span>
                             </button>
                             <button mat-menu-item (click)="deleteTech(tech)"

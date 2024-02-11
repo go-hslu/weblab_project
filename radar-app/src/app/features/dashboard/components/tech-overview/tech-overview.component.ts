@@ -66,17 +66,17 @@ export class TechOverviewComponent implements OnInit {
                 catchError(err => {
                     const fakeTechs: Tech[] = [
                         {
-                            id: "24109fad-ce53-4029-88f7-e92460639e42", name: "Fake", category: "framework", state: "hold",
+                            id: "24109fad-ce53-4029-88f7-e92460639e42", name: "Fake", nameIdentifier: "fake", category: "framework", state: "hold",
                             description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut viverra pretium dui sit amet rhoncus. Vivamus risus arcu, tincidunt eget ipsum sit amet, lacinia venenatis lacus. Integer volutpat dapibus pellentesque.",
                             createdOn: new Date(), createdBy: "admin@hslu.ch", publication: new Date()
                         },
                         {
-                            id: "e02e841b-4d0d-4392-ab95-2d66dbeeb9c4", name: "Technologies", category: "language", state: "trial",
+                            id: "e02e841b-4d0d-4392-ab95-2d66dbeeb9c4", name: "Technologies", nameIdentifier: "technologies", category: "language", state: "trial",
                             description: "Vestibulum efficitur mauris eros, quis egestas mauris ullamcorper sodales. Integer consectetur scelerisque magna et vehicula. Suspendisse potenti. Morbi in velit mattis, blandit turpis sed, lacinia erat.",
                             createdOn: new Date(), createdBy: "admin@hslu.ch", publication: new Date()
                         },
                         {
-                            id: "e02e841b-4d0d-4392-ab95-2d66dbeeb9c4", name: "Loaded", category: "platform", state: "adopt",
+                            id: "e02e841b-4d0d-4392-ab95-2d66dbeeb9c4", name: "Loaded", nameIdentifier: "loaded",  category: "platform", state: "adopt",
                             description: "Aliquam erat volutpat. Curabitur tempor lorem eu ipsum pellentesque, a tincidunt purus laoreet. Integer sodales auctor sollicitudin. Suspendisse et erat ante. Suspendisse ac tortor id tortor ullamcorper fermentum vitae quis lectus.",
                             createdOn: new Date(), createdBy: "admin@hslu.ch", publication: new Date()
                         }
@@ -102,20 +102,30 @@ export class TechOverviewComponent implements OnInit {
     }
 
     public publishTech(tech: Tech): void {
-        // TODO: Implement publish tech functionality
-        console.log("publicate");
-    }
-
-    public deleteTech(tech: Tech): void {
         this._techService
-            .delete(tech.id)
+            .publish(tech.nameIdentifier)
             .pipe(
                 catchError(err => {
-                    showApiFailureSnackBar(this._snackBar, `API not accessible! Couldn't delete Tech (${tech.name})`);
+                    showApiFailureSnackBar(this._snackBar, `Error occurred! Couldn't publish Tech (${tech.name})`);
                     return throwError(err);
                 })
             )
             .subscribe((tech: Tech) => {
+                showApiSuccessSnackBar(this._snackBar, `Tech published successfully! (${tech.name})`);
+                this.loadTechs();
+            });
+    }
+
+    public deleteTech(tech: Tech): void {
+        this._techService
+            .delete(tech.nameIdentifier)
+            .pipe(
+                catchError(err => {
+                    showApiFailureSnackBar(this._snackBar, `Error occurred! Couldn't delete Tech (${tech.name})`);
+                    return throwError(err);
+                })
+            )
+            .subscribe((res: any) => {
                 this._techs = this._techs.filter((techElement: Tech) => { return techElement != tech; });
                 this.dataSource.data = this._techs;
                 showApiSuccessSnackBar(this._snackBar, `Tech deleted successfully! (${tech.name})`);

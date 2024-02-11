@@ -7,29 +7,29 @@ import { Observable } from "rxjs";
 })
 export class ApiService<T> {
 
-    private _apiURL: string = "http://localhost:8080/api";
+    public readonly url: string = "http://localhost:8080/api";
 
     constructor(
         private _http: HttpClient
     ) { }
 
     public getEntities(path: string): Observable<T[]> {
-        const url: string = `${this._apiURL}/${path}`;
+        const url: string = `${this.url}/${path}`;
         return this._http.get<T[]>(url);
     }
 
     public getEntityById(path: string, id: string): Observable<T> {
-        const url: string = `${this._apiURL}/${path}/${id}`;
+        const url: string = `${this.url}/${path}/${id}`;
         return this._http.get<T>(url);
     }
 
     public upsertEntity(path: string, entity: T): Observable<T> {
-        const url: string = `${this._apiURL}/${path}`;
+        const url: string = `${this.url}/${path}`;
         return this._http.post<T>(url, entity);
     }
 
     public deleteEntityById(path: string, id: string): Observable<T> {
-        const url: string = `${this._apiURL}/${path}/${id}`;
+        const url: string = `${this.url}/${path}/${id}`;
         return this._http.delete<T>(url);
     }
 }

@@ -35,6 +35,15 @@ export class TechService {
         });
     }
 
+    public static getByNameIdentifier(nameIdentifier: string): Promise<TechEntity|null> {
+        return AppDataSource.getRepository(TechEntity).findOne( {
+            relations: ["createdBy"],
+            where: {
+                nameIdentifier: nameIdentifier
+            }
+        });
+    }
+
     public static publish(entity: TechEntity): Promise<TechEntity|null> {
         entity.publication = new Date();
         return AppDataSource.getRepository(TechEntity).save(entity);

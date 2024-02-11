@@ -2,8 +2,8 @@ import { NextFunction, Request, Response } from "express";
 import { isUserGranted } from "../utils/authorization.util";
 import { UserRole } from "../dto/user/UserRole.enum";
 
-export const authorize = (permittedRoles: UserRole[]) => {
-    return async (req: Request, res: Response, next: NextFunction) => {
+export const authorize = (permittedRoles: UserRole[]): any  => {
+    return async (req: Request, res: Response, next: NextFunction): Promise<any>  => {
 
         if (!req.user || !req.user.role) {
             return res.status(401).send("Unauthorized: User not logged in!");
@@ -21,4 +21,4 @@ export const authorize = (permittedRoles: UserRole[]) => {
 
 export const authorizeTechRoles = authorize([UserRole.TECH_LEAD, UserRole.CTO])
 
-export const authorizeAdmin = authorize([UserRole.ADMIN]);
+export const authorizeAdmins = authorize([UserRole.ADMIN]);

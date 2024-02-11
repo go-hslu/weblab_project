@@ -15,6 +15,13 @@ export class TechEntity extends BaseEntity {
     name: string;
 
     @Column({
+        type: "varchar",
+        length: 32,
+        unique: true
+    })
+    nameIdentifier: string;
+
+    @Column({
         type: "enum",
         enum: TechState,
         default: TechState.HOLD,

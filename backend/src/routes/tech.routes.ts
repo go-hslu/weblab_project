@@ -4,11 +4,11 @@ import { authenticate, optionalAuthenticate } from "../middlewares/authenticatio
 import { authorizeTechRoles } from "../middlewares/authorization.middleware";
 
 const Router = express.Router();
-const techController = new TechController();
 
-Router.get("/api/techs", optionalAuthenticate, techController.getTechs);
-Router.get("/api/techs/:id", techController.getTechByName);
-Router.post("/api/techs", authenticate, authorizeTechRoles, techController.getTechByName);
-Router.delete("/api/techs/:id", authenticate, authorizeTechRoles, techController.getTechByName);
+Router.get("/api/techs", optionalAuthenticate, TechController.getTechs);
+Router.get("/api/techs/:id", TechController.getTechByName);
+Router.post("/api/techs", authenticate, authorizeTechRoles, TechController.upsertTech);
+Router.post("/api/techs/:id/publish", authenticate, authorizeTechRoles, TechController.publishTechByName);
+Router.delete("/api/techs/:id", authenticate, authorizeTechRoles, TechController.deleteTechByName);
 
 export { Router as techRouter };

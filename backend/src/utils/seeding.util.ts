@@ -40,6 +40,7 @@ export async function seedDatabase(dataSource: DataSource) {
         /* Tech seeding */
         const angular = new TechEntity();
         angular.name = "Angular";
+        angular.nameIdentifier = "angular";
         angular.category = TechCategory.FRAMEWORK;
         angular.state = TechState.ADOPT;
         angular.description = "Angular ist ein TypeScript-basiertes Front-End-Webapplikationsframework. Es wird von einer Community aus Einzelpersonen und Unternehmen, angeführt durch Google, entwickelt und als Open-Source-Software publiziert.";
@@ -48,6 +49,7 @@ export async function seedDatabase(dataSource: DataSource) {
 
         const typeScript = new TechEntity();
         typeScript.name = "TypeScript";
+        typeScript.nameIdentifier = "typescript";
         typeScript.category = TechCategory.LANGUAGE;
         typeScript.state = TechState.ADOPT;
         typeScript.description = "TypeScript ist eine von Microsoft entwickelte Skriptsprache, die auf den Vorschlägen zum ECMAScript-6-Standard basiert und statische Typisierung zu JavaScript hinzufügt. Sprachkonstrukte von TypeScript, wie Klassen, Vererbung, Module und anonyme Funktionen, wurden auch in ECMAScript 6 übernommen.";
@@ -56,6 +58,7 @@ export async function seedDatabase(dataSource: DataSource) {
 
         const svelte = new TechEntity();
         svelte.name = "Svelte";
+        svelte.nameIdentifier = "svelte";
         svelte.category = TechCategory.FRAMEWORK;
         svelte.state = TechState.TRIAL;
         svelte.description = "Svelte ist eine freie JavaScript-Softwarebibliothek, die ein Grundgerüst für die Ausgabe von User-Interface-Komponenten von Webseiten zur Verfügung stellt (Webframework). Mit Svelte lassen sich reaktive Single-Page-Webanwendungen erstellen.";
@@ -63,7 +66,8 @@ export async function seedDatabase(dataSource: DataSource) {
         svelte.createdBy = admin;
 
         const copilot = new TechEntity();
-        copilot.name = "GitHub_Copilot";
+        copilot.name = "GitHub Copilot";
+        copilot.nameIdentifier = "github-copilot";
         copilot.category = TechCategory.TOOL;
         copilot.state = TechState.TRIAL;
         copilot.description = "GitHub Copilot ist ein KI-basiertes Tool, das in verschiedenen IDEs zur Autovervollständigung von Quelltext verwendet werden kann. Es basiert auf einem Sprachmodell names Codex, das von OpenAI entwickelt wurde und eine Variante des Modells GPT-3 ist.";
