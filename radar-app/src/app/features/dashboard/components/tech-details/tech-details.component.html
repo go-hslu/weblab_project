@@ -6,6 +6,7 @@
         <mat-card-subtitle *ngIf="tech">
             <p>{{ tech.name }} ({{ tech.name | trainCase }})</p>
             <p *ngIf="!isAddMode">Erfasst am {{ tech.createdOn | date:"dd.MM.yyyy HH:mm" }} von {{ tech.createdBy }}</p>
+            <p *ngIf="!isAddMode">Zuletzt geändert am {{ tech.updatedOn | date:"dd.MM.yyyy HH:mm" }} von {{ tech.updatedBy }}</p>
             <p *ngIf="tech.publication">Publiziert am {{ tech.publication | date:"dd.MM.yyyy HH:mm" }}</p>
         </mat-card-subtitle>
     </mat-card-header>

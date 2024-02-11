@@ -61,6 +61,8 @@ export class TechDetailsComponent implements OnInit {
                 description: "",
                 createdOn: null,
                 createdBy: null,
+                updatedOn: null,
+                updatedBy: null,
                 publication: null
             };
         }

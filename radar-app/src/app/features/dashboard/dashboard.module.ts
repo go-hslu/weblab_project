@@ -20,13 +20,13 @@ import { routes } from "./dashboard.routes";
 
 import { TrainCasePipe } from "@shared/pipes/train-case.pipe";
 
-import { DashboardComponent } from "./dashboard.component";
+import { DashboardPageComponent } from "./pages/dashboard-page/dashboard-page.component";
 import { TechOverviewComponent } from "./components/tech-overview/tech-overview.component";
 import { TechDetailsComponent } from "./components/tech-details/tech-details.component";
 
 @NgModule({
     declarations: [
-        DashboardComponent,
+        DashboardPageComponent,
         TechOverviewComponent,
         TechDetailsComponent
     ],

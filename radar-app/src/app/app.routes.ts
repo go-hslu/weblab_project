@@ -8,8 +8,11 @@ export const routes: Routes = [
     { path: "home", redirectTo: "" },
     {
         path: "dashboard", title: "Radar App | Dashboard",
-        loadChildren: () =>
-            import("@features/dashboard/dashboard.module").then((module) => module.DashboardModule)
+        loadChildren: () => import("@features/dashboard/dashboard.module").then((module) => module.DashboardModule)
+    },
+    {
+        path: "radar", title: "Radar App | Radar",
+        loadChildren: () => import("@features/radar/radar.module").then((module) => module.RadarModule)
     },
     { path: "login", title: "Radar App | Login", component: LoginComponent },
     { path: "**", title: "Radar App | 404 Not found", component: NotFoundComponent }

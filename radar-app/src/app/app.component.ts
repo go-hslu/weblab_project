@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 import { BreakpointObserver } from "@angular/cdk/layout";
 
 import { AuthService } from "@core/services/auth.service";
@@ -16,12 +17,18 @@ export class AppComponent implements OnInit {
     public useMobileLayout: boolean = true;
 
     constructor(
+        private _router: Router,
         private _authService: AuthService,
         private _breakpointObserver: BreakpointObserver
     ) { }
 
-    public logout(): void {
+    public async logout(): Promise<void> {
         this._authService.logout();
+
+        // TODO: Fix page content keeping previous state after login/logout bug
+        //this._location.back();
+
+        await this._router.navigate([""]);
     }
 
     public ngOnInit(): void {

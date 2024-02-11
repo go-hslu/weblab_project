@@ -1,13 +1,13 @@
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
-import { Link } from "./types/Link.module";
+import { Link } from "../../types/Link.module";
 
 @Component({
     selector: "app-dashboard-page",
-    templateUrl: "./dashboard.component.html",
-    styleUrl: "./dashboard.component.css"
+    templateUrl: "./dashboard-page.component.html",
+    styleUrl: "./dashboard-page.component.css"
 })
-export class DashboardComponent {
+export class DashboardPageComponent {
 
     public readonly links: Link[] = [
         { label: "Technologien", path: "tech" },

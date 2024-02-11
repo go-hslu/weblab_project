@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { Location } from "@angular/common";
 import { FormsModule } from "@angular/forms"
+import { Router } from "@angular/router";
 import { catchError, throwError } from "rxjs";;
 
 import { MatCardModule } from "@angular/material/card";
@@ -36,6 +37,7 @@ export class LoginComponent {
 
     constructor(
         private _location: Location,
+        private _router: Router,
         private _authService: AuthService,
         private _snackBar: MatSnackBar
     ) {}
@@ -49,7 +51,10 @@ export class LoginComponent {
                 })
             )
             .subscribe((res: any) => {
-                this._location.back();
+                // TODO: Fix page content keeping previous state after login/logout bug
+                //this._location.back();
+
+                this._router.navigate([""]);
             });
     }
 }
