@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Location } from "@angular/common";
 import { ActivatedRoute } from "@angular/router";
 import { catchError, throwError } from "rxjs";
@@ -18,13 +18,14 @@ import { TechService } from "@shared/apis/tech.service";
 })
 export class TechDetailsComponent implements OnInit {
 
-    @Input({ required: true })
-    public tech!: Tech;
+
+    public tech: Tech;
 
     public readonly techCategories = Object.values(TechCategory);
     public readonly techStates = Object.values(TechState);
 
     public edited: boolean = false;
+    public isAddMode: boolean = false;
 
     constructor(
         private _route: ActivatedRoute,
@@ -35,7 +36,7 @@ export class TechDetailsComponent implements OnInit {
 
     public ngOnInit(): void {
         const id: string|null = this._route.snapshot.paramMap.get("id");
-        if (id != null) {
+        if (id) {
             this._techService
                 .getById(id)
                 .pipe(
@@ -49,6 +50,19 @@ export class TechDetailsComponent implements OnInit {
                     this.tech = tech;
                     showApiSuccessSnackBar(this._snackBar, `Data loaded successfully! (${tech.name})`);
                 });
+        } else {
+            this.isAddMode = true;
+            this.tech = {
+                id: null,
+                name: "",
+                nameIdentifier: "",
+                category: TechCategory.FRAMEWORK,
+                state: TechState.HOLD,
+                description: "",
+                createdOn: null,
+                createdBy: null,
+                publication: null
+            };
         }
     }
 
@@ -74,6 +88,7 @@ export class TechDetailsComponent implements OnInit {
             .subscribe((tech: Tech) => {
                 this.tech = tech;
                 this._location.replaceState(`/dashboard/tech/${tech.nameIdentifier}`);
+                this.isAddMode = false;
                 showApiSuccessSnackBar(this._snackBar, `Tech saved successfully! (${tech.name})`);
             });
     }

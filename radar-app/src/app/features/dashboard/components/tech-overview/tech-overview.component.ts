@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
+import { Router } from "@angular/router";
 import { animate, state, style, transition, trigger } from "@angular/animations";
 import { catchError, throwError } from "rxjs";
 
@@ -40,6 +41,7 @@ export class TechOverviewComponent implements OnInit {
 
     constructor(
         private _techService: TechService,
+        private _router: Router,
         private _authService: AuthService,
         private _snackBar: MatSnackBar
     ) {}
@@ -94,11 +96,6 @@ export class TechOverviewComponent implements OnInit {
                 this.dataSource.sort = this.sort;
                 showApiSuccessSnackBar(this._snackBar, `Data loaded successfully! (${techs.length})`);
             });
-    }
-
-    public addTech(): void {
-        // TODO: Implement add tech functionality
-        console.log("add");
     }
 
     public publishTech(tech: Tech): void {

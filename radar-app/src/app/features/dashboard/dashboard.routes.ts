@@ -15,7 +15,8 @@ export const routes: Routes = [
         path: "", component: DashboardComponent,
         children: [
             { path: "tech", component: TechOverviewComponent },
-            { path: "tech/:id", component: TechDetailsComponent, canActivate: [techRoleGuard] },
+            { path: "tech/add", component: TechDetailsComponent, canActivate: [techRoleGuard] },
+            { path: "tech/edit/:id", component: TechDetailsComponent, canActivate: [techRoleGuard] },
             { path: "project", component: ProjectOverviewComponent },
         ]
     }

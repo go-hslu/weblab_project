@@ -29,12 +29,17 @@ export async function seedDatabase(dataSource: DataSource) {
         admin.role = UserRole.ADMIN;
         admin.passwordHash = "$2b$05$4kveCkvwmHpQ3IdTrkTfYeCmXb/M3mskHcVOoVF5LjpA836fbkvCi";
 
+        const cto = new UserEntity();
+        cto.email = "cto@hslu.ch";
+        cto.role = UserRole.CTO;
+        cto.passwordHash = "$2b$05$Q1GNGcVKnV4e3matau8iteJc76HjpykuxylXNKA3RfXJOJF/Q1Pra";
+
         const user = new UserEntity();
         user.email = "user@hslu.ch";
         user.role = UserRole.USER;
         user.passwordHash = "$2b$05$awOf5crrbUsF9gNNu30NDORfFN87C0CAFOrw3cgcPE7f77zOl4pR2";
 
-        await userRepository.save([admin, user]);
+        await userRepository.save([admin, user, cto]);
 
 
         /* Tech seeding */
@@ -46,6 +51,7 @@ export async function seedDatabase(dataSource: DataSource) {
         angular.description = "Angular ist ein TypeScript-basiertes Front-End-Webapplikationsframework. Es wird von einer Community aus Einzelpersonen und Unternehmen, angeführt durch Google, entwickelt und als Open-Source-Software publiziert.";
         angular.publication = new Date();
         angular.createdBy = admin;
+        angular.updatedBy = admin;
 
         const typeScript = new TechEntity();
         typeScript.name = "TypeScript";
@@ -55,6 +61,7 @@ export async function seedDatabase(dataSource: DataSource) {
         typeScript.description = "TypeScript ist eine von Microsoft entwickelte Skriptsprache, die auf den Vorschlägen zum ECMAScript-6-Standard basiert und statische Typisierung zu JavaScript hinzufügt. Sprachkonstrukte von TypeScript, wie Klassen, Vererbung, Module und anonyme Funktionen, wurden auch in ECMAScript 6 übernommen.";
         typeScript.publication = new Date();
         typeScript.createdBy = admin;
+        typeScript.updatedBy = admin;
 
         const svelte = new TechEntity();
         svelte.name = "Svelte";
@@ -64,6 +71,7 @@ export async function seedDatabase(dataSource: DataSource) {
         svelte.description = "Svelte ist eine freie JavaScript-Softwarebibliothek, die ein Grundgerüst für die Ausgabe von User-Interface-Komponenten von Webseiten zur Verfügung stellt (Webframework). Mit Svelte lassen sich reaktive Single-Page-Webanwendungen erstellen.";
         svelte.publication = new Date();
         svelte.createdBy = admin;
+        svelte.updatedBy = admin;
 
         const copilot = new TechEntity();
         copilot.name = "GitHub Copilot";
@@ -72,8 +80,36 @@ export async function seedDatabase(dataSource: DataSource) {
         copilot.state = TechState.TRIAL;
         copilot.description = "GitHub Copilot ist ein KI-basiertes Tool, das in verschiedenen IDEs zur Autovervollständigung von Quelltext verwendet werden kann. Es basiert auf einem Sprachmodell names Codex, das von OpenAI entwickelt wurde und eine Variante des Modells GPT-3 ist.";
         copilot.createdBy = admin;
+        copilot.updatedBy = admin;
 
-        await techRepository.save([angular, typeScript, svelte, copilot]);
+        const chatGpt = new TechEntity();
+        chatGpt.name = "ChatGPT";
+        chatGpt.nameIdentifier = "chatgpt";
+        chatGpt.category = TechCategory.TOOL;
+        chatGpt.state = TechState.TRIAL;
+        chatGpt.description = "ChatGPT (von englisch to chat „plaudern“; Generative Pre-trained Transformer) ist ein Chatbot, der künstliche Intelligenz einsetzt, um mit Nutzern über textbasierte Nachrichten und Bilder zu kommunizieren. Entwickelt wurde der Chatbot von OpenAI.";
+        chatGpt.createdBy = admin;
+        chatGpt.updatedBy = admin;
+
+        const azure = new TechEntity();
+        azure.name = "Microsoft Azure";
+        azure.nameIdentifier = "microsoft-azure";
+        azure.category = TechCategory.PLATFORM;
+        azure.state = TechState.ADOPT;
+        azure.description = "Microsoft Azure ist eine Cloud-Computing-Plattform mit Diensten wie SQL Azure oder AppFabric. Die Nutzer von Microsoft Azure setzen Infrastructure as a Service (IaaS), Platform as a Service (PaaS) und Software as a Service (SaaS) ein.";
+        azure.createdBy = admin;
+        azure.updatedBy = admin;
+
+        const devOps = new TechEntity();
+        devOps.name = "DevOps";
+        devOps.nameIdentifier = "devops";
+        devOps.category = TechCategory.TECHNIQUE;
+        devOps.state = TechState.ADOPT;
+        devOps.description = "DevOps ist eine Sammlung unterschiedlicher technischer Methoden und eine Kultur zur Zusammenarbeit zwischen Softwareentwicklung und IT-Betrieb. Mit DevOps sollen die Softwarequalität, die Geschwindigkeit der Entwicklung und der Auslieferung, sowie das Miteinander der beteiligten Teams verbessert werden.";
+        devOps.createdBy = admin;
+        devOps.updatedBy = admin;
+
+        await techRepository.save([angular, typeScript, svelte, copilot, chatGpt, azure, devOps]);
 
 
         /* Project seeding */
@@ -96,26 +132,15 @@ export async function seedDatabase(dataSource: DataSource) {
         log2.triggerAction = LogTriggerAction.REGISTER;
         log2.triggeredBy = user;
 
-        const log3 = new LogEntity();
-        log3.message = "UPSERT tech (Angular)";
-        log3.triggerAction = LogTriggerAction.ALTER;
-        log3.triggeredBy = admin;
+        await logRepository.save([log1, log2]);
 
-        const log4 = new LogEntity();
-        log4.message = "UPSERT tech (TypeScript)";
-        log4.triggerAction = LogTriggerAction.ALTER;
-        log4.triggeredBy = admin;
+        [angular, typeScript, svelte, copilot, chatGpt, azure, devOps].forEach(tech => {
 
-        const log5 = new LogEntity();
-        log5.message = "UPSERT tech (Svelte)";
-        log5.triggerAction = LogTriggerAction.ALTER;
-        log5.triggeredBy = admin;
+            const log = new LogEntity();
+            log.message = `Tech '${tech.name}' created!`;
+            log.triggerAction = LogTriggerAction.ALTER;
+            log.triggeredBy = admin;
 
-        const log6 = new LogEntity();
-        log6.message = "UPSERT tech (WEBLAB Radar)";
-        log6.triggerAction = LogTriggerAction.ALTER;
-        log6.triggeredBy = admin;
-
-        await logRepository.save([log1, log2, log3, log4, log5, log6]);
+        });
     }
 }

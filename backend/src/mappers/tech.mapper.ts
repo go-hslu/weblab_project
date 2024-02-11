@@ -12,6 +12,8 @@ export class TechMapper {
             description: entity.description,
             createdOn: entity.createdOn,
             createdBy: entity.createdBy.email,
+            updatedOn: entity.updatedOn,
+            updatedBy: entity.updatedBy.email,
             publication: entity.publication
         }
     }

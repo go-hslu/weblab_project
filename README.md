@@ -75,7 +75,7 @@ Folglich wurden User Stories übernommen, abgeleitet oder neue definiert. Diese 
 | Id | User Story                                            | Priorität     | Status         |
 |----|-------------------------------------------------------|---------------|----------------|
 | 01 | Anmelden Technologie-Radar-Administration             | 🟡 3. Could  | ✅ Done        |
-| 02 | Technologie erfassen                                  | 🔴 1. Must   | 🛠️ In progress |
+| 02 | Technologie erfassen                                  | 🔴 1. Must   | ✅ Done        |
 | 03 | Technologie publizieren                               | 🟠 2. Should | ✅ Done        |
 | 04 | Technologie ändern                                    | 🟠 2. Should | ✅ Done        |
 | 05 | Technologie-Einordnung ändern                         | 🟠 2. Should | 🎯 Todo        |

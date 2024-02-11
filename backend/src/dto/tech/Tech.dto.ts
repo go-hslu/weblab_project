@@ -7,5 +7,7 @@ export interface TechDto {
     description: string;
     createdOn: Date;
     createdBy: string;
+    updatedOn: Date;
+    updatedBy: string;
     publication: Date|null;
 }

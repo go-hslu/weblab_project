@@ -5,12 +5,14 @@ import { TechEntity } from "../entities/Tech.entity";
 export class TechService {
 
     public static getAll(): Promise<TechEntity[]> {
-        return AppDataSource.getRepository(TechEntity).find();
+        return AppDataSource.getRepository(TechEntity).find({
+            relations: ["createdBy", "updatedBy"]
+        });
     }
 
     public static getAllPublished(): Promise<TechEntity[]> {
         return AppDataSource.getRepository(TechEntity).find({
-            relations: ["createdBy"],
+            relations: ["createdBy", "updatedBy"],
             where: {
                 publication: Not(IsNull())
             }
@@ -19,7 +21,7 @@ export class TechService {
 
     public static getById(id: string): Promise<TechEntity|null> {
         return AppDataSource.getRepository(TechEntity).findOne( {
-            relations: ["createdBy"],
+            relations: ["createdBy", "updatedBy"],
             where: {
                 id: id
             }
@@ -28,7 +30,7 @@ export class TechService {
 
     public static getByName(name: string): Promise<TechEntity|null> {
         return AppDataSource.getRepository(TechEntity).findOne( {
-            relations: ["createdBy"],
+            relations: ["createdBy", "updatedBy"],
             where: {
                 name: name
             }
@@ -37,7 +39,7 @@ export class TechService {
 
     public static getByNameIdentifier(nameIdentifier: string): Promise<TechEntity|null> {
         return AppDataSource.getRepository(TechEntity).findOne( {
-            relations: ["createdBy"],
+            relations: ["createdBy", "updatedBy"],
             where: {
                 nameIdentifier: nameIdentifier
             }

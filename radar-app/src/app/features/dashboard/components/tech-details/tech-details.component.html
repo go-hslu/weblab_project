@@ -5,7 +5,7 @@
         </mat-card-title>
         <mat-card-subtitle *ngIf="tech">
             <p>{{ tech.name }} ({{ tech.name | trainCase }})</p>
-            <p>Erfasst am {{ tech.createdOn | date:"dd.MM.yyyy HH:mm" }} von {{ tech.createdBy }}</p>
+            <p *ngIf="!isAddMode">Erfasst am {{ tech.createdOn | date:"dd.MM.yyyy HH:mm" }} von {{ tech.createdBy }}</p>
             <p *ngIf="tech.publication">Publiziert am {{ tech.publication | date:"dd.MM.yyyy HH:mm" }}</p>
         </mat-card-subtitle>
     </mat-card-header>
@@ -47,7 +47,7 @@
             <span>Löschen</span>
         </button>
 
-        <button mat-flat-button color="accent" (click)="publishTech(tech)" [disabled]="!(tech && tech.publication == null)"
+        <button mat-flat-button color="accent" (click)="publishTech(tech)" [disabled]="!(tech && tech.publication == null) || isAddMode"
                 matTooltip="Technologie publizieren">
             <mat-icon>publish</mat-icon>
             <span>Publizieren</span>

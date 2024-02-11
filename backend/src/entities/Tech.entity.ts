@@ -1,4 +1,4 @@
-import { Entity, Column, CreateDateColumn, ManyToOne } from "typeorm";
+import { Entity, Column, CreateDateColumn, ManyToOne, UpdateDateColumn } from "typeorm";
 import { BaseEntity } from "./Base.entity";
 import { TechState } from "../dto/tech/TechState.enum";
 import { TechCategory } from "../dto/tech/TechCategory.enum";
@@ -47,6 +47,12 @@ export class TechEntity extends BaseEntity {
 
     @ManyToOne(() => UserEntity)
     createdBy: UserEntity;
+
+    @UpdateDateColumn()
+    updatedOn: Date;
+
+    @ManyToOne(() => UserEntity)
+    updatedBy: UserEntity;
 
     @Column({
         type: "datetime",

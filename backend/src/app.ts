@@ -1,6 +1,5 @@
 import express, { Express } from "express";
 import cors from "cors";
-import bcrypt from "bcrypt";
 import "./config/request.express.declaration"
 
 import { AppDataSource } from "./config/data-source";
@@ -13,6 +12,8 @@ import { userRouter } from "./routes/user.routes";
 const corsOptions = {
     origin: "http://localhost:4200"
 }
+
+// AuthService.generatePasswordHash("1234").then(res => console.log(res));
 
 AppDataSource
     .initialize()

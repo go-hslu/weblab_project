@@ -1,13 +1,16 @@
 import { Request, Response } from "express";
 
+import { TechMapper } from "../mappers/tech.mapper";
+import { UserEntity } from "../entities/User.entity";
 import { TechEntity } from "../entities/Tech.entity";
 import { LogTriggerAction } from "../dto/log/LogTriggerAction.enum";
 
 import { hasUserTechRole } from "../utils/authorization.util";
+import { trainCaseTransform } from "../utils/transform";
+
 import { LogService } from "../services/log.service";
 import { TechService } from "../services/tech.service";
-import { TechMapper } from "../mappers/tech.mapper";
-import { trainCaseTransform } from "../utils/transform";
+import { UserService } from "../services/user.service";
 
 export class TechController {
 
@@ -34,30 +37,60 @@ export class TechController {
 
     public static async upsertTech(req: Request, res: Response): Promise<any>  {
 
-        if (!req.body) {
+        if (!req.body || !req.user) {
             return res.status(400).send("Bad Request: Invalid arguments!");
         }
 
-        let tech: TechEntity|null = await TechService.getById(req.params.id);
-        let create: boolean = false;
+        const user: UserEntity|null = await UserService.getByEmail(req.user.email);
 
-        if (!tech) {
-            create = true;
+        if (!user) {
+            return res.status(400).send("Bad Request: Invalid arguments!");
+        }
+
+        let addNewTech: boolean = true;
+        let tech: TechEntity|null = null;
+
+        if (req.body.id) {
+            tech = await TechService.getById(req.body.id);
+
+            if (!tech) {
+                return res.status(400).send("Bad Request: Invalid arguments!");
+            }
+
+            addNewTech = false;
+        }
+
+        if (addNewTech || !tech) {
             tech = new TechEntity();
+            tech.createdBy = user;
         }
 
         tech.name = req.body.name;
-        tech.nameIdentifier = trainCaseTransform(req.body.name);
         tech.category = req.body.category;
         tech.state = req.body.state;
         tech.description = req.body.description;
+
+        tech.nameIdentifier = trainCaseTransform(req.body.name);
+        tech.updatedBy = user;
 
         if (!req.user) {
             return res.status(500).send("Internal Server Error: Unexpected behavior occurred!");
         }
 
-        await TechService.upsert(tech);
-        await LogService.logByEmail(LogTriggerAction.ALTER, `Tech '${tech.name}' ${create ? 'created' : 'updated'}!`, req.user.email);
+        tech = await TechService.upsert(tech);
+
+        if (!tech) {
+            return res.status(500).send("Internal Server Error: Unexpected behavior occurred!");
+        }
+
+        await LogService.logByEmail(LogTriggerAction.ALTER, `Tech '${tech.name}' ${addNewTech ? 'created' : 'updated'}!`, req.user.email);
+
+        tech = await TechService.getById(tech.id);
+
+        // TODO: Remove these terrible null checks
+        if (!tech) {
+            return res.status(500).send("Internal Server Error: Unexpected behavior occurred!");
+        }
 
         return res.json(TechMapper.toDto(tech));
     }

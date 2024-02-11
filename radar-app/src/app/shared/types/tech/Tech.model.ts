@@ -1,11 +1,11 @@
 export interface Tech {
-    id: string;
+    id: string|null;
     name: string;
     nameIdentifier: string;
     category: string;
     state: string;
     description: string;
-    createdOn: Date;
-    createdBy: string;
+    createdOn: Date|null;
+    createdBy: string|null;
     publication: Date|null;
 }

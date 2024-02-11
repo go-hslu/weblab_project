@@ -5,7 +5,7 @@
 
     <mat-card-content>
 
-        <button mat-icon-button (click)="addTech()"
+        <button mat-icon-button routerLink="add"
                 matTooltip="Neue Technologie erfassen">
             <mat-icon>add</mat-icon>
         </button>
@@ -67,7 +67,7 @@
                             <mat-icon>more_vert</mat-icon>
                         </button>
                         <mat-menu #actionsMenu="matMenu">
-                            <button mat-menu-item routerLink="{{ tech.nameIdentifier }}"
+                            <button mat-menu-item routerLink="edit/{{ tech.nameIdentifier }}"
                                 matTooltip="Technologie editieren">
                                 <mat-icon>edit</mat-icon>
                                 <span>Editieren</span>
