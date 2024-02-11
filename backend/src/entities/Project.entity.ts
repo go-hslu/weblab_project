@@ -1,6 +1,6 @@
 import { Column, Entity, JoinTable, ManyToMany } from "typeorm";
 import { BaseEntity } from "./Base.entity";
-import { ProjectState } from "../../enums/ProjectState.enum";
+import { ProjectState } from "../dto/project/ProjectState.enum";
 import { TechEntity } from "./Tech.entity";
 
 @Entity("project")
@@ -8,7 +8,7 @@ export class ProjectEntity extends BaseEntity {
 
     @Column({
         type: "varchar",
-        length: 64,
+        length: 32,
         unique: true
     })
     name: string;

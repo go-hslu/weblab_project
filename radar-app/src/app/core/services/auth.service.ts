@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { Location } from "@angular/common";
 import { HttpClient } from "@angular/common/http";
-import { BehaviorSubject, catchError, throwError } from "rxjs";
+import { BehaviorSubject, Observable } from "rxjs";
 
 import { User } from "@shared/types/user/User.model";
 import { Credentials } from "@shared/types/user/Credentials.model";
@@ -12,7 +12,7 @@ import { Credentials } from "@shared/types/user/Credentials.model";
 })
 export class AuthService {
 
-    private _apiURL: string = "http://localhost:8080/api";
+    private _apiURL: string = "http://localhost:8080/api/user";
 
     public readonly authenticatedUser: BehaviorSubject<User|null> = new BehaviorSubject<User|null>(null);
 
@@ -22,26 +22,19 @@ export class AuthService {
         private _location: Location
     ) {}
 
-    // TODO: Return type
-    public login(credentials: Credentials) {
+    public login(credentials: Credentials): Observable<Credentials> {
 
         const url: string = `${this._apiURL}/login`;
-        this._http.post<Credentials>(url, credentials)
-            .pipe(
-                catchError(err => {
-                    return throwError(err);
-                })
-            )
-            .subscribe((res: any) => {
+        const loginResponse = this._http.post<Credentials>(url, credentials);
+            loginResponse.subscribe((res: any) => {
                 localStorage.setItem("token", res.token);
                 localStorage.setItem("email", res.email);
                 localStorage.setItem("role", res.role);
 
                 this.authenticatedUser.next({ token: res.token, email: res.email, role: res.role });
-                this._location.back();
-
-                return true;
             });
+
+        return loginResponse;
     }
 
     public logout(): void {

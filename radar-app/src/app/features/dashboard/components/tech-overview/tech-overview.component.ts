@@ -27,7 +27,6 @@ import { TechService } from "@shared/apis/tech.service";
 })
 export class TechOverviewComponent implements OnInit {
 
-    // TODO: Can be removed?
     private _techs: Tech[] = [];
 
     public searchTerm: string = "";
@@ -66,9 +65,21 @@ export class TechOverviewComponent implements OnInit {
             .pipe(
                 catchError(err => {
                     const fakeTechs: Tech[] = [
-                        { id: "24109fad-ce53-4029-88f7-e92460639e42", name: "Fake", category: "framework", state: "hold" },
-                        { id: "e02e841b-4d0d-4392-ab95-2d66dbeeb9c4", name: "Technologies", category: "language", state: "trial" },
-                        { id: "e02e841b-4d0d-4392-ab95-2d66dbeeb9c4", name: "Loaded", category: "platform", state: "adopt" }
+                        {
+                            id: "24109fad-ce53-4029-88f7-e92460639e42", name: "Fake", category: "framework", state: "hold",
+                            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut viverra pretium dui sit amet rhoncus. Vivamus risus arcu, tincidunt eget ipsum sit amet, lacinia venenatis lacus. Integer volutpat dapibus pellentesque.",
+                            createdOn: new Date(), createdBy: "admin@hslu.ch", publication: new Date()
+                        },
+                        {
+                            id: "e02e841b-4d0d-4392-ab95-2d66dbeeb9c4", name: "Technologies", category: "language", state: "trial",
+                            description: "Vestibulum efficitur mauris eros, quis egestas mauris ullamcorper sodales. Integer consectetur scelerisque magna et vehicula. Suspendisse potenti. Morbi in velit mattis, blandit turpis sed, lacinia erat.",
+                            createdOn: new Date(), createdBy: "admin@hslu.ch", publication: new Date()
+                        },
+                        {
+                            id: "e02e841b-4d0d-4392-ab95-2d66dbeeb9c4", name: "Loaded", category: "platform", state: "adopt",
+                            description: "Aliquam erat volutpat. Curabitur tempor lorem eu ipsum pellentesque, a tincidunt purus laoreet. Integer sodales auctor sollicitudin. Suspendisse et erat ante. Suspendisse ac tortor id tortor ullamcorper fermentum vitae quis lectus.",
+                            createdOn: new Date(), createdBy: "admin@hslu.ch", publication: new Date()
+                        }
                     ];
                     this._techs = fakeTechs;
                     this.dataSource = new MatTableDataSource<Tech>(fakeTechs);
@@ -86,7 +97,13 @@ export class TechOverviewComponent implements OnInit {
     }
 
     public addTech(): void {
+        // TODO: Implement add tech functionality
         console.log("add");
+    }
+
+    public publishTech(tech: Tech): void {
+        // TODO: Implement publish tech functionality
+        console.log("publicate");
     }
 
     public deleteTech(tech: Tech): void {

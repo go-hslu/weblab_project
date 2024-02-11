@@ -1,7 +1,7 @@
 import { Column, CreateDateColumn, Entity, ManyToOne } from "typeorm";
 import { BaseEntity } from "./Base.entity";
 import { UserEntity } from "./User.entity";
-import { LogTriggerAction } from "../../enums/LogTriggerAction.enum";
+import { LogTriggerAction } from "../dto/log/LogTriggerAction.enum";
 
 @Entity("log")
 export class LogEntity extends BaseEntity {

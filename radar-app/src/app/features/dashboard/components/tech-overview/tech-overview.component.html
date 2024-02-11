@@ -50,6 +50,9 @@
             <ng-container matColumnDef="actions">
                 <th mat-header-cell *matHeaderCellDef></th>
                 <td mat-cell *matCellDef="let tech">
+                    <button mat-icon-button color="warn" matTooltip="Technologie nicht publiziert" *ngIf="tech.publication == null">
+                        <mat-icon>report</mat-icon>
+                    </button>
                     <button mat-icon-button (click)="(selectedTech = selectedTech === tech ? null : tech); $event.stopPropagation()"
                             matTooltip="Anzeige erweitern">
                         @if (selectedTech === tech) {
@@ -69,6 +72,11 @@
                                 <mat-icon>edit</mat-icon>
                                 <span>Editieren</span>
                             </button>
+                            <button mat-menu-item (click)="publishTech(tech)" [disabled]="!(tech.publication == null)"
+                                matTooltip="Technologie publizieren">
+                                <mat-icon>publish</mat-icon>
+                                <span>Publizieren</span>
+                            </button>
                             <button mat-menu-item (click)="deleteTech(tech)"
                                 matTooltip="Technologie entfernen">
                                 <mat-icon color="warn">delete</mat-icon>
@@ -83,7 +91,7 @@
                 <td mat-cell *matCellDef="let tech" [attr.colspan]="displayedColumnsWithActions.length">
                     <div class="details" [@showDetails]="tech == selectedTech ? 'expanded' : 'collapsed'">
                         <span>
-                            Beschreibung: {{ tech.name }}
+                            {{ tech.description }}
                         </span>
                     </div>
                 </td>

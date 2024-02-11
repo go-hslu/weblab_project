@@ -1,20 +1,24 @@
 import { NextFunction, Request, Response } from "express";
-import { isUserRoleAuthorized } from "../utils/authorization.util";
-import { UserRole } from "../enums/UserRole.enum";
+import { isUserGranted } from "../utils/authorization.util";
+import { UserRole } from "../dto/user/UserRole.enum";
 
-export const authorizeTechRoles = (req: Request, res: Response, next: NextFunction) => {
+export const authorize = (permittedRoles: UserRole[]) => {
+    return async (req: Request, res: Response, next: NextFunction) => {
 
+        if (!req.user || !req.user.role) {
+            return res.status(401).send("Unauthorized: User not logged in!");
+        }
 
-    if (!req.user || !req.user.role) {
-        return res.status(403).send("Access denied: User not logged in!");
-    }
+        const role: UserRole = req.user.role;
 
-    const role: UserRole = req.user.role;
+        if (!isUserGranted(role, permittedRoles)) {
+            return res.status(403).send(`Forbidden: Access denied for role ${role}!`);
+        }
 
-    if (!isUserRoleAuthorized(role, [UserRole.TECH_LEAD, UserRole.CTO])) {
-        return res.status(403).send(`Access denied for role ${role}!`);
-    } else {
         next();
-    }
+    };
 };
 
+export const authorizeTechRoles = authorize([UserRole.TECH_LEAD, UserRole.CTO])
+
+export const authorizeAdmin = authorize([UserRole.ADMIN]);

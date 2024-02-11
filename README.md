@@ -72,15 +72,15 @@ Prinzipiell wird von Grund auf eine eigene Lösung eines Technologie-Radars mit 
 Folglich wurden User Stories übernommen, abgeleitet oder neue definiert. Diese sind auf GitHub als [Issues](https://github.com/go-hslu/weblab_project/issues) hinterlegt. Hier eine Übersicht der User Stories samt priorisierung nach MoSCoW:
 
 
-| Id | User Story                                            | Priorität     | Status       |
-|----|-------------------------------------------------------|---------------|--------------|
-| 01 | Anmelden Technologie-Radar-Administration             | 🟡 3. Could  | 🎯 Todo      |
-| 02 | Technologie erfassen                                  | 🔴 1. Must   | 🎯 Todo      |
-| 03 | Technologie publizieren                               | 🟠 2. Should | 🎯 Todo      |
-| 04 | Technologie ändern                                    | 🟠 2. Should | 🎯 Todo      |
-| 05 | Technologie-Einordnung ändern                         | 🟠 2. Should | 🎯 Todo      |
-| 06 | Anmelden am Technologie-Radar-Viewer                  | 🟡 3. Could  | 🎯 Todo      |
-| 07 | Technologien anzeigen                                 | 🔴 1. Must   | 🎯 Todo      |
+| Id | User Story                                            | Priorität     | Status         |
+|----|-------------------------------------------------------|---------------|----------------|
+| 01 | Anmelden Technologie-Radar-Administration             | 🟡 3. Could  | ✅ Done        |
+| 02 | Technologie erfassen                                  | 🔴 1. Must   | 🎯 Todo        |
+| 03 | Technologie publizieren                               | 🟠 2. Should | 🛠️ In progress |
+| 04 | Technologie ändern                                    | 🟠 2. Should | 🛠️ In progress |
+| 05 | Technologie-Einordnung ändern                         | 🟠 2. Should | 🎯 Todo        |
+| 06 | Anmelden am Technologie-Radar-Viewer                  | 🟡 3. Could  | ✅ Done        |
+| 07 | Technologien anzeigen                                 | 🔴 1. Must   | ✅ Done        |
 
 Legende 1: MoSCoW-Priorisierung
 - 🔴 1. Must
@@ -135,11 +135,11 @@ Im [Node](https://nodejs.org/en) Backend werde ich [Express](https://expressjs.c
 
 [TypeORM](https://typeorm.io/) nimmt mir einen Grossteil der Arbeit für die Persistierung ab. Zudem können mit TypeORM (bzw generell mit OR-Mappern) Migrationen bei verändertem (DB-)Schema durchgeführt werden. Dies ist in der professionellen Entwicklung eine enorme Abhilfe.
 
-#### 3.1.6 JWT (Authentication)
+#### 3.1.6 JWT Bcrypt (Authentication & Hashing)
 
 Für die Authentifizierung bzw die Autorisierung (Zugriffssteuerung auf Ressourcen) werde ich [JSON Web Tokens](https://jwt.io/) einsetzten. Dabei handelt es sich um eine "Token-based authentication", wofür keine Session eröffnet wird. Ein weiterer Vorteil ist, dass z.B. bei Social Media Plattformen registrierte authentifiziert werden können, so müssen nicht die klassichen Anmeldedaten Username/Passwort abgespeichert werden. Für die Implementierung werde ich als Library [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken) einsetzten.
 
-Sollte ich selbst Passwörter auf der DB speichern müssen, werde ich diese salten & hashen.
+Das Passwort hashing wird mit [Bcrypt](https://www.npmjs.com/package/bcrypt) umgesetzt.
 
 #### 3.1.7 GitHub Actions / Vercel (CI/CD)
 
@@ -380,8 +380,8 @@ und/oder technischen Schulden.
 | **Mi, 07.02.2024** | 7h      | Dokumentation pdf, Projekt Check-In, Angular & API | In einer GitHub Action wird aus der Dokumentation (README im Markdown Format) ein PDF generiert und als Artefakt gespeichert. Für die heutige Zwischenabgabe des Projekt-Check ins habe ich die geforderten Inhalte (User Stories, Tech-Stack) ergänzt. In Angular erstellte ich die Struktur, fügte Routing hinzu und definierte Services. Diese greifen bereits auf das Backend zu, welches vorläufig statisches JSON zurückgibt. |
 | **Do, 08.02.2024** | 6h      | Tech Table, TypeOrm Entities, Design     | Ich installierte TypeOrm auf dem Backend und setzte es mit dem MySQL Driver auf. Für Techs, Projects, Users und Logs erstellte ich Entities gemäss dem ER Diagramm. Im Frontend erstellte ich mithilfe der Angular Material UI Komponenten eine Navigation (SideNav) und Footer. Für die Technologien erstellte ich ein Feature Modul. Die Techs werden über den TechService von der API mit einem TypeORM Repository von der DB geladen und als JSON übergeben. Dargestellt werden diese in einer Tabelle und ein Eintrag kann über die Detailansicht angesehen werden. |
 | **Fr, 09.02.2024** | 9h      | Authentifikation mit JWT, SeedData       | Die Authentifizierung erfolgt nun über JWTs. Loggt sich ein User ein, werden auf dem Backend die Credentials überprüft. Es wird ein JWT Token zurückgegeben. Über einen Interceptor wird bei jedem Request dieses Token im Header mitgegeben. Wird eine Seite aufgerufen, welche eine besonderere Autorisierung benötigt (Rolle) wie für das Anpassen von Technologien, so wird das Token ausgelesen und die Rolle überprüft. Die Entities sind fertig und werden initial mit SeedData befüllt. |
-| **Sa, 10.02.2024** | 2h      | UI Verbesserungen                        | In der Tabelle kann nun über ein Suchfeld nach Technologien gesucht & gefiltert werden. Diese Einträge lassen sich aufklappen, um die Beschreibung anzeigen zu lassen. Die Detailansicht und Löschfunktionalität sind hinter einem Editieren/Löschen-Button versteckt, welche nur berechtigen Usern angezeigt wird. Die Navigationsleiste ist für Desktop fixiert und für Mobile zusammenklappbar. |
-| **Total:**         | 30h     |                                          |                                                   |
+| **Sa, 10.02.2024** | 10h      | UI Verbesserungen, API & Entity Attribute, Passwort hashing | In der Tabelle kann nun über ein Suchfeld nach Technologien gesucht & gefiltert werden. Diese Einträge lassen sich aufklappen, um die Beschreibung anzeigen zu lassen. Die Detailansicht und Löschfunktionalität sind hinter einem Editieren/Löschen-Button versteckt, welche nur berechtigen Usern angezeigt wird. Die Navigationsleiste ist für Desktop fixiert und für Mobile zusammenklappbar. Im Dashboard kann über Tabs zwischen Technologien und Projekten navigiert werden und Buttons haben nun einen Tooltip als Hilfestellung. Die Entities wurden mit allen (nötigen) Feldern gemäss User Story ergänzt. Das ganze Backend wurde restrukturiert und refactored. Ein Request wird über ein Route an einen Controller weitergeleitet, welche mit der DB über Services kommuniziert. Authentifizierung und Autorisierung wird über Middlewares gelöst. Das Passwort wird mit 'bcrypt' gehashed. In der Tabelle werden nicht publizierte Technologien gekennzeichnet. |
+| **Total:**         | 38h     |                                          |                                                   |
 
 
 **About arc42** Template Version 8.2, Januar 2023. 

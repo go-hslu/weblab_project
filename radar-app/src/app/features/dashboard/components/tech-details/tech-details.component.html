@@ -4,7 +4,8 @@
             <h2>Technologie Detailansicht</h2>
         </mat-card-title>
         <mat-card-subtitle *ngIf="tech">
-            {{ tech.name }} ({{ tech.id }})
+            <p>{{ tech.name }} ({{ tech.id }})</p>
+            <p>Erfasst am {{ tech.createdOn | date:"dd.MM.yyyy HH:mm" }} von {{ tech.createdBy }}</p>
         </mat-card-subtitle>
     </mat-card-header>
 
@@ -31,8 +32,8 @@
         <mat-divider></mat-divider>
 
         <mat-form-field>
-            <mat-label>Textarea</mat-label>
-            <textarea matInput></textarea>
+            <mat-label>Beschreibung</mat-label>
+            <textarea matInput [(ngModel)]="tech.description" required></textarea>
         </mat-form-field>
     </mat-card-content>
 

@@ -1,10 +1,10 @@
 import "reflect-metadata";
 import { DataSource } from "typeorm";
 import { MysqlConnectionOptions } from "typeorm/driver/mysql/MysqlConnectionOptions";
-import { TechEntity } from "./entities/Tech.entity";
-import { ProjectEntity } from "./entities/Project.entity";
-import { UserEntity } from "./entities/User.entity";
-import { LogEntity } from "./entities/Log.entity";
+import { TechEntity } from "../entities/Tech.entity";
+import { ProjectEntity } from "../entities/Project.entity";
+import { UserEntity } from "../entities/User.entity";
+import { LogEntity } from "../entities/Log.entity";
 
 export const AppDataSource = new DataSource({
     type: "mysql",

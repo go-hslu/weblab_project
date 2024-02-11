@@ -1,4 +1,4 @@
-export interface Tech {
+export interface TechDto {
     id: string;
     name: string;
     category: string;
