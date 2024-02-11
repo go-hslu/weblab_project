@@ -75,9 +75,9 @@ Folglich wurden User Stories übernommen, abgeleitet oder neue definiert. Diese 
 | Id | User Story                                            | Priorität     | Status         |
 |----|-------------------------------------------------------|---------------|----------------|
 | 01 | Anmelden Technologie-Radar-Administration             | 🟡 3. Could  | ✅ Done        |
-| 02 | Technologie erfassen                                  | 🔴 1. Must   | 🎯 Todo        |
-| 03 | Technologie publizieren                               | 🟠 2. Should | 🛠️ In progress |
-| 04 | Technologie ändern                                    | 🟠 2. Should | 🛠️ In progress |
+| 02 | Technologie erfassen                                  | 🔴 1. Must   | 🛠️ In progress |
+| 03 | Technologie publizieren                               | 🟠 2. Should | ✅ Done        |
+| 04 | Technologie ändern                                    | 🟠 2. Should | ✅ Done        |
 | 05 | Technologie-Einordnung ändern                         | 🟠 2. Should | 🎯 Todo        |
 | 06 | Anmelden am Technologie-Radar-Viewer                  | 🟡 3. Could  | ✅ Done        |
 | 07 | Technologien anzeigen                                 | 🔴 1. Must   | ✅ Done        |
@@ -361,6 +361,7 @@ und/oder technischen Schulden.
 | Begriff [A-Z]         | Definition und Beschreibung                                                                       |
 |-----------------------|---------------------------------------------------------------------------------------------------|
 | **Angular**           | Angular ist ein auf JavaScript basierendes Frontend-Web-Framework. Es wurde von Google entwickelt und ist aktuell in der Version 17. Es verfolgt den "Single Page Application"-Ansatz, wobei zuerst ein Grundgerüst der Webseite geladen wird und später nur noch Daten nachgeladen werden sollen. |
+| **Bcrypt**            | Bcrypt ist eine Hashfunktion für Passwörter. Gleichnamig heisst die passende npm Library.         |
 | **Express**           | Express.js ist ein JavaScript Backend-Framework für Node.js. Es erleichtert das Erstellen von (RESTful) APIs und WebServern. |
 | **GitHub Container Registry** | Über die GitHub Container Registry können (Docker) Container als Package verteilt werden. Diese sind über die URL `https://ghcr` erreichbar. |
 | **GitHub Pages**      | GitHub Pages ermöglicht das Hosten von statischen Resourcen (HTML, CSS & JavaScript) direkt auf dem Repository. |
@@ -381,7 +382,8 @@ und/oder technischen Schulden.
 | **Do, 08.02.2024** | 6h      | Tech Table, TypeOrm Entities, Design     | Ich installierte TypeOrm auf dem Backend und setzte es mit dem MySQL Driver auf. Für Techs, Projects, Users und Logs erstellte ich Entities gemäss dem ER Diagramm. Im Frontend erstellte ich mithilfe der Angular Material UI Komponenten eine Navigation (SideNav) und Footer. Für die Technologien erstellte ich ein Feature Modul. Die Techs werden über den TechService von der API mit einem TypeORM Repository von der DB geladen und als JSON übergeben. Dargestellt werden diese in einer Tabelle und ein Eintrag kann über die Detailansicht angesehen werden. |
 | **Fr, 09.02.2024** | 9h      | Authentifikation mit JWT, SeedData       | Die Authentifizierung erfolgt nun über JWTs. Loggt sich ein User ein, werden auf dem Backend die Credentials überprüft. Es wird ein JWT Token zurückgegeben. Über einen Interceptor wird bei jedem Request dieses Token im Header mitgegeben. Wird eine Seite aufgerufen, welche eine besonderere Autorisierung benötigt (Rolle) wie für das Anpassen von Technologien, so wird das Token ausgelesen und die Rolle überprüft. Die Entities sind fertig und werden initial mit SeedData befüllt. |
 | **Sa, 10.02.2024** | 10h      | UI Verbesserungen, API & Entity Attribute, Passwort hashing | In der Tabelle kann nun über ein Suchfeld nach Technologien gesucht & gefiltert werden. Diese Einträge lassen sich aufklappen, um die Beschreibung anzeigen zu lassen. Die Detailansicht und Löschfunktionalität sind hinter einem Editieren/Löschen-Button versteckt, welche nur berechtigen Usern angezeigt wird. Die Navigationsleiste ist für Desktop fixiert und für Mobile zusammenklappbar. Im Dashboard kann über Tabs zwischen Technologien und Projekten navigiert werden und Buttons haben nun einen Tooltip als Hilfestellung. Die Entities wurden mit allen (nötigen) Feldern gemäss User Story ergänzt. Das ganze Backend wurde restrukturiert und refactored. Ein Request wird über ein Route an einen Controller weitergeleitet, welche mit der DB über Services kommuniziert. Authentifizierung und Autorisierung wird über Middlewares gelöst. Das Passwort wird mit 'bcrypt' gehashed. In der Tabelle werden nicht publizierte Technologien gekennzeichnet. |
-| **Total:**         | 38h     |                                          |                                                   |
+| **So, 11.02.2024** | 5h      | Technologien Publizieren & Update        | Die Publizieren und Editieren Funktionalitäten wurde sowohl im Backend als auch Frontend implementiert. Bei Logins, Modifikationen (Create, Update/Publish) oder Löschen wird zudem ein Log entry erstellt und gespeichert. Ein "URL-Freundlicher" Name in TrainCase (train-case) Syntaxt wird generiert. |
+| **Total:**         | 43h     |                                          |                                                   |
 
 
 **About arc42** Template Version 8.2, Januar 2023. 
