@@ -5,7 +5,7 @@ import { Component } from "@angular/core";
     standalone: true,
     imports: [],
     templateUrl: "./radar-canvas.component.html",
-    styleUrl: "./radar-canvas.component.css"
+    styleUrl: "./radar-canvas.component.scss"
 })
 export class RadarCanvasComponent {
 

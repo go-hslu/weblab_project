@@ -14,7 +14,7 @@ import { MatTooltipModule } from "@angular/material/tooltip";
         MatTooltipModule
     ],
     templateUrl: "./not-found.component.html",
-    styleUrl: "./not-found.component.css"
+    styleUrl: "./not-found.component.scss"
 })
 export class NotFoundComponent {
 

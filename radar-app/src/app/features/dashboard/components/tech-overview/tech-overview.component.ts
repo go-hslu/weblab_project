@@ -17,7 +17,7 @@ import { TechService } from "@shared/apis/tech.service";
 @Component({
     selector: "app-tech-overview",
     templateUrl: "./tech-overview.component.html",
-    styleUrl: "./tech-overview.component.css",
+    styleUrl: "./tech-overview.component.scss",
     animations: [
         trigger("showDetails", [
             state("collapsed,void", style({ height: "0px", minHeight: "0" })),

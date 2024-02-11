@@ -26,7 +26,7 @@ import { showApiFailureSnackBar } from "@shared/utils/snackbar.util";
         MatIcon
     ],
     templateUrl: "./login.component.html",
-    styleUrl: "./login.component.css"
+    styleUrl: "./login.component.scss"
 })
 export class LoginComponent {
 

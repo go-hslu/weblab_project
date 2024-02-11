@@ -11,7 +11,7 @@ import { MatCardModule } from "@angular/material/card";
         MatCardModule
     ],
     templateUrl: "./radar-page.component.html",
-    styleUrl: "./radar-page.component.css"
+    styleUrl: "./radar-page.component.scss"
 })
 export class RadarPageComponent {
 

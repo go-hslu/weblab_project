@@ -14,7 +14,7 @@ import { TechService } from "@shared/apis/tech.service";
 @Component({
     selector: "app-tech-details",
     templateUrl: "./tech-details.component.html",
-    styleUrl: "./tech-details.component.css"
+    styleUrl: "./tech-details.component.scss"
 })
 export class TechDetailsComponent implements OnInit {
 

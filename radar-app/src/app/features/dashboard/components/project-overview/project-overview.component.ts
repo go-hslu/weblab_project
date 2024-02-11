@@ -9,7 +9,7 @@ import { MatCardModule } from "@angular/material/card";
         MatCardModule
     ],
     templateUrl: "./project-overview.component.html",
-    styleUrl: "./project-overview.component.css"
+    styleUrl: "./project-overview.component.scss"
 })
 export class ProjectOverviewComponent {
 
