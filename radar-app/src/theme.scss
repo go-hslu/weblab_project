@@ -1,0 +1,19 @@
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+$radar-primary: mat.define-palette(mat.$light-green-palette, 800);
+$radar-accent: mat.define-palette(mat.$light-green-palette, 300);
+$radar-warn: mat.define-palette(mat.$red-palette, 400);
+
+$radar-theme: mat.define-light-theme((
+    color: (
+        primary: $radar-primary,
+        accent: $radar-accent,
+        warn: $radar-warn,
+    ),
+    typography: mat.define-typography-config(),
+    density: 0,
+));
+
+@include mat.all-component-themes($radar-theme);

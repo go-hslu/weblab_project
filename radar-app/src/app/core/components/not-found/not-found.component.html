@@ -7,14 +7,16 @@
         <p>
             Die angefragte Resource scheint nicht zu existieren.
         </p>
+
     </mat-card-content>
 
+    <img mat-card-image src="assets/404-not-found.jpg" alt="404 Page not found">
+
     <mat-card-actions>
-        <button mat-button color="primary" (click)="returnBack()"
+        <button mat-flat-button color="primary" (click)="returnBack()"
                 matTooltip="Zurück zur vorherigen Seite">
             Zurück
         </button>
     </mat-card-actions>
 
-    <img mat-card-image src="assets/404-not-found.jpg" alt="404 Page not found">
 </mat-card>
