@@ -10,6 +10,11 @@
     }
 }
 
+mat-toolbar {
+    background: rgb(28,97,62);
+    background: linear-gradient(94deg, rgba(28,97,62,1) 0%, rgba(28,97,62,1) 26%, rgba(0,34,17,1) 100%);
+}
+
 mat-sidenav {
     background-color: #fcfcfc;
 }

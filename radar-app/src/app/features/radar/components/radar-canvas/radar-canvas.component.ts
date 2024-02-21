@@ -166,13 +166,13 @@ export class RadarCanvasComponent implements OnInit, AfterViewInit {
         const startAngle = Math.PI + circleSectorRange * category;
         const endAngle = startAngle + circleSectorRange;
 
-        const randomAngle = this.randomBetween(startAngle, endAngle);
+        const randomAngle = this.randomBetween(startAngle + 0.07, endAngle - 0.07);
 
         const radarLinesStep = 400 / (this._states.length + 1);
         const outerRadius = 400 - radarLinesStep * state;
         const innerRadius = 400 - radarLinesStep * (state + 1);
 
-        const randomLineRadius = this.randomBetween(innerRadius, outerRadius);
+        const randomLineRadius = this.randomBetween(innerRadius + 25, outerRadius - 25);
 
         const x = randomLineRadius * Math.cos(randomAngle) + 500;
         const y = randomLineRadius * Math.sin(randomAngle) + 500;

@@ -7,7 +7,8 @@
 
         @if (isUserAuthenticated) {
             <div *ngIf="isUserAuthenticated">
-                <span class="header-text" *ngIf="!useMobileLayout">{{ authenticatedUserEmail }}</span>
+                <span class="header-text" *ngIf="!useMobileLayout">{{ authenticatedUserEmail }} </span>
+                <span *ngIf="!useMobileLayout">|</span>
                 <button mat-button (click)="logout()" matTooltip="Abmelden">
                     Logout
                     <mat-icon>logout</mat-icon>

@@ -27,10 +27,9 @@
 
 Im Modul WEBLAB (Web Programming Lab) an der Hochschule soll ein Web-Projekt mit den behandelten Technologien erarbeitet werden. Die Projektartefakte sind auf dem [GitHub Repository](https://github.com/go-hslu/weblab_project) einsehbar.
 
-Es wird die vorgeschlagene Projektidee eines [Technologie-Radars](https://www.thoughtworks.com/radar) verfolgt. Dabei ist das Ziel, dass innerhalb eines Unternehmens eine Übersicht auf die in Projekten verwendeten Technologien & Tools verschafft wird. In einer Visualisierung ähnlich zu einem Radar werden Technologien & Tools als Punkte dargestellt. Über die Quadranten/Sektoren werden diese kategorisiert (Frameworks, Tools, Languages, Platforms, Techniques..) und über die nähe zur Mitte der Einsatz-Status (Hold, Assess, Trial, Adopt) angezeigt.
+Es wird die vorgeschlagene Projektidee eines [Technologie-Radars](https://www.thoughtworks.com/radar) verfolgt. Dabei ist das Ziel, dass innerhalb eines Unternehmens eine Übersicht auf die in Projekten verwendeten Technologien & Tools verschafft wird. In einer Visualisierung ähnlich zu einem Radar werden Technologien & Tools als Punkte dargestellt. Über die Quadranten/Sektoren werden diese kategorisiert (Frameworks, Tools, Languages, Platforms, Techniques) und über die nähe zur Mitte der Einsatz-Status (Hold, Assess, Trial, Adopt) angezeigt.
 
-| [![nichtgian](https://avatars.githubusercontent.com/nichtgian?s=100)<br/><sub>Gian Ott</sub>](https://www.linkedin.com/in/nichtgian/)<br/>Entwickler & Autor |
-|---|
+![Screenshot des Radars](res/ScreenshotRadar.png)
 
 ### 1.1 Aufgabenstellung
 
@@ -50,10 +49,15 @@ In Einzelarbeit soll mit einem totalen Aufwand von ca. 60 Stunden ein Web-Projek
 
 ### 1.2 Qualitätsziele
 
-- **Security**: Der Radar ist intern für alle Mitarbeiter (User) verfügbar. Inhalte können nur von spezifischen Rollen (CTO, Tech-Lead, Admin) nach Authentifizierung (E-Mail & Passwort) verändert werden. Sensible Daten wie das Passwort werden nur gehashed abgespeichert.
+- **Security**: Der Radar sowohl für Mitarbeiter (User) als auch Gäste (nicht-authentifiziert) verfügbar. Inhalte können nur von spezifischen Rollen (CTO, Tech-Lead, Admin) nach Authentifizierung mit E-Mail & Passwort verändert werden. Sensible Daten wie das Passwort werden nur gehashed abgespeichert.
 - **Performance**: Die Inhalte werden unter Normalbedingungen (Kabelgebunden oder 5G) innert 1s geladen.
-- **Usability**: Das UI ist für die Geräte Mobile & Desktop optimiert, verwendet ein schlichtes & übersichtliches Design mit auf dem Gerät erwartbarem Verhalten (z.B Navigationsleiste hinter Hamburger-Icon auf Mobile)
+- **Usability**: Das UI ist für die Geräte Mobile & Desktop optimiert, sprich es wird auf Responsive-Design gesetzt. Verwendet ein schlichtes & übersichtliches Design mit auf dem Gerät erwartbarem Verhalten (z.B Navigationsleiste hinter Hamburger-Icon auf Mobile)
 - **Traceability**: Anpassungen an den Technologien werden historisiert und Anmeldungen auf der Adminseite protokolliert.
+
+### 1.3 Team
+
+| [![nichtgian](https://avatars.githubusercontent.com/nichtgian?s=100)<br/><sub>Gian Ott</sub>](https://www.linkedin.com/in/nichtgian/)<br/>Entwickler & Autor |
+|---|
 
 
 ## 2 Kontextabgrenzung
@@ -69,7 +73,7 @@ Prinzipiell wird von Grund auf eine eigene Lösung eines Technologie-Radars mit 
 
 ### 2.2 Anforderungen (User Stories)
 
-Folglich wurden User Stories übernommen, abgeleitet oder neue definiert. Diese sind auf GitHub als [Issues](https://github.com/go-hslu/weblab_project/issues) hinterlegt. Hier eine Übersicht der User Stories samt priorisierung nach MoSCoW:
+Folglich wurden die User Stories übernommen. Diese sind auf GitHub als [Issues](https://github.com/go-hslu/weblab_project/issues) hinterlegt. Hier eine Übersicht der User Stories samt priorisierung nach MoSCoW:
 
 
 | Id | User Story                                    | Priorität     | Status         |
@@ -95,9 +99,9 @@ Legende 2: Umsetzungsstatus
 
 ### 2.2 Technischer Kontext
 
-In einem Frontend, dem Radar (Radar-App oder Radar Applikation), werden Technologie & Projekt Daten erfasst. Diese werden als JSON an eine REST API übermittelt und die entsprechende CRUD-Operation durchgeführt (Create/Erstellen, Read/Abfragen, Update/Modifizieren oder Delete/Löschen).
+In einem Frontend, dem Radar (Radar-App oder Radar Applikation), werden Technologie & Projekt Daten erfasst. Diese werden als JSON an eine REST API übermittelt und die entsprechende CRUD-Operation durchgeführt (Erstellen, Abfragen, Modifizieren oder Löschen).
 
-![Kontext Diagramm](res/Context-Diagram.png)
+![Kontext Diagramm](res/ContextDiagram.png)
 
 
 ## 3 Lösungsstrategie
@@ -111,17 +115,16 @@ In einem Frontend, dem Radar (Radar-App oder Radar Applikation), werden Technolo
 ![JWT](https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=JSON%20web%20tokens)
 ![Github Pages](https://img.shields.io/badge/github%20pages-121013?style=for-the-badge&logo=github&logoColor=white)
 ![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
-![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)
 
 #### 3.1.1 TypeScript
 
-Sowohl im Frontend als auch Backend werde ich [TypeScript](https://www.typescriptlang.org/) verwenden. Die explizite Typisierung sehe ich als grossen Vorteil gegenüber Vanilla JavaScript für einen leichter lesbareren Code.
+Sowohl im Frontend als auch Backend wird strikt typisiert mit [TypeScript](https://www.typescriptlang.org/). Die explizite Typisierung sehe ich als grossen Vorteil gegenüber Vanilla JavaScript für einen leichter lesbareren Code.
 
 #### 3.1.2 Angular (Frontend)
 
-[Angular](https://angular.io/) ermöglicht das Erstellen von Single Page Applications. Es ist ein etabliertes und in der Schweiz sehr häufig verwendetes Framework. Ich persönlich hatte ursprünglich Angular 2 / Angular 4 um ca. 2017 in einem Tutorial/Video-Kurs kennengelernt. Neuere Features wie Signals etc. kenne ich jedoch nicht. Da ich aber künftig bei der Arbeit auch Angular einsetzten werde, möchte ich in diesem Arbeit mein Wissen über Angular auffrischen und vertiefen. 
+[Angular](https://angular.io/) ermöglicht das Erstellen von Single Page Applications. Es ist ein etabliertes und in der Schweiz sehr häufig verwendetes Framework.  Besonderen Vorteil mit Angular liegt in der Modularisierung, dem Routing/Router und dem Binding (2-way), was heute Standart in praktisch allen SPA-Frameworks (Vue.js, Svelte etc.) ist.
 
-Besonderen Vorteil sehe ich bei der Modularisierung, dem Routing/Router und dem Binding (2-way), was heute Standart in praktisch allen SPA-Frameworks (Vue.js, Svelte etc.) ist.
+Ich persönlich hatte ursprünglich Angular 2 / Angular 4 um ca. 2017 in einem Tutorial/Video-Kurs kennengelernt. Neuere Features wie Signals etc. kenne ich jedoch nicht. Da ich aber künftig bei der Arbeit auch Angular einsetzten werde, möchte ich in diesem Arbeit mein Wissen über Angular auffrischen und vertiefen. 
 
 #### 3.1.3 Angular Material (CSS)
 
@@ -129,42 +132,30 @@ Besonderen Vorteil sehe ich bei der Modularisierung, dem Routing/Router und dem 
 
 #### 3.1.4 Node / Express (Backend)
 
-Im [Node](https://nodejs.org/en) Backend werde ich [Express](https://expressjs.com/) verwenden, um einfach APIs definieren zu können. 
+Im [Node](https://nodejs.org/en) Backend wird [Express](https://expressjs.com/) verwendt, um einfach APIs definieren zu können. 
 
 #### 3.1.5 TypeORM / MySQL (ORM & Database)
 
-[TypeORM](https://typeorm.io/) nimmt mir einen Grossteil der Arbeit für die Persistierung ab. Zudem können mit TypeORM (bzw generell mit OR-Mappern) Migrationen bei verändertem (DB-)Schema durchgeführt werden. Dies ist in der professionellen Entwicklung eine enorme Abhilfe.
+[TypeORM](https://typeorm.io/) nimmt einen Grossteil der Arbeit für die Persistierung ab. Es kann mit TypeORM (bzw. generell mit OR-Mappern) eine Migrationen bei verändertem (DB-)Schema durchgeführt werden. Dies ist in der professionellen Entwicklung eine enorme Hilfe.
 
 #### 3.1.6 JWT Bcrypt (Authentication & Hashing)
 
-Für die Authentifizierung bzw die Autorisierung (Zugriffssteuerung auf Ressourcen) werde ich [JSON Web Tokens](https://jwt.io/) einsetzten. Dabei handelt es sich um eine "Token-based authentication", wofür keine Session eröffnet wird. Ein weiterer Vorteil ist, dass z.B. bei Social Media Plattformen registrierte authentifiziert werden können, so müssen nicht die klassichen Anmeldedaten Username/Passwort abgespeichert werden. Für die Implementierung werde ich als Library [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken) einsetzten.
+Für die Authentifizierung bzw die Autorisierung (Zugriffssteuerung auf Ressourcen) werden [JSON Web Tokens](https://jwt.io/) eingesetzt. Dabei handelt es sich um eine "Token-based authentication", wofür keine Session eröffnet wird. Ein weiterer Vorteil ist, dass z.B. bei Social Media Plattformen registrierte Benutzer authentifiziert werden können. So müssen nicht die klassichen Anmeldeinformationmen Username-Passwort abgespeichert werden. Für die Implementierung im Backend wird Library [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken) verwendet.
 
 Das Passwort hashing wird mit [Bcrypt](https://www.npmjs.com/package/bcrypt) umgesetzt.
 
 #### 3.1.7 GitHub Actions / Vercel (CI/CD)
 
-Änderungen (Commits) an der Applikation sollen automatisch einen Build im [GitHub Repository](https://github.com/go-hslu/weblab_project) über GitHub Actions ausführen und auf die [GitHub Pages](https://go-hslu.github.io/weblab_project/) deployt werden. Dies möchte ich als Übung für mich selbst umsetzten, da ich bis jetzt keine Erfahrung mit GitHub Actions habe und ich darin einen grossen Nutzen für meine eigenen Projekte sehe. Desweiteren würde ich auch gerne einen automatischen Build eines Docker Containers mit Actions auslösen und diesen in die [GitHub Container Registry](https://github.com/orgs/go-hslu/packages) als Package deployen.
+Änderungen (via Commit) lösen automatisch einen Build im [GitHub Repository](https://github.com/go-hslu/weblab_project) über GitHub Actions aus. In einer Pipeline wird das Frontend auf [GitHub Pages](https://go-hslu.github.io/weblab_project/) deployt. Eine weitere Pipeline löst einen Build eines Docker-Containers aus und deployt diesen als Package in die [GitHub Container Registry](https://github.com/orgs/go-hslu/packages).
 
 Für die Projektabgabe versuche ich das Deployment mit dem Vorschlag [Vercel](https://vercel.com/) umzusetzten oder das Docker image zur Verfügung zu stellen.
 
-<!--
-Kurzer Überblick über die grundlegenden Entscheidungen und
-Lösungsansätze, die Entwurf und Implementierung des Systems prägen.
-Hierzu gehören:
-
--   Technologieentscheidungen
--   Entscheidungen über die Top-Level-Zerlegung des Systems,
-    beispielsweise die Verwendung gesamthaft prägender Entwurfs- oder
-    Architekturmuster,
--   Entscheidungen zur Erreichung der wichtigsten Qualitätsanforderungen
-    sowie
--   relevante organisatorische Entscheidungen, beispielsweise für
-    bestimmte Entwicklungsprozesse oder Delegation bestimmter Aufgaben
-    an andere Stakeholder.
--->
+GitHub Actions möchte ich persönlich kennenlernen, da ich bis jetzt keine Erfahrung mit GitHub Actions habe und ich darin einen grossen Nutzen für meine eigenen Projekte auf GitHub sehe. 
 
 
 ## 4 Bausteinsicht
+
+![Architektur Diagramm](res/ArchitectureDiagram.png)
 
 <!--
 Die Bausteinsicht zeigt die statische Zerlegung des Systems in Bausteine
@@ -197,15 +188,26 @@ des nachfolgenden Whitebox-Templates. Dieses enthält:
         darstellen.
 -->
 
-### 4.2 ER-Diagramm
+### 4.2 Entitäts Diagramm
 
-Die Entitäten für Technologien, Projekte und User sind wie folgt geplant:
+Die Entitäten für Technologien, Projekte und User sind wie folgt implementiert:
 
-![ER-Diagramm](res/ER-Diagram.png)
+![Entitäts Diagramm](res/EntityDiagram.png)
+
+*Hinweis:* Dieses Diagramm ist eine Mischform aus ER & Klassendiagramm, da dies aufgrund der Implementierung sinnvoller scheint als eine strikte Einhaltung der UML-Notation.
 
 
 ## 5 Verteilungssicht 
-### 5.1 Docker
+
+Es ist eine lokale Entwicklungsumgebung **DEV** und das in einem Docker-Container ausgelieferte Gesamtsystem **PROD** geplant.
+
+### 5.1 DEV: Lokale Entwicklungsumgebung
+
+Das Front- und Backend können in einer lokalen Entwicklungsumgebung gemäss Beschreibung im entsprechenden Projekt gestartet werden.
+
+### 5.2 PROD: Docker-Container
+
+Das Produktive System wird automatisch via GitHub Actions als Docker-Container in die GitHub Container Registry deployt.
 
 1. Installiere und starte [Docker](https://www.docker.com/get-started/).
 2. Beziehe das Docker image von der GitHub Container registry. 
@@ -220,41 +222,6 @@ Die Entitäten für Technologien, Projekte und User sind wie folgt geplant:
    ```sh
    http://localhost:8080
    ```
-
-<!--
-Die Verteilungssicht beschreibt:
-1.  die technische Infrastruktur, auf der Ihr System ausgeführt wird,
-    mit Infrastrukturelementen wie Standorten, Umgebungen, Rechnern,
-    Prozessoren, Kanälen und Netztopologien sowie sonstigen
-    Bestandteilen, und
-2.  die Abbildung von (Software-)Bausteinen auf diese Infrastruktur.
-
-Häufig laufen Systeme in unterschiedlichen Umgebungen, beispielsweise
-Entwicklung-/Test- oder Produktionsumgebungen. In solchen Fällen sollten
-Sie alle relevanten Umgebungen aufzeigen.
-
-Nutzen Sie die Verteilungssicht insbesondere dann, wenn Ihre Software
-auf mehr als einem Rechner, Prozessor, Server oder Container abläuft
-oder Sie Ihre Hardware sogar selbst konstruieren.
-
-Aus Softwaresicht genügt es, auf die Aspekte zu achten, die für die
-Softwareverteilung relevant sind. Insbesondere bei der
-Hardwareentwicklung kann es notwendig sein, die Infrastruktur mit
-beliebigen Details zu beschreiben.
--->
-
-### 5.1 Infrastruktur Ebene 1
-
-<!--
-An dieser Stelle beschreiben Sie (als Kombination von Diagrammen mit
-Tabellen oder Texten):
--   die Verteilung des Gesamtsystems auf mehrere Standorte, Umgebungen,
-    Rechner, Prozessoren o. Ä., sowie die physischen Verbindungskanäle
-    zwischen diesen,
--   wichtige Begründungen für diese Verteilungsstruktur,
--   Qualitäts- und/oder Leistungsmerkmale dieser Infrastruktur,
--   Zuordnung von Softwareartefakten zu Bestandteilen der Infrastruktur
--->
 
 
 ## 6 Querschnittliche Konzepte
@@ -300,6 +267,8 @@ den Gruppen nicht immer eindeutig ist):
 
 ## 7 Architekturentscheidungen
 
+### 7.1 
+
 <!--
 Wichtige, teure, große oder riskante Architektur- oder
 Entwurfsentscheidungen inklusive der jeweiligen Begründungen. Mit
@@ -324,14 +293,7 @@ Verschiedene Möglichkeiten:
 
 ## 8 Qualitätsanforderungen
 
-<!--
-Dieser Abschnitt enthält möglichst alle Qualitätsanforderungen als
-Qualitätsbaum mit Szenarien. Die wichtigsten davon haben Sie bereits in
-Abschnitt 1.2 (Qualitätsziele) hervorgehoben.
-
-Nehmen Sie hier auch Qualitätsanforderungen geringerer Priorität auf,
-deren Nichteinhaltung oder -erreichung geringe Risiken birgt.
--->
+Die Qualitätsanforderungen wurden im Abschnitt ```1.2 Qualitätsziele``` definiert.
 
 
 ## 9 Risiken und technische Schulden
@@ -384,7 +346,8 @@ und/oder technischen Schulden.
 | **Sa, 10.02.2024** | 10h     | UI Verbesserungen, API & Entity Attribute, Passwort hashing | In der Tabelle kann nun über ein Suchfeld nach Technologien gesucht & gefiltert werden. Diese Einträge lassen sich aufklappen, um die Beschreibung anzeigen zu lassen. Die Detailansicht und Löschfunktionalität sind hinter einem Editieren/Löschen-Button versteckt, welche nur berechtigen Usern angezeigt wird. Die Navigationsleiste ist für Desktop fixiert und für Mobile zusammenklappbar. Im Dashboard kann über Tabs zwischen Technologien und Projekten navigiert werden und Buttons haben nun einen Tooltip als Hilfestellung. Die Entities wurden mit allen (nötigen) Feldern gemäss User Story ergänzt. Das ganze Backend wurde restrukturiert und refactored. Ein Request wird über ein Route an einen Controller weitergeleitet, welche mit der DB über Services kommuniziert. Authentifizierung und Autorisierung wird über Middlewares gelöst. Das Passwort wird mit 'bcrypt' gehashed. In der Tabelle werden nicht publizierte Technologien gekennzeichnet. |
 | **So, 11.02.2024** | 6h      | Technologien Erstellen, Publizieren & Update, SCSS          | Die Publizieren und Editieren Funktionalitäten wurde sowohl im Backend als auch Frontend implementiert. Bei Logins, Modifikationen (Create, Update/Publish) oder Löschen wird zudem ein Log entry erstellt und gespeichert. Ein "URL-Freundlicher" Name in TrainCase (train-case) Syntaxt wird generiert. Ich migrierte mit einem Tool von CSS zu SCSS und erstellte ein einfaches Theme mit grünem Farbschema.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | **Mo, 12.02.2024** | 3h      | Radar visualisierung mit Canvas                             | Der Technologie Radar wird nun als Halbkreis visualisiert. Lediglich der Hintergrund ist statisch, die Sektoren (Abhängigkeit von Anzahl Kategorien) und States könnten dynamisch geändert, oder deren Farblabel gesetzt werden. Umgesetzt habe ich dies in einem HTML5 Canvas.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| **Total:**         | 47h     |                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| **Mi, 21.02.2024** | 3h      | Diagramme & Styling Verbesserungen                          | Fertigstellung des Entitäts-, Architektur- und Kontextdiagramms. Aufbesserung der bisherigen Dokumentation (Formulierung, Gliederung). Radar Technologie Punkte Ränder, um Visualisierung zu verbessern.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| **Total:**         | 50h     |                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 
 
 **About arc42** Template Version 8.2, Januar 2023. 

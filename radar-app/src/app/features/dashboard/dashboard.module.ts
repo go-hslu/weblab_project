@@ -15,6 +15,7 @@ import { MatTabsModule } from "@angular/material/tabs";
 import { MatMenuModule } from "@angular/material/menu";
 import { MatIcon } from "@angular/material/icon";
 import { MatTooltipModule } from "@angular/material/tooltip";
+import { MatGridListModule } from "@angular/material/grid-list";
 
 import { routes } from "./dashboard.routes";
 
@@ -45,6 +46,7 @@ import { TechDetailsComponent } from "./components/tech-details/tech-details.com
         MatTabsModule,
         MatTooltipModule,
         MatIcon,
+        MatGridListModule,
         TrainCasePipe,
         RouterModule.forChild(routes)
     ]
