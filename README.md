@@ -155,6 +155,8 @@ GitHub Actions möchte ich persönlich kennenlernen, da ich bis jetzt keine Erfa
 
 ## 4 Bausteinsicht
 
+Die Radar-App bezeichnet das Frontend, welches mit dem Backend über eine REST API kommuniziert. Das Datenaustauschformat ist JSON. 
+
 ![Architektur Diagramm](res/ArchitectureDiagram.png)
 
 <!--
@@ -168,7 +170,9 @@ Diese Sicht sollte in jeder Architekturdokumentation vorhanden sein. In
 der Analogie zum Hausbau bildet die Bausteinsicht den *Grundrissplan*.
 -->
 
-### 4.1 Whitebox Gesamtsystem
+### 4.1 Radar-App Frontend
+
+Das Frontend ist die Benutzeroberfläche für Mitarbeiter und kommuniziert mit dem Backend.
 
 <!--
 An dieser Stelle beschreiben Sie die Zerlegung des Gesamtsystems anhand
@@ -188,7 +192,30 @@ des nachfolgenden Whitebox-Templates. Dieses enthält:
         darstellen.
 -->
 
-### 4.2 Entitäts Diagramm
+### 4.2 Backend
+
+Das Backend fungiert als API und Schnittstelle zur Datenbank. 
+
+<!--
+An dieser Stelle beschreiben Sie die Zerlegung des Gesamtsystems anhand
+des nachfolgenden Whitebox-Templates. Dieses enthält:
+
+-   Ein Übersichtsdiagramm
+-   die Begründung dieser Zerlegung
+-   Blackbox-Beschreibungen der hier enthaltenen Bausteine. Dafür haben
+    Sie verschiedene Optionen:
+    -   in *einer* Tabelle, gibt einen kurzen und pragmatischen
+        Überblick über die enthaltenen Bausteine sowie deren
+        Schnittstellen.
+    -   als Liste von Blackbox-Beschreibungen der Bausteine, gemäß dem
+        Blackbox-Template (siehe unten). Diese Liste können Sie, je nach
+        Werkzeug, etwa in Form von Unterkapiteln (Text), Unter-Seiten
+        (Wiki) oder geschachtelten Elementen (Modellierungswerkzeug)
+        darstellen.
+-->
+
+
+#### 4.2.1 Entitäts Diagramm
 
 Die Entitäten für Technologien, Projekte und User sind wie folgt implementiert:
 
@@ -205,26 +232,65 @@ Es ist eine lokale Entwicklungsumgebung **DEV** und das in einem Docker-Containe
 
 Das Front- und Backend können in einer lokalen Entwicklungsumgebung gemäss Beschreibung im entsprechenden Projekt gestartet werden.
 
-### 5.2 PROD: Docker-Container
+### 5.2 PROD: Docker Container
 
-Das Produktive System wird automatisch via GitHub Actions als Docker-Container in die GitHub Container Registry deployt.
+Das Produktive System wird als Docker Container ausgeliefert. Dafür wird automatisch via GitHub Actions ein Docker Image gemäss der `Dockerfile` Konfiguration der Software in die GitHub Container Registry deployt. Nachfolgend wird über Docker Compose das Image aus der GitHub Container Registry zusammen mit einem vorgefertigten MySQL Image geholt und das Zusammenspiel der Applikkationen (radar-app & radar-db) im Container orchestriert. Die Konfiguration ist in der `docker-compose.yml` Datei zu finden.
 
 1. Installiere und starte [Docker](https://www.docker.com/get-started/).
-2. Beziehe das Docker image von der GitHub Container registry. 
+2. Starte den Container.
    ```sh
-   docker pull ghcr.io/go-hslu/weblab_project:latest
+   docker-compose up
    ```
-3. Erstelle einen Docker Container aus dem Image und führe diesen aus.
-   ```sh
-   docker run -p 8080:8080 -e SERVER_PORT=8080 ghcr.io/go-hslu/weblab_project:latest
-   ```
+3. Warte auf die Ausgabe in der Kommandozeile `radar-app  | Starting Server.. (Database "radar@mysql")` bzw. `radar-app  | Server running on http://localhost:8080`nach ca. 30 Sekunden.
 4. Öffne den Browser mit folgender URL
    ```sh
    http://localhost:8080
    ```
 
+Die Datenbank wird automatisch mit SeedData befüllt. Darunter sind auch folgende Benutzer:
+
+| E-Mail            | Passwort | Rolle  |
+|-------------------|----------|--------|
+| **admin@hslu.ch** | 1234     | Admin  |
+| **cto@hslu.ch**   | 1234     | CTO    |
+| **user@hslu.ch**  | 1234     | USER   |
+
+Admins, CTOs und TECH-LEADs haben komplette Lese und Schreib-Berechtigungen. Sie sehen auch noch nicht-publizierte Technologien.
+
+User und nicht-authentifizierte Gäste können nur publizierte Technologien einsehen.
+
+#### 5.2.1 Docker Container beenden
+
+Beende den Container mit.
+```sh
+docker-compose down
+```
+
+#### 5.2.1 Docker Container force recreate
+
+Sollte ein veralteter Stand über den latest Tag bezogen werden, kann wie folgt eine Aktualisierung erzwungen werden.
+```sh
+docker-compose pull
+docker-compose up --force-recreate --build -d
+```
+
+#### 5.2.2 Docker Image
+
+Aufgrund der Abhängigkeit zur MySQL Datenbank wird der Verbindungsaufbau zur Datenbank scheitern. Die Radar-App kann aber wie folgt isoliert bezogen und ausgeführt werden.
+
+1. Beziehe das Docker image von der GitHub Container registry. 
+   ```sh
+   docker pull ghcr.io/go-hslu/weblab_project:latest
+   ```
+2. Erstelle einen Docker Container aus dem Image und führe diesen aus.
+   ```sh
+   docker run -p 8080:8080 -e SERVER_PORT=8080 ghcr.io/go-hslu/weblab_project:latest
+   ```
 
 ## 6 Querschnittliche Konzepte
+### 6.1 DTO & Entity
+
+Intern im Backend werden Entities für den OR-Mapper definiert. Gegen aussen sollen aber nicht alle Attribute sichtbar sein, weshalb DTOs für die Nutzung gegen aussen definiert sind. Die Umwandlung von einem DTO zu Entity und umgekehrt findet via Mapper statt.
 
 <!--
 Dieser Abschnitt beschreibt übergreifende, prinzipielle Regelungen und
@@ -266,8 +332,21 @@ den Gruppen nicht immer eindeutig ist):
 
 
 ## 7 Architekturentscheidungen
+### 7.1 Radar-App Frontend
+#### 7.1.1 Strukturierung
 
-### 7.1 
+Das Frontend wurde möglichst nach Angular Best-Practice strukturiert. Dazu gehören die drei Hauptpfade *core*, *features* und *shared*. 
+
+Ein Feature kann aus Komponenten *components* und Seiten *pages* bestehen. Es kann eigene Typen enthalten und ist für das Routing innerhalb dieses Features zuständig.
+
+![Struktur des Frontends](res/RadarAppStructure.png)
+
+### 7.2 Backend
+#### 7.2.1 Strukturierung
+
+Im Backend wird eine Anfrage prinzipiell via Route (z.B. GET Request für /techs) empfangen. Via Middlewares wird authentifikation und autorisierung geprüft. Die Logik befindet sich in einem Controller, welcher via Services auf die Datenbank zugreift. Dieser Zugriff wird über Repositories der jeweiligen Entities gesteuert.
+
+![Struktur des Backends](res/BackendStructure.png)
 
 <!--
 Wichtige, teure, große oder riskante Architektur- oder
@@ -347,7 +426,8 @@ und/oder technischen Schulden.
 | **So, 11.02.2024** | 6h      | Technologien Erstellen, Publizieren & Update, SCSS          | Die Publizieren und Editieren Funktionalitäten wurde sowohl im Backend als auch Frontend implementiert. Bei Logins, Modifikationen (Create, Update/Publish) oder Löschen wird zudem ein Log entry erstellt und gespeichert. Ein "URL-Freundlicher" Name in TrainCase (train-case) Syntaxt wird generiert. Ich migrierte mit einem Tool von CSS zu SCSS und erstellte ein einfaches Theme mit grünem Farbschema.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | **Mo, 12.02.2024** | 3h      | Radar visualisierung mit Canvas                             | Der Technologie Radar wird nun als Halbkreis visualisiert. Lediglich der Hintergrund ist statisch, die Sektoren (Abhängigkeit von Anzahl Kategorien) und States könnten dynamisch geändert, oder deren Farblabel gesetzt werden. Umgesetzt habe ich dies in einem HTML5 Canvas.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | **Mi, 21.02.2024** | 3h      | Diagramme & Styling Verbesserungen                          | Fertigstellung des Entitäts-, Architektur- und Kontextdiagramms. Aufbesserung der bisherigen Dokumentation (Formulierung, Gliederung). Radar Technologie Punkte Ränder, um Visualisierung zu verbessern.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| **Total:**         | 50h     |                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| **Fr, 23.02.2024** | 4h      | Docker Container & Arbeit an Doku                           | Der Container ist nun einsatzbereit. Die Applikation wird als Image, welches automatisch deployt wird, bezogen und kommuniziert mit einem MySQL Image. Wie der Container gestartet wird ist dokumentiert und veraltete Teile aktualisiert.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| **Total:**         | 54h     |                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 
 
 **About arc42** Template Version 8.2, Januar 2023. 

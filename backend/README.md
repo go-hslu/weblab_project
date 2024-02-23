@@ -12,15 +12,15 @@ Backend for WEBLAB Radar app using Express and TypeORM written with TypeScript.
     GRANT ALL PRIVILEGES ON radar.* TO 'radar_admin'@'localhost';
     FLUSH PRIVILEGES;
     ```
-3. Prüfe, ob die Angaben im `data-source.ts` korrekt sind.
+3. Prüfe, ob die Angaben im `config/data-source.ts` korrekt sind.
     ```ts
     export const AppDataSource = new DataSource({
         type: "mysql",
         host: "localhost",
         port: 3306,
+        database: "radar",
         username: "radar_admin",
-        password: "pw1234",
-        database: "radar"
+        password: "pw1234"
     });
     ```
 
