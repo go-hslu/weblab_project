@@ -159,61 +159,13 @@ Die Radar-App bezeichnet das Frontend, welches mit dem Backend über eine REST A
 
 ![Architektur Diagramm](res/ArchitectureDiagram.png)
 
-<!--
-Die Bausteinsicht zeigt die statische Zerlegung des Systems in Bausteine
-(Module, Komponenten, Subsysteme, Klassen, Schnittstellen, Pakete,
-Bibliotheken, Frameworks, Schichten, Partitionen, Tiers, Funktionen,
-Makros, Operationen, Datenstrukturen, ...) sowie deren Abhängigkeiten
-(Beziehungen, Assoziationen, ...)
-
-Diese Sicht sollte in jeder Architekturdokumentation vorhanden sein. In
-der Analogie zum Hausbau bildet die Bausteinsicht den *Grundrissplan*.
--->
-
 ### 4.1 Radar-App Frontend
 
 Das Frontend ist die Benutzeroberfläche für Mitarbeiter und kommuniziert mit dem Backend.
 
-<!--
-An dieser Stelle beschreiben Sie die Zerlegung des Gesamtsystems anhand
-des nachfolgenden Whitebox-Templates. Dieses enthält:
-
--   Ein Übersichtsdiagramm
--   die Begründung dieser Zerlegung
--   Blackbox-Beschreibungen der hier enthaltenen Bausteine. Dafür haben
-    Sie verschiedene Optionen:
-    -   in *einer* Tabelle, gibt einen kurzen und pragmatischen
-        Überblick über die enthaltenen Bausteine sowie deren
-        Schnittstellen.
-    -   als Liste von Blackbox-Beschreibungen der Bausteine, gemäß dem
-        Blackbox-Template (siehe unten). Diese Liste können Sie, je nach
-        Werkzeug, etwa in Form von Unterkapiteln (Text), Unter-Seiten
-        (Wiki) oder geschachtelten Elementen (Modellierungswerkzeug)
-        darstellen.
--->
-
 ### 4.2 Backend
 
 Das Backend fungiert als API und Schnittstelle zur Datenbank. 
-
-<!--
-An dieser Stelle beschreiben Sie die Zerlegung des Gesamtsystems anhand
-des nachfolgenden Whitebox-Templates. Dieses enthält:
-
--   Ein Übersichtsdiagramm
--   die Begründung dieser Zerlegung
--   Blackbox-Beschreibungen der hier enthaltenen Bausteine. Dafür haben
-    Sie verschiedene Optionen:
-    -   in *einer* Tabelle, gibt einen kurzen und pragmatischen
-        Überblick über die enthaltenen Bausteine sowie deren
-        Schnittstellen.
-    -   als Liste von Blackbox-Beschreibungen der Bausteine, gemäß dem
-        Blackbox-Template (siehe unten). Diese Liste können Sie, je nach
-        Werkzeug, etwa in Form von Unterkapiteln (Text), Unter-Seiten
-        (Wiki) oder geschachtelten Elementen (Modellierungswerkzeug)
-        darstellen.
--->
-
 
 #### 4.2.1 Entitäts Diagramm
 
@@ -226,7 +178,7 @@ Die Entitäten für Technologien, Projekte und User sind wie folgt implementiert
 
 ## 5 Verteilungssicht 
 
-Es ist eine lokale Entwicklungsumgebung **DEV** und das in einem Docker-Container ausgelieferte Gesamtsystem **PROD** geplant.
+Es ist eine lokale Entwicklungsumgebung **DEV** und das in einem Docker Container ausgelieferte Gesamtsystem **PROD** geplant.
 
 ### 5.1 DEV: Lokale Entwicklungsumgebung
 
@@ -234,15 +186,15 @@ Das Front- und Backend können in einer lokalen Entwicklungsumgebung gemäss Bes
 
 ### 5.2 PROD: Docker Container
 
-Das Produktive System wird als Docker Container ausgeliefert. Dafür wird automatisch via GitHub Actions ein Docker Image gemäss der `Dockerfile` Konfiguration der Software in die GitHub Container Registry deployt. Nachfolgend wird über Docker Compose das Image aus der GitHub Container Registry zusammen mit einem vorgefertigten MySQL Image geholt und das Zusammenspiel der Applikkationen (radar-app & radar-db) im Container orchestriert. Die Konfiguration ist in der `docker-compose.yml` Datei zu finden.
+Das Produktive System wird als Docker Container ausgeliefert. Dafür wird automatisiert via GitHub Actions ein Docker Image der Software gemäss `Dockerfile` in die GitHub Container Registry deployt. Nachfolgend wird über Docker Compose das Image aus der GitHub Container Registry zusammen mit einem vorgefertigten MySQL Image bezogen und das Zusammenspiel der Applikationen (radar-app & radar-db) im Container orchestriert. Die Konfiguration ist in der `docker-compose.yml` Datei zu finden.
 
 1. Installiere und starte [Docker](https://www.docker.com/get-started/).
-2. Starte den Container.
+2. Starte den Container:
    ```sh
    docker-compose up
    ```
 3. Warte auf die Ausgabe in der Kommandozeile `radar-app  | Starting Server.. (Database "radar@mysql")` bzw. `radar-app  | Server running on http://localhost:8080`nach ca. 30 Sekunden.
-4. Öffne den Browser mit folgender URL
+4. Öffne den Browser mit folgender URL:
    ```sh
    http://localhost:8080
    ```
@@ -255,20 +207,20 @@ Die Datenbank wird automatisch mit SeedData befüllt. Darunter sind auch folgend
 | **cto@hslu.ch**   | 1234     | CTO    |
 | **user@hslu.ch**  | 1234     | USER   |
 
-Admins, CTOs und TECH-LEADs haben komplette Lese und Schreib-Berechtigungen. Sie sehen auch noch nicht-publizierte Technologien.
+Admins, CTOs und TECH-LEADs haben vollständige Lese und Schreib-Berechtigungen. Sie sehen alle, auch nicht-publizierte, Technologien.
 
 User und nicht-authentifizierte Gäste können nur publizierte Technologien einsehen.
 
 #### 5.2.1 Docker Container beenden
 
-Beende den Container mit.
+Beende den Container mit:
 ```sh
 docker-compose down
 ```
 
 #### 5.2.1 Docker Container force recreate
 
-Sollte ein veralteter Stand über den latest Tag bezogen werden, kann wie folgt eine Aktualisierung erzwungen werden.
+Sollte ein veralteter Stand über den latest Tag bezogen werden, kann wie folgt eine Aktualisierung erzwungen werden:
 ```sh
 docker-compose pull
 docker-compose up --force-recreate --build -d
@@ -278,57 +230,19 @@ docker-compose up --force-recreate --build -d
 
 Aufgrund der Abhängigkeit zur MySQL Datenbank wird der Verbindungsaufbau zur Datenbank scheitern. Die Radar-App kann aber wie folgt isoliert bezogen und ausgeführt werden.
 
-1. Beziehe das Docker image von der GitHub Container registry. 
+1. Beziehe das Docker Image von der GitHub Container registry:
    ```sh
    docker pull ghcr.io/go-hslu/weblab_project:latest
    ```
-2. Erstelle einen Docker Container aus dem Image und führe diesen aus.
+2. Erstelle einen Docker Container aus dem Image und führe diesen aus:
    ```sh
    docker run -p 8080:8080 -e SERVER_PORT=8080 ghcr.io/go-hslu/weblab_project:latest
    ```
 
 ## 6 Querschnittliche Konzepte
-### 6.1 DTO & Entity
+### 6.1 OR-Mapper / DTO & Entity
 
 Intern im Backend werden Entities für den OR-Mapper definiert. Gegen aussen sollen aber nicht alle Attribute sichtbar sein, weshalb DTOs für die Nutzung gegen aussen definiert sind. Die Umwandlung von einem DTO zu Entity und umgekehrt findet via Mapper statt.
-
-<!--
-Dieser Abschnitt beschreibt übergreifende, prinzipielle Regelungen und
-Lösungsansätze, die an mehreren Stellen (=*querschnittlich*) relevant
-sind.
-
-Solche Konzepte betreffen oft mehrere Bausteine. Dazu können vielerlei
-Themen gehören, beispielsweise:
--   Modelle, insbesondere fachliche Modelle
--   Architektur- oder Entwurfsmuster
--   Regeln für den konkreten Einsatz von Technologien
--   prinzipielle --- meist technische --- Festlegungen übergreifender
-    Art
--   Implementierungsregeln
-
-Manche dieser Themen lassen sich nur schwer als Baustein in der
-Architektur unterbringen (z.B. das Thema „Sicherheit").
-
-Kann vielfältig sein:
--   Konzeptpapiere mit beliebiger Gliederung,
--   übergreifende Modelle/Szenarien mit Notationen, die Sie auch in den
-    Architektursichten nutzen,
--   beispielhafte Implementierung speziell für technische Konzepte,
--   Verweise auf „übliche" Nutzung von Standard-Frameworks
-    (beispielsweise die Nutzung von Hibernate als Object/Relational
-    Mapper).
-
-Eine mögliche (nicht aber notwendige!) Untergliederung dieses
-Abschnittes könnte wie folgt aussehen (wobei die Zuordnung von Themen zu
-den Gruppen nicht immer eindeutig ist):
--   Fachliche Konzepte
--   User Experience (UX)
--   Sicherheitskonzepte (Safety und Security)
--   Architektur- und Entwurfsmuster
--   Unter-der-Haube
--   Entwicklungskonzepte
--   Betriebskonzepte
--->
 
 
 ## 7 Architekturentscheidungen
@@ -348,43 +262,36 @@ Im Backend wird eine Anfrage prinzipiell via Route (z.B. GET Request für /techs
 
 ![Struktur des Backends](res/BackendStructure.png)
 
-<!--
-Wichtige, teure, große oder riskante Architektur- oder
-Entwurfsentscheidungen inklusive der jeweiligen Begründungen. Mit
-\"Entscheidungen\" meinen wir hier die Auswahl einer von mehreren
-Alternativen unter vorgegebenen Kriterien.
-
-Wägen Sie ab, inwiefern Sie Entscheidungen hier zentral beschreiben,
-oder wo eine lokale Beschreibung (z.B. in der Whitebox-Sicht von
-Bausteinen) sinnvoller ist. Vermeiden Sie Redundanz. Verweisen Sie evtl.
-auf Abschnitt 4, wo schon grundlegende strategische Entscheidungen
-beschrieben wurden.
-
-Verschiedene Möglichkeiten:
--   ADR ([Documenting Architecture
-    Decisions](https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions))
-    für jede wichtige Entscheidung
--   Liste oder Tabelle, nach Wichtigkeit und Tragweite der
-    Entscheidungen geordnet
--   ausführlicher in Form einzelner Unterkapitel je Entscheidung
--->
-
 
 ## 8 Qualitätsanforderungen
 
-Die Qualitätsanforderungen wurden im Abschnitt ```1.2 Qualitätsziele``` definiert.
+Die Qualitätsanforderungen wurden im Abschnitt `1.2 Qualitätsziele``` definiert.
 
 
 ## 9 Risiken und technische Schulden
+### 9.1 offene TODOs
+| Titel                    | Beschreibung                                                                                                                                                                                                                                                                                                  | Art     | Geschätzter Aufwand |
+|--------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|---------------------|
+| Login / Logout reload    | Loggt sich ein User aus oder ein, wird die Komponente nicht neu geladen. Das "Sessioning" sollte generell verbessert werden. Dazu gehört beibehalten des Eingeloggt Status wenn Seite neugeladen wird, zwischenspeichern des JWTs in einem Cookie und Router back statt auf Home-Seite navigieren (temp fix). | Bug     | 2h                  |
+| Projekte Funktionalität  | Funktionalität für Projekte. Projekte verwalten und verwendete Technologien zuweisen. Der Technologie-Punkt auf dem Radar wird grösser, wenn die Technologie oft eingesetzt wird.                                                                                                                             | Feature | 5h                  |
+| MySQL caching_sha2       | Die aktuell verwendete Authentifizierung mit 'mysql_native_password' ist als *deprecated* markiert. Neu soll 'caching_sha2_password' verwendet werden.                                                                                                                                                        | Fix     | ~~1h~~              |
+| Docker Compose condition | Das Backend ist Abhängig von der Datenbank. Aktuell wird über einen temporären Fix ein Ping ausgeführt, welcher prüft, ob auf die Datenbank verbunden werden kann. Alternative (z.B. 'service_completed_successfully') funktioniert nicht.                                                                    | Fix     | 1h                  |
+| Docker Compose Variablen | Die Umgebungvariabeln / Konfiguration kann über Placeholder gesetzt werden. Diese Variablen werden dann aus z.B. dem Repository ausgelesen und gesetzt. Wichtig bei komplettem Deployment des Containers.                                                                                                     | Fix     | 1h                  |
+| Observable $ Notation    | Bei Observables den $-Zeichen Postfix ergänzen.                                                                                                                                                                                                                                                               | Improve | 30min               |
 
-<!--
-Eine nach Prioritäten geordnete Liste der erkannten Architekturrisiken
-und/oder technischen Schulden.
--->
 
+## 10 Reflexion
 
-## 10 Fazit & Reflexion
-<!-- TODO -->
+Im Rahmen des Moduls WEBLAB konnte ich mich intensiv mit Web-Technologien auseinandersetzen. In diesem Projekt vertiefte ich die in der Vorlesung angesprochenen Technologien und setzte mich mit anderen Themen auseinander, welche ich als spannend und nützlich empfand. Mir kam es auch so vor, als wäre diese individuelle Auseinandersetzung mit Web-Technologien ein gewolltes Ziel dieses Moduls und schätzte diese Freiheit sehr. Für eine Abgabe ein komplettes Front- und Backend umzusetzen, empfand ich als sehr motivierend. Der geforderte Aufwand von 60 Stunden ist viel, empfand ich aber als persönlich realistisch, wenn gar ein wenig knapp für die Umsetzung aller Anforderungen. 
+
+Ich bin mit dem Endergebnis sehr zufrieden. Die User Stories konnte ich grösstenteils Umsetzen, behielt es mir jedoch vor, nicht alle Details beispielsweise mit der Historisierung umzusetzen. Die Zeit nutzte ich dafür, um den Radar auch visuell darzustellen, ein schönes Backend mit OR-Mapper zu implementieren oder den Build- und Deployment Prozess mit GitHub Actions vollständig zu automatisieren. Im Frontend setzte ich Angular mit Angular Material ein. Dies auch dadurch, dass ich in meiner Anstellung seit September auch mit Angular arbeiten würde. In der Zwischenzeit konnte ich bereits das Wissen aus diesem Modul anwenden und sie in meine Arbeit einbringen. Im Backend setzte ich eine Menge verschiedener Frameworks ein. Die Dokumentation empfinde ich als gut gelungen und die Vorlage arc42 für Architektur Dokumentationen als hilfreich.
+
+Aus "Administrativer"-Sicht war eine grosse Herausforderung, die 60 Stunden Aufwand für Implementation und Dokumentation nebst Schule und Arbeit unterzubringen. Ich musste sehr früh, sprich bereits während der Blockwoche beginnen. Schwierigkeiten hatte ich bei der Suche eines Problems in den teilweise mageren Dokumentationen. Konkret empfand ich Express.js, TypeORM und generell GitHub Actions überschaubar dokumentiert und dadurch schwer einzusteigen. Zuletzt ist das Projekt aus Zeitgründen und mangels Priorität an einigen Stellen noch nicht abgeschlossen. Ich habe meine offenen TODOs mit einem Aufwand von knapp 10 Stunden geschätzt, wobei ich gerne noch die Zeit für die Umsetzung der Projekt Funktionalität gehabt hätte.
+
+Ich würde künftig hinsichtlich der Auswahl der Technologien einen richtigen Entscheid machen. Gerade im Backend habe ich nahezu zufällig Technologien ausgewählt. Beispielsweise würde ich heute NestJS statt Express.js für die API verwenden. Die Schnittstelle kann meiner Meinung nach viel raffinierter und auch schöner mittels Decorators definiert werden. Dies hätte ich bei einer richtigen Technologierecherche und einem Entscheid vermutlich herausgefunden. Mit TypeORM als OR-Mapper bin ich zufrieden, würde jedoch gerne einen Vergleich zu Prisma haben. In einem nächsten Web-Projekt würde ich gerne Svelte kennenlernen, bin mit Angular jedoch äusserst zufrieden. 
+
+Angular ist ein mächtiges, vielseitiges und dadurch etabliertes SPA-Framework. Ich verstehe nun, wieso Angular in der Schweizer Webentwicklung so weit verbreitet ist.
+
 
 
 ## 11 Glossar
@@ -404,7 +311,7 @@ und/oder technischen Schulden.
 | **Angular**                   | Angular ist ein auf JavaScript basierendes Frontend-Web-Framework. Es wurde von Google entwickelt und ist aktuell in der Version 17. Es verfolgt den "Single Page Application"-Ansatz, wobei zuerst ein Grundgerüst der Webseite geladen wird und später nur noch Daten nachgeladen werden sollen. |
 | **Bcrypt**                    | Bcrypt ist eine Hashfunktion für Passwörter. Gleichnamig heisst die passende npm Library.                                                                                                                                                                                                          |
 | **Express**                   | Express.js ist ein JavaScript Backend-Framework für Node.js. Es erleichtert das Erstellen von (RESTful) APIs und WebServern.                                                                                                                                                                       |
-| **GitHub Container Registry** | Über die GitHub Container Registry können (Docker) Container als Package verteilt werden. Diese sind über die URL `https://ghcr.io` erreichbar.                                                                                                                                                       |
+| **GitHub Container Registry** | Über die GitHub Container Registry können (Docker) Container als Package verteilt werden. Diese sind über die URL `https://ghcr.io` erreichbar.                                                                                                                                                    |
 | **GitHub Pages**              | GitHub Pages ermöglicht das Hosten von statischen Resourcen (HTML, CSS & JavaScript) direkt auf dem Repository.                                                                                                                                                                                    |
 | **JSON Web Token**            | Bei JWTs handelt es sich um Zugriff(Access)-Tokens. Über diese Credentials wird der Zugriff auf Resourcen gewährt (Authorization). Eine Besonderheit ist, dass keine Session auf dem Server eröffnet werden muss und stattdessen das übermittelte Token validiert wird.                            |
 | **MySQL**                     | MySQL ist ein relationales DBMS (Database Management System).                                                                                                                                                                                                                                      |
@@ -418,7 +325,7 @@ und/oder technischen Schulden.
 | Datum              | Aufwand | Titel                                                       | Beschreibung                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 |--------------------|---------|-------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Mo, 05.02.2024** | 2h      | Projektidee, Vorlage, GitHub Repository                     | Ich werde den Projektvorschlag des TechRadars verfolgen. Ich erstellte mir zunächst ein GitHub Repository und legte eine grobe Ordnerstruktur fest. Dokumentieren werde ich nach arc42, wofür ich die Vorlage (DE, 8.2) im Markdown-Format verwende und das README.md File ersetzte. Ich probierte zudem GitHub Actions aus, um den Build einer Angular Applikation zu automatisieren und die Webseite zu GitHub Pages zu deployen. Das Kontext Diagramm soll grob das System aufzeigen und das ER-Diagramm zeigt grob die geplanten Entitäten auf.                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| **Di, 06.02.2024** | 4h      | Node, Docker, GitHub Actions                                | Festgelegt habe ich für das Frontend mit Angular und im Backend mit Node, Express (Web Server), TypeORM (OR-Mapper) und MySQL zu arbeiten. Sowohl im Frontend, als auch im Backend verwende ich TypeScript. Ich erstellte ein Dockerfile, um die gesamte Applikation als Docker Container einfach deployen zu können. Mit GitHub Actions werden sowohl die Angular Applikation gebuildet und in die GitHub Pages deployt als auch ein Docker image mit Front- und Backend erstellt und in die der GitHub Container registry als Package verteilt.                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| **Di, 06.02.2024** | 4h      | Node, Docker, GitHub Actions                                | Festgelegt habe ich für das Frontend mit Angular und im Backend mit Node, Express (Web Server), TypeORM (OR-Mapper) und MySQL zu arbeiten. Sowohl im Frontend, als auch im Backend verwende ich TypeScript. Ich erstellte ein Dockerfile, um die gesamte Applikation als Docker Container einfach deployen zu können. Mit GitHub Actions werden sowohl die Angular Applikation gebuildet und in die GitHub Pages deployt als auch ein Docker Image mit Front- und Backend erstellt und in die der GitHub Container registry als Package verteilt.                                                                                                                                                                                                                                                                                                                                                                                                                              |
 | **Mi, 07.02.2024** | 7h      | Dokumentation pdf, Projekt Check-In, Angular & API          | In einer GitHub Action wird aus der Dokumentation (README im Markdown Format) ein PDF generiert und als Artefakt gespeichert. Für die heutige Zwischenabgabe des Projekt-Check ins habe ich die geforderten Inhalte (User Stories, Tech-Stack) ergänzt. In Angular erstellte ich die Struktur, fügte Routing hinzu und definierte Services. Diese greifen bereits auf das Backend zu, welches vorläufig statisches JSON zurückgibt.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | **Do, 08.02.2024** | 6h      | Tech Table, TypeOrm Entities, Design                        | Ich installierte TypeOrm auf dem Backend und setzte es mit dem MySQL Driver auf. Für Techs, Projects, Users und Logs erstellte ich Entities gemäss dem ER Diagramm. Im Frontend erstellte ich mithilfe der Angular Material UI Komponenten eine Navigation (SideNav) und Footer. Für die Technologien erstellte ich ein Feature Modul. Die Techs werden über den TechService von der API mit einem TypeORM Repository von der DB geladen und als JSON übergeben. Dargestellt werden diese in einer Tabelle und ein Eintrag kann über die Detailansicht angesehen werden.                                                                                                                                                                                                                                                                                                                                                                                                       |
 | **Fr, 09.02.2024** | 9h      | Authentifikation mit JWT, SeedData                          | Die Authentifizierung erfolgt nun über JWTs. Loggt sich ein User ein, werden auf dem Backend die Credentials überprüft. Es wird ein JWT Token zurückgegeben. Über einen Interceptor wird bei jedem Request dieses Token im Header mitgegeben. Wird eine Seite aufgerufen, welche eine besonderere Autorisierung benötigt (Rolle) wie für das Anpassen von Technologien, so wird das Token ausgelesen und die Rolle überprüft. Die Entities sind fertig und werden initial mit SeedData befüllt.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
@@ -426,8 +333,8 @@ und/oder technischen Schulden.
 | **So, 11.02.2024** | 6h      | Technologien Erstellen, Publizieren & Update, SCSS          | Die Publizieren und Editieren Funktionalitäten wurde sowohl im Backend als auch Frontend implementiert. Bei Logins, Modifikationen (Create, Update/Publish) oder Löschen wird zudem ein Log entry erstellt und gespeichert. Ein "URL-Freundlicher" Name in TrainCase (train-case) Syntaxt wird generiert. Ich migrierte mit einem Tool von CSS zu SCSS und erstellte ein einfaches Theme mit grünem Farbschema.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | **Mo, 12.02.2024** | 3h      | Radar visualisierung mit Canvas                             | Der Technologie Radar wird nun als Halbkreis visualisiert. Lediglich der Hintergrund ist statisch, die Sektoren (Abhängigkeit von Anzahl Kategorien) und States könnten dynamisch geändert, oder deren Farblabel gesetzt werden. Umgesetzt habe ich dies in einem HTML5 Canvas.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | **Mi, 21.02.2024** | 3h      | Diagramme & Styling Verbesserungen                          | Fertigstellung des Entitäts-, Architektur- und Kontextdiagramms. Aufbesserung der bisherigen Dokumentation (Formulierung, Gliederung). Radar Technologie Punkte Ränder, um Visualisierung zu verbessern.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| **Fr, 23.02.2024** | 4h      | Docker Container & Arbeit an Doku                           | Der Container ist nun einsatzbereit. Die Applikation wird als Image, welches automatisch deployt wird, bezogen und kommuniziert mit einem MySQL Image. Wie der Container gestartet wird ist dokumentiert und veraltete Teile aktualisiert.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| **Total:**         | 54h     |                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| **Fr, 23.02.2024** | 2h      | Docker Container & Arbeit an Doku                           | Der Container ist nun einsatzbereit. Die Applikation wird als Image, welches automatisch deployt wird, bezogen und kommuniziert mit einem MySQL Image. Wie der Container gestartet wird ist dokumentiert und veraltete Teile aktualisiert. Offene Todos und technische Schulden habe ich geschätzt und dokumentiert. Die Reflexion fertiggestellt und Rechschreibfehler korrigiert.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| **Total:**         | 56h     |                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 
 
 **About arc42** Template Version 8.2, Januar 2023. 
