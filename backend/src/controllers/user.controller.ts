@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 import { Request, Response } from "express";
 
-import { env_secret } from "../config/env.constant";
+import { ENV_SECRET } from "../config/env.constant";
 
 import { JwtUserDto } from "../dto/user/JwtUser.dto";
 import { LogTriggerAction } from "../dto/log/LogTriggerAction.enum";
@@ -30,7 +30,7 @@ export class UserController {
         await LogService.log(LogTriggerAction.LOGIN, `Login from '${user.email}' (${user.role}).`, user);
 
         const payload: JwtUserDto = { email: user.email, role: user.role };
-        const token = jwt.sign(payload, env_secret, {
+        const token = jwt.sign(payload, ENV_SECRET, {
             subject: user.id,
             expiresIn: "1h"
         });

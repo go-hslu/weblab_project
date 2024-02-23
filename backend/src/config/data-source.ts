@@ -6,13 +6,15 @@ import { ProjectEntity } from "../entities/Project.entity";
 import { UserEntity } from "../entities/User.entity";
 import { LogEntity } from "../entities/Log.entity";
 
+import { ENV_DB_HOST, ENV_DB_NAME, ENV_DB_PASSWORD, ENV_DB_PORT, ENV_DB_USER } from "./env.constant";
+
 export const AppDataSource = new DataSource({
     type: "mysql",
-    host: "localhost",
-    port: 3306,
-    username: "radar_admin",
-    password: "pw1234",
-    database: "radar",
+    host: ENV_DB_HOST,
+    port: ENV_DB_PORT,
+    database: ENV_DB_NAME,
+    username: ENV_DB_USER,
+    password: ENV_DB_PASSWORD,
     synchronize: true,
     logging: false,
     entities: [

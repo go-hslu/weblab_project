@@ -3,18 +3,8 @@
         <h2>Technologien Übersicht</h2>
     </mat-card-header>
 
-    <mat-card-content>
-
-        <button mat-icon-button routerLink="add"
-                matTooltip="Neue Technologie erfassen">
-            <mat-icon>add</mat-icon>
-        </button>
-
-        <button mat-icon-button (click)="loadTechs()"
-                matTooltip="Aktualisiere Daten">
-            <mat-icon>refresh</mat-icon>
-        </button>
-
+    <mat-card-content>        
+        
         <mat-form-field class="search">
             <mat-label>Suche...</mat-label>
             <input matInput (keyup)="applyFilter($event)" placeholder="Angular" [(ngModel)]="searchTerm"
@@ -29,6 +19,18 @@
             </button>
             }
         </mat-form-field>
+
+        <button mat-icon-button (click)="loadTechs()"
+                matTooltip="Aktualisiere Daten">
+            <mat-icon>refresh</mat-icon>
+        </button>
+
+        @if (hasTechRole) {
+            <button mat-icon-button routerLink="add" ng
+                    matTooltip="Neue Technologie erfassen">
+                <mat-icon>add</mat-icon>
+            </button>
+        }
 
         <table mat-table [dataSource]="dataSource" matSort multiTemplateDataRows class="mat-elevation-z8">
 

@@ -8,6 +8,7 @@ import { ProjectState } from "../dto/project/ProjectState.enum";
 import { UserRole } from "../dto/user/UserRole.enum";
 import { LogEntity } from "../entities/Log.entity";
 import { LogTriggerAction } from "../dto/log/LogTriggerAction.enum";
+import { AuthService } from "../services/auth.service";
 
 export async function seedDatabase(dataSource: DataSource) {
 
@@ -27,17 +28,17 @@ export async function seedDatabase(dataSource: DataSource) {
         const admin = new UserEntity();
         admin.email = "admin@hslu.ch";
         admin.role = UserRole.ADMIN;
-        admin.passwordHash = "$2b$05$4kveCkvwmHpQ3IdTrkTfYeCmXb/M3mskHcVOoVF5LjpA836fbkvCi";
+        admin.passwordHash = await AuthService.generatePasswordHash("1234");
 
         const cto = new UserEntity();
         cto.email = "cto@hslu.ch";
         cto.role = UserRole.CTO;
-        cto.passwordHash = "$2b$05$Q1GNGcVKnV4e3matau8iteJc76HjpykuxylXNKA3RfXJOJF/Q1Pra";
+        cto.passwordHash = await AuthService.generatePasswordHash("1234");
 
         const user = new UserEntity();
         user.email = "user@hslu.ch";
         user.role = UserRole.USER;
-        user.passwordHash = "$2b$05$awOf5crrbUsF9gNNu30NDORfFN87C0CAFOrw3cgcPE7f77zOl4pR2";
+        user.passwordHash = await AuthService.generatePasswordHash("1234");
 
         await userRepository.save([admin, user, cto]);
 
@@ -86,7 +87,7 @@ export async function seedDatabase(dataSource: DataSource) {
         chatGpt.name = "ChatGPT";
         chatGpt.nameIdentifier = "chatgpt";
         chatGpt.category = TechCategory.TOOL;
-        chatGpt.state = TechState.TRIAL;
+        chatGpt.state = TechState.HOLD;
         chatGpt.description = "ChatGPT (von englisch to chat „plaudern“; Generative Pre-trained Transformer) ist ein Chatbot, der künstliche Intelligenz einsetzt, um mit Nutzern über textbasierte Nachrichten und Bilder zu kommunizieren. Entwickelt wurde der Chatbot von OpenAI.";
         chatGpt.createdBy = admin;
         chatGpt.updatedBy = admin;
@@ -95,7 +96,7 @@ export async function seedDatabase(dataSource: DataSource) {
         azure.name = "Microsoft Azure";
         azure.nameIdentifier = "microsoft-azure";
         azure.category = TechCategory.PLATFORM;
-        azure.state = TechState.ADOPT;
+        azure.state = TechState.HOLD;
         azure.description = "Microsoft Azure ist eine Cloud-Computing-Plattform mit Diensten wie SQL Azure oder AppFabric. Die Nutzer von Microsoft Azure setzen Infrastructure as a Service (IaaS), Platform as a Service (PaaS) und Software as a Service (SaaS) ein.";
         azure.createdBy = admin;
         azure.updatedBy = admin;

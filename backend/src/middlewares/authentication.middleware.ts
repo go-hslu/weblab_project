@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import jwt, { JsonWebTokenError, JwtPayload, NotBeforeError, TokenExpiredError } from "jsonwebtoken";
-import { env_secret } from "../config/env.constant";
+import { ENV_SECRET } from "../config/env.constant";
 
 type VerifyError = JsonWebTokenError | NotBeforeError | TokenExpiredError | null;
 type JwtDecodedPayload = JwtPayload | string | undefined;
@@ -19,7 +19,7 @@ export async function authenticate(req: Request, res: Response, next: NextFuncti
 
     const token = authHeader.split(" ")[1];
 
-    jwt.verify(token, env_secret, (error: VerifyError, decodedPayload: JwtDecodedPayload) => {
+    jwt.verify(token, ENV_SECRET, (error: VerifyError, decodedPayload: JwtDecodedPayload) => {
 
         if (error) {
             return res.status(401).send("Unauthorized: Invalid authorization token!");
@@ -48,7 +48,7 @@ export async function optionalAuthenticate(req: Request, res: Response, next: Ne
 
     const token = authHeader.split(" ")[1];
 
-    jwt.verify(token, env_secret, (error: VerifyError, decodedPayload: JwtDecodedPayload) => {
+    jwt.verify(token, ENV_SECRET, (error: VerifyError, decodedPayload: JwtDecodedPayload) => {
 
         if (error) {
             return next();
