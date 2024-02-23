@@ -68,7 +68,7 @@ export async function seedDatabase(dataSource: DataSource) {
         svelte.name = "Svelte";
         svelte.nameIdentifier = "svelte";
         svelte.category = TechCategory.FRAMEWORK;
-        svelte.state = TechState.TRIAL;
+        svelte.state = TechState.ASSESS;
         svelte.description = "Svelte ist eine freie JavaScript-Softwarebibliothek, die ein Grundgerüst für die Ausgabe von User-Interface-Komponenten von Webseiten zur Verfügung stellt (Webframework). Mit Svelte lassen sich reaktive Single-Page-Webanwendungen erstellen.";
         svelte.publication = new Date();
         svelte.createdBy = admin;
@@ -105,7 +105,7 @@ export async function seedDatabase(dataSource: DataSource) {
         devOps.name = "DevOps";
         devOps.nameIdentifier = "devops";
         devOps.category = TechCategory.TECHNIQUE;
-        devOps.state = TechState.ADOPT;
+        devOps.state = TechState.TRIAL;
         devOps.description = "DevOps ist eine Sammlung unterschiedlicher technischer Methoden und eine Kultur zur Zusammenarbeit zwischen Softwareentwicklung und IT-Betrieb. Mit DevOps sollen die Softwarequalität, die Geschwindigkeit der Entwicklung und der Auslieferung, sowie das Miteinander der beteiligten Teams verbessert werden.";
         devOps.createdBy = admin;
         devOps.updatedBy = admin;
@@ -136,12 +136,10 @@ export async function seedDatabase(dataSource: DataSource) {
         await logRepository.save([log1, log2]);
 
         [angular, typeScript, svelte, copilot, chatGpt, azure, devOps].forEach(tech => {
-
             const log = new LogEntity();
             log.message = `Tech '${tech.name}' created!`;
             log.triggerAction = LogTriggerAction.ALTER;
             log.triggeredBy = admin;
-
         });
     }
 }

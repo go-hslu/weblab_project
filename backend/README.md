@@ -8,7 +8,7 @@ Backend for WEBLAB Radar app using Express and TypeORM written with TypeScript.
 2. Führe folgende Queries aus, um die Radar DB und einen User mit Zugriffsrechten zu erstellen. 
     ```sh
     CREATE DATABASE IF NOT EXISTS radar;
-    CREATE USER IF NOT EXISTS 'radar_admin'@'localhost' IDENTIFIED WITH mysql_native_password BY 'pw1234';
+    CREATE USER IF NOT EXISTS 'radar_admin'@'localhost' IDENTIFIED WITH caching_sha2_password BY 'pw1234';
     GRANT ALL PRIVILEGES ON radar.* TO 'radar_admin'@'localhost';
     FLUSH PRIVILEGES;
     ```

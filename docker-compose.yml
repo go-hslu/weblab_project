@@ -3,7 +3,6 @@ services:
   mysql:
     image: mysql:latest
     container_name: 'radar-db'
-    command: mysqld --default-authentication-plugin=mysql_native_password # TODO: Deprecated temp fix -> switch to caching_sha2_password
     restart: always
     environment:
       MYSQL_DATABASE: 'radar'
@@ -18,7 +17,7 @@ services:
       retries: 3
 
   app:
-    image: ghcr.io/go-hslu/weblab_project:latest # build: .
+    image: ghcr.io/go-hslu/weblab_project:latest # OR local -> build: .
     container_name: 'radar-app'
     environment:
       JWT_SECRET: 'S€crEt_PS5sst!'
