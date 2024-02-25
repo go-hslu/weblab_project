@@ -6,7 +6,7 @@ on:
       - main
     paths:
       - 'README.md'
-      - 'res/**'
+      - 'docs/images/**'
   workflow_dispatch:
 
 jobs:
@@ -22,7 +22,7 @@ jobs:
       with:
         input_path: README.md
         output_dir: output
-        image_import: res
+        image_import: docs/images
         build_html: false
         table_of_contents: true
     
