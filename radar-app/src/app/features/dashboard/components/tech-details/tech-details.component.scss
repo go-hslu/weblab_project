@@ -9,3 +9,7 @@ mat-form-field + mat-form-field {
 mat-card-actions button {
     margin-left: 8px;
 }
+
+mat-card {
+    border-radius: 0;
+}
