@@ -24,7 +24,7 @@ jobs:
         output_dir: output
         image_import: res
         build_html: false
-        table_of_contents: false
+        table_of_contents: true
     
     - name: Deploy PDF
       uses: actions/upload-artifact@v4

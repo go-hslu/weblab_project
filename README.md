@@ -7,7 +7,7 @@
 <br/>
 <div align="center">
   <a href="https://github.com/go-hslu/weblab_project">
-    <img src="res/logo.png" alt="Logo" width="80" height="80">
+    <img src="docs/images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">WEBLAB Radar</h3>
@@ -29,7 +29,7 @@ Im Modul WEBLAB (Web Programming Lab) an der Hochschule soll ein Web-Projekt mit
 
 Es wird die vorgeschlagene Projektidee eines [Technologie-Radars](https://www.thoughtworks.com/radar) verfolgt. Dabei ist das Ziel, dass innerhalb eines Unternehmens eine Übersicht auf die in Projekten verwendeten Technologien und Tools verschafft wird. In einer Visualisierung, ähnlich zu einem Radar, werden Technologien und Tools als Punkte dargestellt. Über die Quadranten beziehungsweise Sektoren werden diese kategorisiert (Frameworks, Tools, Languages, Platforms, Techniques) und über die nähe zur Mitte der Einsatz-Status (Hold, Assess, Trial, Adopt) angezeigt.
 
-![Screenshot des Radars](res/ScreenshotRadar.png)
+![Screenshot des Radars](docs/images/ScreenshotRadar.png)
 
 ### 1.1 Aufgabenstellung
 
@@ -101,7 +101,7 @@ Legende 2: Umsetzungsstatus
 
 In einem Frontend, dem Radar (Radar-App oder Radar Applikation), werden Technologie und Projekt Daten erfasst. Diese werden als JSON an eine REST API übermittelt und die entsprechende CRUD-Operation durchgeführt (Erstellen, Abfragen, Modifizieren oder Löschen).
 
-![Kontext Diagramm](res/ContextDiagram.png)
+![Kontext Diagramm](docs/images/ContextDiagram.png)
 
 
 ## 3 Lösungsstrategie
@@ -157,7 +157,7 @@ GitHub Actions möchte ich persönlich kennenlernen, da ich bis jetzt keine Erfa
 
 Die Radar-App bezeichnet das Frontend, welches mit dem Backend über eine REST API kommuniziert. Das Datenaustauschformat ist JSON. 
 
-![Architektur Diagramm](res/ArchitectureDiagram.png)
+![Architektur Diagramm](docs/images/ArchitectureDiagram.png)
 
 ### 4.1 Radar-App Frontend
 
@@ -171,7 +171,7 @@ Das Backend fungiert als API und Schnittstelle zur Datenbank.
 
 Die Entitäten für Technologien, Projekte und User sind wie folgt implementiert:
 
-![Entitäts Diagramm](res/EntityDiagram.png)
+![Entitäts Diagramm](docs/images/EntityDiagram.png)
 
 *Hinweis:* Dieses Diagramm ist eine Mischform aus ER und Klassendiagramm, da dies aufgrund der Implementierung sinnvoller scheint als eine strikte Einhaltung der UML-Notation.
 
@@ -186,7 +186,11 @@ Das Front- und Backend können in einer lokalen Entwicklungsumgebung gemäss Bes
 
 ### 5.2 PROD: Docker Container
 
-Das produktive System wird als Docker Container ausgeliefert. Dafür wird automatisiert via GitHub Actions ein Docker Image der Software gemäss `Dockerfile` in die GitHub Container Registry deployt. Nachfolgend wird über Docker Compose das Image aus der GitHub Container Registry zusammen mit einem vorgefertigten MySQL Image bezogen und das Zusammenspiel der Applikationen (radar-app und radar-db) im Container orchestriert. Die Konfiguration ist in der `docker-compose.yml` Datei zu finden.
+Das produktive System wird als Docker Container ausgeliefert. 
+
+![Docker Container der Radar-App](docs/images/DockerContainers.png)
+
+Dafür wird automatisiert via GitHub Actions ein Docker Image der Software gemäss `Dockerfile` in die GitHub Container Registry deployt. Nachfolgend wird über Docker Compose das Image aus der GitHub Container Registry zusammen mit einem vorgefertigten MySQL Image bezogen und das Zusammenspiel der Applikationen (radar-app und radar-db) im Container orchestriert. Die Konfiguration ist in der `docker-compose.yml` Datei zu finden.
 
 1. Installiere und starte [Docker](https://www.docker.com/get-started/).
 2. Starte den Container:
@@ -253,14 +257,14 @@ Das Frontend wurde möglichst nach Angular Best-Practice strukturiert. Dazu geh�
 
 Ein Feature kann aus Komponenten (*components*) und Seiten (*pages*) bestehen. Es kann eigene Typen enthalten und ist für das Routing innerhalb dieses Features zuständig.
 
-![Struktur des Frontends](res/RadarAppStructure.png)
+![Struktur des Frontends](docs/images/RadarAppStructure.png)
 
 ### 7.2 Backend
 #### 7.2.1 Strukturierung
 
 Im Backend wird eine Anfrage prinzipiell via Route (z.B. GET Request /techs) empfangen. Via Middlewares wird die Authentifikation und Autorisierung geprüft. Die Logik befindet sich in einem Controller, welcher via Services auf die Datenbank zugreift. Dieser Zugriff wird über Repositories der jeweiligen Entities gesteuert.
 
-![Struktur des Backends](res/BackendStructure.png)
+![Struktur des Backends](docs/images/BackendStructure.png)
 
 
 ## 8 Qualitätsanforderungen
