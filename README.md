@@ -1,4 +1,4 @@
-<a name="readme-top"></a>
+<a name="top"></a>
 
 [![CI/CD (GitHub Container Registry)](https://github.com/go-hslu/weblab_project/actions/workflows/docker.yml/badge.svg)](https://github.com/go-hslu/weblab_project/actions/workflows/docker.yml)
 [![CI/CD (GitHub Pages)](https://github.com/go-hslu/weblab_project/actions/workflows/gh-pages.yml/badge.svg)](https://github.com/go-hslu/weblab_project/actions/workflows/gh-pages.yml)
@@ -19,7 +19,7 @@
     ·
     <a href="https://go-hslu.github.io/weblab_project/">GitHub Pages</a>
     ·
-    <a href="https://github.com/orgs/go-hslu/packages">Docker image</a>
+    <a href="https://github.com/orgs/go-hslu/packages">Docker Image</a>
   </p>
 </div>
 
@@ -27,7 +27,7 @@
 
 Im Modul WEBLAB (Web Programming Lab) an der Hochschule soll ein Web-Projekt mit den behandelten Technologien erarbeitet werden. Die Projektartefakte sind auf dem [GitHub Repository](https://github.com/go-hslu/weblab_project) einsehbar.
 
-Es wird die vorgeschlagene Projektidee eines [Technologie-Radars](https://www.thoughtworks.com/radar) verfolgt. Dabei ist das Ziel, dass innerhalb eines Unternehmens eine Übersicht auf die in Projekten verwendeten Technologien und Tools verschafft wird. In einer Visualisierung, ähnlich zu einem Radar, werden Technologien und Tools als Punkte dargestellt. Über die Quadranten beziehungsweise Sektoren werden diese kategorisiert (Frameworks, Tools, Languages, Platforms, Techniques) und über die nähe zur Mitte der Einsatz-Status (Hold, Assess, Trial, Adopt) angezeigt.
+Es wird die vorgeschlagene Projektidee eines [Technologie-Radars](https://www.thoughtworks.com/radar) verfolgt. Dabei ist das Ziel, dass innerhalb eines Unternehmens eine Übersicht auf die in Projekten verwendeten Technologien und Tools verschafft wird. In einer Visualisierung, ähnlich zu einem Radar, werden Technologien und Tools als Punkte dargestellt. Über die Quadranten beziehungsweise Sektoren werden diese kategorisiert (Frameworks, Tools, Languages, Platforms, Techniques) und über die nähe zur Mitte der Anwendungs-Status (Hold, Assess, Trial, Adopt) definiert.
 
 ![Screenshot des Radars](docs/images/ScreenshotRadar.png)
 
@@ -97,7 +97,7 @@ Legende 2: Umsetzungsstatus
 - 🛠️ In progress
 - ✅ Done
 
-### 2.2 Technischer Kontext
+### 2.3 Technischer Kontext
 
 In einem Frontend, dem Radar (Radar-App oder Radar Applikation), werden Technologie und Projekt Daten erfasst. Diese werden als JSON an eine REST API übermittelt und die entsprechende CRUD-Operation durchgeführt (Erstellen, Abfragen, Modifizieren oder Löschen).
 
@@ -107,14 +107,14 @@ In einem Frontend, dem Radar (Radar-App oder Radar Applikation), werden Technolo
 ## 3 Lösungsstrategie
 ### 3.1 Technologieentscheidungen
 
-![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badgeundlogo=typescriptundlogoColor=white)
-![Angular](https://img.shields.io/badge/angular-%23DD0031.svg?style=for-the-badgeundlogo=angularundlogoColor=white)
-![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badgeundlogo=node.jsundlogoColor=white)
-![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badgeundlogo=expressundlogoColor=%2361DAFB)
-![MySQL](https://img.shields.io/badge/mysql-%2300f.svg?style=for-the-badgeundlogo=mysqlundlogoColor=white)
-![JWT](https://img.shields.io/badge/JWT-black?style=for-the-badgeundlogo=JSON%20web%20tokens)
-![Github Pages](https://img.shields.io/badge/github%20pages-121013?style=for-the-badgeundlogo=githubundlogoColor=white)
-![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badgeundlogo=dockerundlogoColor=white)
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+![Angular](https://img.shields.io/badge/angular-%23DD0031.svg?style=for-the-badge&logo=angular&logoColor=white)
+![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
+![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
+![MySQL](https://img.shields.io/badge/mysql-%2300f.svg?style=for-the-badge&logo=mysql&logoColor=white)
+![JWT](https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=JSON%20web%20tokens)
+![Github Pages](https://img.shields.io/badge/github%20pages-121013?style=for-the-badge&logo=github&logoColor=white)
+![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
 
 #### 3.1.1 TypeScript
 
@@ -222,7 +222,7 @@ Beende den Container mit:
 docker-compose down
 ```
 
-#### 5.2.1 Docker Container force recreate
+#### 5.2.2 Docker Container force recreate
 
 Sollte ein veralteter Stand über den latest Tag bezogen werden, kann wie folgt eine Aktualisierung erzwungen werden:
 ```sh
@@ -230,7 +230,7 @@ docker-compose pull
 docker-compose up --force-recreate --build -d
 ```
 
-#### 5.2.2 Docker Image
+#### 5.2.3 Docker Image
 
 Aufgrund der Abhängigkeit zur MySQL Datenbank wird der Verbindungsaufbau zur Datenbank scheitern. Die Radar-App kann aber wie folgt isoliert bezogen und ausgeführt werden.
 
@@ -244,7 +244,7 @@ Aufgrund der Abhängigkeit zur MySQL Datenbank wird der Verbindungsaufbau zur Da
    ```
 
 ## 6 Querschnittliche Konzepte
-### 6.1 OR-Mapper / DTO und Entity
+### 6.1 OR-Mapper / DTOs und Entities
 
 Intern im Backend werden Entities für den OR-Mapper definiert. Gegen aussen sollen aber nicht alle Attribute sichtbar sein, weshalb DTOs für die Nutzung gegen aussen definiert sind. Die Umwandlung von einem DTO zu Entity und umgekehrt findet via Mapper statt.
 
@@ -274,14 +274,19 @@ Die Qualitätsanforderungen wurden im Abschnitt `1.2 Qualitätsziele` definiert.
 
 ## 9 Risiken und technische Schulden
 ### 9.1 Offene ToDo's
-| Titel                    | Beschreibung                                                                                                                                                                                                                                                                                                  | Art     | Geschätzter Aufwand |
-|--------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|---------------------|
-| Login / Logout reload    | Loggt sich ein User aus oder ein, wird die Komponente nicht neu geladen. Das "Sessioning" sollte generell verbessert werden. Dazu gehört das Beibehalten des Login Status wenn die Seite neugeladen wird, Zwischenspeichern des JWTs in einem Cookie und Router back statt auf die Home-Seite zu navigieren (temp fix). | Bug     | 2h                  |
-| Projekte Funktionalität  | Funktionalität für Projekte: Projekte verwalten und verwendete Technologien zuweisen. Der Technologie-Punkt auf dem Radar wird grösser, wenn die Technologie oft eingesetzt wird.                                                                                                                             | Feature | 5h                  |
-| MySQL caching_sha2       | Die aktuell verwendete Authentifizierung mit 'mysql_native_password' ist als *deprecated* markiert. Neu soll 'caching_sha2_password' verwendet werden.                                                                                                                                                        | Fix     | ~~1h~~              |
-| Docker Compose condition | Das Backend ist abhängig von der Datenbank. Aktuell wird über einen temporären Fix ein Ping ausgeführt, welcher prüft, ob auf die Datenbank verbunden werden kann. Alternative (z.B. 'service_completed_successfully') funktioniert nicht.                                                                    | Fix     | 1h                  |
-| Docker Compose Variablen | Die Umgebungvariabeln / Konfiguration kann über Placeholder gesetzt werden. Diese Variablen werden dann aus z.B. dem Repository ausgelesen und gesetzt. Wichtig bei komplettem Deployment des Containers.                                                                                                     | Fix     | 1h                  |
-| Observable $ Notation    | Bei Observables den $-Zeichen Postfix ergänzen.                                                                                                                                                                                                                                                               | Improve | 30min               |
+| Titel                    | Beschreibung                                                                                                                                                                                                                                                                                                            | Art       | Geschätzter Aufwand |
+|--------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------|---------------------|
+| Login / Logout reload    | Loggt sich ein User aus oder ein, wird die Komponente nicht neu geladen. Das "Sessioning" sollte generell verbessert werden. Dazu gehört das Beibehalten des Login Status wenn die Seite neugeladen wird, Zwischenspeichern des JWTs in einem Cookie und Router back statt auf die Home-Seite zu navigieren (temp fix). | Bug       | 2h                  |
+| Projekte Funktionalität  | Funktionalität für Projekte: Projekte verwalten und verwendete Technologien zuweisen. Der Technologie-Punkt auf dem Radar wird grösser, wenn die Technologie oft eingesetzt wird.                                                                                                                                       | Feature   | 5h                  |
+| ~~MySQL caching_sha2~~   | Die aktuell verwendete Authentifizierung mit 'mysql_native_password' ist als *deprecated* markiert. Neu soll 'caching_sha2_password' verwendet werden.                                                                                                                                                                  | Fix       | ~~1h~~              |
+| Docker Compose condition | Das Backend ist abhängig von der Datenbank. Aktuell wird über einen temporären Fix ein Ping ausgeführt, welcher prüft, ob auf die Datenbank verbunden werden kann. Alternative (z.B. 'service_completed_successfully') funktioniert nicht.                                                                              | Fix       | 1h                  |
+| Docker Compose Variablen | Die Umgebungvariabeln / Konfiguration kann über Placeholder gesetzt werden. Diese Variablen werden dann aus z.B. dem Repository ausgelesen und gesetzt. Wichtig bei komplettem Deployment des Containers.                                                                                                               | Fix       | 1h                  |
+| Observable $ Notation    | Bei Observables den $-Zeichen Postfix ergänzen.                                                                                                                                                                                                                                                                         | Improve   | 30min               |
+|                          |                                                                                                                                                                                                                                                                                                                         | **Total** | **9h 30min**        |
+
+### 9.2 Statistiken
+
+![Lines of code](https://img.shields.io/tokei/lines/github/go-hslu/weblab_project?style=for-the-badge&label=Lines+of+Code)
 
 
 ## 10 Reflexion
@@ -339,10 +344,11 @@ Angular ist ein mächtiges, vielseitiges und dadurch etabliertes SPA-Framework. 
 | **Mi, 21.02.2024** | 3h      | Diagramme und Styling Verbesserungen                          | Fertigstellung des Entitäts-, Architektur- und Kontextdiagramms. Aufbesserung der bisherigen Dokumentation (Formulierung, Gliederung). Die Technologie-Punkte sind innerhalb der Ränder, um die Visualisierung zu verbessern.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 | **Fr, 23.02.2024** | 2h      | Docker Container und Arbeit an Doku                           | Der Container ist nun einsatzbereit. Die Applikation wird als Image, welches automatisch deployt wird, bezogen und kommuniziert mit einem MySQL Image. Wie der Container gestartet wird ist dokumentiert und veraltete Teile aktualisiert. Offene ToDo's und technische Schulden habe ich geschätzt und dokumentiert. Die Reflexion fertiggestellt und Rechtschreibfehler korrigiert.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | **Sa, 24.02.2024** | 3h      | Dokumentation Überarbeiten & Präsentation                     | Ich habe die Dokumentation überarbeitet, Rechtschreibfehler korrigiert und Formulierungen verbessert. Die Präsentation ist soweit vorbereitet. Die Artefakte wären zur Abgabe bereit, ich werde je nach Zeit jedoch nochmals gerne alles kontrollieren vor Abgabe.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| **Total:**         | 59h     |                                                               |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| **So, 25.02.2024** | 2h      | Letzte Anpassungen an Dokumentation & Code                    |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| **Total:**         | **59h** |                                                               |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 
 
-**About arc42** Template Version 8.2, Januar 2023. 
+**About arc42** Template Version 8.2, January 2023. 
 Created, maintained and © by Dr. Peter Hruschka, Dr. Gernot Starke and contributors. View <https://arc42.org>.
 
-<p align="right">(<a href="#readme-top">↑ zurück zum Anfang</a>)</p>
+<p align="right">[<a href="#top">⬆️ Zurück zum Anfang</a>]</p>
